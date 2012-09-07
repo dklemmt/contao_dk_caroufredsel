@@ -1,0 +1,15 @@
+
+<?php if ($this->dk_cfsType == 'dk_cfsStart'): ?>
+<div class="ce_caroufredsel block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<div id="ce_caroufredsel_<?php echo $this->id; ?>">
+<?php else: ?> 
+</div>
+<?php if ($this->navigation): ?>
+	<a class="ce_caroufredsel_prev" id="ce_caroufredsel_prev_<?php echo $this->id; ?>" href="#"><span>prev</span></a>
+	<a class="ce_caroufredsel_next" id="ce_caroufredsel_next_<?php echo $this->id; ?>" href="#"><span>next</span></a>
+	<?php if ($this->pagination): ?>
+	<div class="ce_caroufredsel_pagi" id="ce_caroufredsel_pagi_<?php echo $this->id; ?>"></div>
+	<?php endif; ?>
+<?php endif; ?>
+</div>
+<?php endif; ?>

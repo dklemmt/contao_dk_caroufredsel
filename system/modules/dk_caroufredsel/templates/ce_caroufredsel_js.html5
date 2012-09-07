@@ -1,0 +1,131 @@
+<?php
+	$oComma = $iComma = false; 
+?>
+<script>
+(function($) {
+	$(document).ready(function() {
+	    $("#ce_caroufredsel_<?php echo $this->id; ?>").carouFredSel({
+<?php
+	if ($this->width) {
+		echo ($oComma == true ? ', ' : '') . 'width: ' . $this->width;
+		$oComma = true;
+	}
+	if ($this->height) {
+		echo ($oComma == true ? ', ' : '') . 'height: ' . $this->height;
+		$oComma = true;
+	}
+
+	if ($this->carouselType == 'one time') {		
+		echo ($oComma == true ? ', ' : '') . 'circular: false, infinite: false';
+		$oComma = true;
+	} elseif ($this->carouselType == 'infinite') {
+		echo ($oComma == true ? ', ' : '') .  'circular: false';
+		$oComma = true;
+	}
+	if ($this->direction) {
+		echo ($oComma == true ? ', ' : '') . 'direction: "' . $this->direction . '"';
+		$oComma = true;
+	}
+
+	if ($this->visibleItems || $this->startItemNo || $this->startItemRnd) {
+		echo ($oComma == true ? ', ' : '') . 'items: { ';
+		if ($this->visibleItems) {
+			echo 'visible: ' . $this->visibleItems;
+			$iComma = true;
+		}
+		if ($this->startItemRnd) {
+			echo 'start: "random"';
+			$iComma = true;
+		} else {
+			if ($this->startItemNo) {
+				echo 'start: ' . $this->startItemNo;
+				$iComma = true;
+			}
+		}
+		echo ' }';
+		$iComma = false; // reset
+		$oComma = true;
+	}
+
+	if ($this->scrollItems || $this->scrollEffects) {
+		echo ($oComma == true ? ', ' : '') . 'scroll: { ';
+		if ($this->scrollItems) {
+			echo 'items: ' . $this->scrollItems;
+			$iComma = true;
+		}
+		if ($this->scrollEffects) {
+			if ($this->scrollFx) {
+				echo ($iComma == true ? ', ' : '') . 'fx: "' . $this->scrollFx . '"';
+				$iComma = true;
+			}
+			if ($this->scrollEasing) {
+				echo ($iComma == true ? ', ' : '') . 'easing: "' . $this->scrollEasing . '"';
+				$iComma = true;
+			}
+			if ($this->scrollDuration) {
+				echo ($iComma == true ? ', ' : '') . 'duration: ' . $this->scrollDuration;
+				$iComma = true;
+			}
+		}
+		echo ' }';
+		$iComma = false; // reset
+		$oComma = true;
+	}
+	if ($this->autoPlay) {
+		if ($this->pauseDuration || $this->delay || $this->pauseOnHover) {
+			echo ($oComma == true ? ', ' : '') . 'auto: { ';
+			if ($this->pauseDuration) {
+				echo ($iComma == true ? ', ' : '') . 'pauseDuration: ' . $this->pauseDuration;
+				$iComma = true;
+			}
+			if ($this->delay) {
+				echo ($iComma == true ? ', ' : '') . 'delay: ' . $this->delay;
+				$iComma = true;
+			}
+			if ($this->pauseOnHover) {
+				echo ($iComma == true ? ', ' : '') . 'pauseOnHover: ' . ($this->pauseOnHover == 'restart' ? 'true' : '"' . $this->pauseOnHover . '"');
+				$iComma = true;
+			}
+			echo ' }';
+			$iComma = false; // reset
+			$oComma = true;
+		}
+	} else {
+		echo ($oComma == true ? ', ' : '') . 'auto: false';
+		$oComma = true;
+	}
+	if ($this->navigation) {
+		echo ($oComma == true ? ', ' : '') . 'prev: { ';
+		echo 'button: "#ce_caroufredsel_prev_' . $this->id . '"';
+		$iComma = true;
+		if ($this->prevKey)
+			echo ($iComma == true ? ', ' : '') . 'key: "' . $this->prevKey . '"';
+		echo ' }';
+		$oComma = true;
+
+		echo ($oComma == true ? ', ' : '') . 'next: { ';
+		echo 'button: "#ce_caroufredsel_next_' . $this->id . '"';
+		$iComma = true;
+		if ($this->nextKey)
+			echo ($iComma == true ? ', ' : '') . 'key: "' . $this->nextKey . '"';
+		echo ' }';
+			$oComma = true;
+
+		if ($this->pagination) {
+			echo ($oComma == true ? ', ' : '') . 'pagination: { ';
+			echo 'container: "#ce_caroufredsel_pagi_' . $this->id . '"';
+			$iComma = true;
+			if ($this->paginationKeys) {
+				echo ($iComma == true ? ', ' : '') . 'keys: ' . ($this->paginationKeys ? 'true' : 'false');
+				$iComma = true;
+			}
+			echo ' }';
+			$iComma = false; // reset
+			$oComma = true;
+		}
+	}
+?>
+	    });
+	});
+})(jQuery);
+</script>
