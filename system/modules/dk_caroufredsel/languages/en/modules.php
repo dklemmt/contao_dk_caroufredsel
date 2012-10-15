@@ -13,12 +13,10 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
  * @copyright 2012 Dirk Klemmt 
  */
 
-
 /**
  * Back end modules
  */
 $GLOBALS['TL_LANG']['MOD']['dk_caroufredsel'] = array('jQuery carousel', '');
-
 
 /**
  * Front end modules

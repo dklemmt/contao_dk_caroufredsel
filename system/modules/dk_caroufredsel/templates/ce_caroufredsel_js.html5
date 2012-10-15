@@ -1,128 +1,189 @@
 <?php
-	$oComma = $iComma = false; 
+	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
 ?>
 <script>
 (function($) {
 	$(document).ready(function() {
 	    $("#ce_caroufredsel_<?php echo $this->id; ?>").carouFredSel({
 <?php
-	if ($this->width) {
-		echo ($oComma == true ? ', ' : '') . 'width: ' . $this->width;
+	// global options
+	if ($this->carouselType) {		
+		echo ($oComma == true ? ', ' : '') . $this->carouselType;
 		$oComma = true;
 	}
-	if ($this->height) {
-		echo ($oComma == true ? ', ' : '') . 'height: ' . $this->height;
-		$oComma = true;
-	}
-
-	if ($this->carouselType == 'one time') {		
-		echo ($oComma == true ? ', ' : '') . 'circular: false, infinite: false';
-		$oComma = true;
-	} elseif ($this->carouselType == 'infinite') {
-		echo ($oComma == true ? ', ' : '') .  'circular: false';
+	if ($this->responsive) {
+		echo ($oComma == true ? ', ' : '') . $this->responsive;
 		$oComma = true;
 	}
 	if ($this->direction) {
-		echo ($oComma == true ? ', ' : '') . 'direction: "' . $this->direction . '"';
+		echo ($oComma == true ? ', ' : '') . $this->direction;
+		$oComma = true;
+	}
+	if ($this->width) {
+		echo ($oComma == true ? ', ' : '') . $this->width;
+		$oComma = true;
+	}
+	if ($this->height) {
+		echo ($oComma == true ? ', ' : '') . $this->height;
+		$oComma = true;
+	}
+	if ($this->align) {
+		echo ($oComma == true ? ', ' : '') . $this->align;
+		$oComma = true;
+	}
+	if ($this->padding) {
+		echo ($oComma == true ? ', ' : '') . $this->padding;
+		$oComma = true;
+	}
+	if ($this->cookie) {
+		echo ($oComma == true ? ', ' : '') . $this->cookie;
+//		echo ($oComma == true ? ', ' : '') . 'cookie: "#ce_caroufredsel_cookie_' . $this->id . '"';
 		$oComma = true;
 	}
 
-	if ($this->visibleItems || $this->startItemNo || $this->startItemRnd) {
+	// subobject 'items' options
+	if ($this->itemsVisible || $this->itemsStart || $this->itemsWidth || $this->itemsHeight) {
 		echo ($oComma == true ? ', ' : '') . 'items: { ';
-		if ($this->visibleItems) {
-			echo 'visible: ' . $this->visibleItems;
+		if ($this->itemsVisible) {
+			echo ($iComma == true ? ', ' : '') . $this->itemsVisible;
 			$iComma = true;
 		}
-		if ($this->startItemRnd) {
-			echo 'start: "random"';
+		if ($this->itemsStart) {
+			echo ($iComma == true ? ', ' : '') . $this->itemsStart;
 			$iComma = true;
-		} else {
-			if ($this->startItemNo) {
-				echo 'start: ' . $this->startItemNo;
-				$iComma = true;
-			}
 		}
-		echo ' }';
-		$iComma = false; // reset
+		if ($this->itemsWidth) {
+			echo ($iComma == true ? ', ' : '') . $this->itemsWidth;
+			$iComma = true;
+		}
+		if ($this->itemsHeight) {
+			echo ($iComma == true ? ', ' : '') . $this->itemsHeight;
+			$iComma = true;
+		}
+			echo ' }';
+		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
 
-	if ($this->scrollItems || $this->scrollEffects) {
+	// subobject 'scroll' options
+	if ($this->scrollItems || $this->scrollFx || $this->scrollEasing || $this->scrollDuration || $this->scrollPauseOnHover) {
 		echo ($oComma == true ? ', ' : '') . 'scroll: { ';
 		if ($this->scrollItems) {
-			echo 'items: ' . $this->scrollItems;
+			echo ($iComma == true ? ', ' : '') . $this->scrollItems;
 			$iComma = true;
 		}
-		if ($this->scrollEffects) {
-			if ($this->scrollFx) {
-				echo ($iComma == true ? ', ' : '') . 'fx: "' . $this->scrollFx . '"';
-				$iComma = true;
-			}
-			if ($this->scrollEasing) {
-				echo ($iComma == true ? ', ' : '') . 'easing: "' . $this->scrollEasing . '"';
-				$iComma = true;
-			}
-			if ($this->scrollDuration) {
-				echo ($iComma == true ? ', ' : '') . 'duration: ' . $this->scrollDuration;
-				$iComma = true;
-			}
+		if ($this->scrollFx) {
+			echo ($iComma == true ? ', ' : '') . $this->scrollFx;
+			$iComma = true;
+		}
+		if ($this->scrollEasing) {
+			echo ($iComma == true ? ', ' : '') . $this->scrollEasing;
+			$iComma = true;
+		}
+		if ($this->scrollDuration) {
+			echo ($iComma == true ? ', ' : '') . $this->scrollDuration;
+			$iComma = true;
+		}
+		if ($this->scrollPauseOnHover) {
+			echo ($iComma == true ? ', ' : '') . $this->scrollPauseOnHover;
+			$iComma = true;
 		}
 		echo ' }';
-		$iComma = false; // reset
+		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
-	if ($this->autoPlay) {
-		if ($this->pauseDuration || $this->delay || $this->pauseOnHover) {
+
+	// subobject 'auto' options
+	if (!$this->autoPlay) {
+		if ($this->autoTimeoutDuration || $this->autoDelay || $this->autoButton) {
 			echo ($oComma == true ? ', ' : '') . 'auto: { ';
-			if ($this->pauseDuration) {
-				echo ($iComma == true ? ', ' : '') . 'pauseDuration: ' . $this->pauseDuration;
+			if ($this->autoTimeoutDuration) {
+				echo ($iComma == true ? ', ' : '') . $this->autoTimeoutDuration;
 				$iComma = true;
 			}
-			if ($this->delay) {
-				echo ($iComma == true ? ', ' : '') . 'delay: ' . $this->delay;
+			if ($this->autoDelay) {
+				echo ($iComma == true ? ', ' : '') . $this->autoDelay;
 				$iComma = true;
 			}
-			if ($this->pauseOnHover) {
-				echo ($iComma == true ? ', ' : '') . 'pauseOnHover: ' . ($this->pauseOnHover == 'restart' ? 'true' : '"' . $this->pauseOnHover . '"');
+			if ($this->autoButton) {
+				echo 'button: "#ce_caroufredsel_button_' . $this->id . '"';
 				$iComma = true;
 			}
 			echo ' }';
-			$iComma = false; // reset
+			$iComma = false; // reset inside subobject comma flag
 			$oComma = true;
 		}
 	} else {
-		echo ($oComma == true ? ', ' : '') . 'auto: false';
+		echo ($oComma == true ? ', ' : '') . $this->autoPlay;
 		$oComma = true;
 	}
-	if ($this->navigation) {
+
+	// subobject 'prev' options
+	if ($this->navigation || $this->prevKey) {
 		echo ($oComma == true ? ', ' : '') . 'prev: { ';
-		echo 'button: "#ce_caroufredsel_prev_' . $this->id . '"';
-		$iComma = true;
-		if ($this->prevKey)
-			echo ($iComma == true ? ', ' : '') . 'key: "' . $this->prevKey . '"';
-		echo ' }';
-		$oComma = true;
-
-		echo ($oComma == true ? ', ' : '') . 'next: { ';
-		echo 'button: "#ce_caroufredsel_next_' . $this->id . '"';
-		$iComma = true;
-		if ($this->nextKey)
-			echo ($iComma == true ? ', ' : '') . 'key: "' . $this->nextKey . '"';
-		echo ' }';
-			$oComma = true;
-
-		if ($this->pagination) {
-			echo ($oComma == true ? ', ' : '') . 'pagination: { ';
-			echo 'container: "#ce_caroufredsel_pagi_' . $this->id . '"';
+		if ($this->navigation) {
+			echo 'button: "#ce_caroufredsel_prev_' . $this->id . '"';
 			$iComma = true;
-			if ($this->paginationKeys) {
-				echo ($iComma == true ? ', ' : '') . 'keys: ' . ($this->paginationKeys ? 'true' : 'false');
-				$iComma = true;
-			}
-			echo ' }';
-			$iComma = false; // reset
-			$oComma = true;
 		}
+		if ($this->prevKey) {
+			echo ($iComma == true ? ', ' : '') . $this->prevKey;
+			$iComma = true;
+		}
+		echo ' }';
+		$iComma = false; // reset inside subobject comma flag
+		$oComma = true;
+	}
+
+	// subobject 'next' options
+	if ($this->navigation || $this->prevKey) {
+		echo ($oComma == true ? ', ' : '') . 'next: { ';
+		if ($this->navigation) {
+			echo 'button: "#ce_caroufredsel_next_' . $this->id . '"';
+			$iComma = true;
+		}
+		if ($this->nextKey) {
+			echo ($iComma == true ? ', ' : '') . $this->nextKey;
+			$iComma = true;
+		}
+		echo ' }';
+		$iComma = false; // reset inside subobject comma flag
+		$oComma = true;
+	}
+
+	// subobject 'pagination' options
+	if ($this->pagination) {
+		echo ($oComma == true ? ', ' : '') . 'pagination: { ';
+		echo 'container: "#ce_caroufredsel_pagi_' . $this->id . '"';
+		$iComma = true;
+		if ($this->paginationKeys) {
+			echo ($iComma == true ? ', ' : '') . $this->paginationKeys;
+			$iComma = true;
+		}
+		echo ' }';
+		$iComma = false; // reset inside subobject comma flag
+		$oComma = true;
+	}
+
+	// subobject 'swipe' options
+	if ($this->swipeOnTouch || $this->swipeOnMouse) {
+		echo ($oComma == true ? ', ' : '') . 'swipe: { ';
+		if ($this->swipeOnTouch) {
+			echo ($iComma == true ? ', ' : '') . $this->swipeOnTouch;
+			$iComma = true;
+		}
+		if ($this->swipeOnMouse) {
+			echo ($iComma == true ? ', ' : '') . $this->swipeOnMouse;
+			$iComma = true;
+		}
+		echo ' }';
+		$iComma = false; // reset inside subobject comma flag
+		$oComma = true;
+	}
+
+	// subobject 'mousewheel' options
+	if ($this->mousewheel) {
+		echo ($oComma == true ? ', ' : '') . $this->mousewheel;
+		$oComma = true;
 	}
 ?>
 	    });

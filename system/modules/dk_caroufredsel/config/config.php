@@ -13,7 +13,6 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
  * @copyright Dirk Klemmt 2012 
  */
 
-
 /**
  * CONTENT ELEMENTS
  *

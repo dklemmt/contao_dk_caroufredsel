@@ -5,11 +5,11 @@
  * 
  * Copyright (C) 2005-2012 Leo Feyer
  * 
- * @package Dk_caroufredsel
- * @link    http://www.contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @package   carouFredSel 
+ * @author    Dirk Klemmt 
+ * @license   MIT/GPL 
+ * @copyright Dirk Klemmt 2012 
  */
-
 
 /**
  * Register the namespaces
@@ -19,7 +19,6 @@ ClassLoader::addNamespaces(array
 	'Dirch',
 ));
 
-
 /**
  * Register the classes
  */
@@ -28,7 +27,6 @@ ClassLoader::addClasses(array
 	// Elements
 	'Dirch\carouFredSel\ContentCarouFredSel' => 'system/modules/dk_caroufredsel/elements/ContentCarouFredSel.php',
 ));
-
 
 /**
  * Register the templates

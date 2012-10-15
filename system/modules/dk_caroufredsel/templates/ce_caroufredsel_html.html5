@@ -5,8 +5,12 @@
 <?php else: ?> 
 </div>
 <?php if ($this->navigation): ?>
+	<div style="float: none; clear: both;"></div>
 	<a class="ce_caroufredsel_prev" id="ce_caroufredsel_prev_<?php echo $this->id; ?>" href="#"><span>prev</span></a>
 	<a class="ce_caroufredsel_next" id="ce_caroufredsel_next_<?php echo $this->id; ?>" href="#"><span>next</span></a>
+	<?php if ($this->autoButton): ?>
+	<a class="ce_caroufredsel_button" id="ce_caroufredsel_button_<?php echo $this->id; ?>" href="#"><span>pause</span></a>
+	<?php endif; ?>
 	<?php if ($this->pagination): ?>
 	<div class="ce_caroufredsel_pagi" id="ce_caroufredsel_pagi_<?php echo $this->id; ?>"></div>
 	<?php endif; ?>
