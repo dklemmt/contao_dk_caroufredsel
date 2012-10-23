@@ -342,7 +342,7 @@ class ContentCarouFredSel extends \ContentElement
 
 				// parse and add
 				$GLOBALS['TL_HEAD'][] = $objTemplateJs->parse();					
-				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/jquery.carouFredSel-6.1.0-packed.js';
+				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.1.0-packed.js';
 			}
 			else
 			{
