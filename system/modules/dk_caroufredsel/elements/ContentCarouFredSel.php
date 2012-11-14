@@ -16,7 +16,6 @@
  */
 namespace Dirch\carouFredSel;
 
-if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
  * Class ContentCarouFredSel 
@@ -103,7 +102,7 @@ class ContentCarouFredSel extends \ContentElement
 					$objTemplateJs->direction = ($this->dk_cfsDirection == 'left' ? '' : 'direction: "' . $this->dk_cfsDirection . '"');
 		
 					// carouFredSel options 'circular' and 'infinite': default (contao extension) value is 'circular'
-					if ($this->dk_cfsCarouselType == 'one time') {		
+					if ($this->dk_cfsCarouselType == 'once') {		
 						$objTemplateJs->carouselType = 'circular: false, infinite: false';
 					} else if ($this->carouselType == 'infinite') {
 						$objTemplateJs->carouselType =  'circular: false';
@@ -190,26 +189,26 @@ class ContentCarouFredSel extends \ContentElement
 					$dk_cfsPadding = unserialize($this->dk_cfsPadding);
 					if ($dk_cfsPadding['unit'])
 					{
-						$paddingTop = ($dk_cfsPadding['top'] ? $dk_cfsPadding['top'] : 0);
-						$paddingRight = ($dk_cfsPadding['right'] ? $dk_cfsPadding['right'] : 0);
-						$paddingBottom = ($dk_cfsPadding['bottom'] ? $dk_cfsPadding['bottom'] : 0);
-						$paddingLeft = ($dk_cfsPadding['left'] ? $dk_cfsPadding['left'] : 0);
+						$paddingTop = ($dk_cfsPadding['top'] ? $dk_cfsPadding['top'] : '0');
+						$paddingRight = ($dk_cfsPadding['right'] ? $dk_cfsPadding['right'] : '0');
+						$paddingBottom = ($dk_cfsPadding['bottom'] ? $dk_cfsPadding['bottom'] : '0');
+						$paddingLeft = ($dk_cfsPadding['left'] ? $dk_cfsPadding['left'] : '0');
 
 						if (($paddingTop == $paddingRight) && ($paddingTop == $paddingBottom) && ($paddingTop == $paddingLeft))
 						{
-							if ($paddingTop != 0)
+							if ($paddingTop != '0')
 							{
 								$objTemplateJs->padding = 'padding: ' . $paddingTop;
 							}
 						} else if (($paddingTop == $paddingBottom) && ($paddingRight == $paddingLeft))
 						{
-							$objTemplateJs->padding = sprintf('padding: [%s, %s]', $dk_cfsPadding['top'], $dk_cfsPadding['right']);
+							$objTemplateJs->padding = sprintf('padding: [%s, %s]', $paddingTop, $paddingRight);
 						} else if ($paddingRight == $paddingLeft)
 						{
-							$objTemplateJs->padding = sprintf('padding: [%s, %s, %s]', $dk_cfsPadding['top'], $dk_cfsPadding['right'], $dk_cfsPadding['bottom']);
+							$objTemplateJs->padding = sprintf('padding: [%s, %s, %s]', $paddingTop, $paddingRight, $paddingBottom);
 						} else
 						{
-							$objTemplateJs->padding = sprintf('padding: [%s, %s, %s, %s]', $dk_cfsPadding['top'], $dk_cfsPadding['right'], $dk_cfsPadding['bottom'], $dk_cfsPadding['left']);
+							$objTemplateJs->padding = sprintf('padding: [%s, %s, %s, %s]', $paddingTop, $paddingRight, $paddingBottom, $paddingLeft);
 						}
 					}
 
@@ -342,7 +341,7 @@ class ContentCarouFredSel extends \ContentElement
 
 				// parse and add
 				$GLOBALS['TL_HEAD'][] = $objTemplateJs->parse();					
-				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.1.0-packed.js';
+				$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.1.0-packed.js|static';
 			}
 			else
 			{

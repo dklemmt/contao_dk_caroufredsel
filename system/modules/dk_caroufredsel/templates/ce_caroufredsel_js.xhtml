@@ -106,7 +106,7 @@
 				$iComma = true;
 			}
 			if ($this->autoButton) {
-				echo 'button: "#ce_caroufredsel_button_' . $this->id . '"';
+				echo ($iComma == true ? ', ' : '') . 'button: "#ce_caroufredsel_button_' . $this->id . '"';
 				$iComma = true;
 			}
 			echo ' }';

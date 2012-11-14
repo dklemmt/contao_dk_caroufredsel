@@ -83,7 +83,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsCarouselType'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsCarouselType'],
 	'inputType'			=> 'select',
-	'options'			=> array('circular', 'infinite', 'one time only'),
+	'options'			=> array('circular', 'infinite', 'once'),
 	'reference'			=> &$GLOBALS['TL_LANG']['tl_content'],
 	'eval'				=> array('tl_class' => 'w50'),
 	'sql'				=> "varchar(32) NOT NULL default ''"
