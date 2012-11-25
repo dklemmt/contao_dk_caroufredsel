@@ -1,4 +1,3 @@
-<?php echo '<pre>' . $this->showTemplateVars() . '</pre>'; ?>
 <script>
 (function($) {
 <?php if ($this->triggerMode == 'onWindowLoad'): ?>
