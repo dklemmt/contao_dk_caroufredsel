@@ -1,7 +1,5 @@
 <?php 
 
-if (!defined('TL_ROOT')) die('You can not access this file directly!');
-
 /**
  * Contao Open Source CMS
  * 
@@ -13,7 +11,8 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
  * @copyright 2012 Dirk Klemmt 
  */
 
+
 /**
  * Content elements
  */
-$GLOBALS['TL_LANG']['CTE']['dk_cfs'] = array('carouFredSel', 'Erzeugt ein jQuery carouFredSel-Element.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel'] = array('carouFredSel-Karussell', 'Erzeugt ein jQuery carouFredSel-Element.');

@@ -1,0 +1,9 @@
+/* dk_caroufredsel global styles */
+
+.caroufredsel div {
+	float: left;
+}
+.clearfix {
+	float: none;
+	clear: both;
+}

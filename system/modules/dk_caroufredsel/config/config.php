@@ -1,7 +1,5 @@
 <?php 
 
-if (!defined('TL_ROOT')) die('You can not access this file directly!');
-
 /**
  * Contao Open Source CMS
  * 
@@ -13,30 +11,46 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
  * @copyright Dirk Klemmt 2012 
  */
 
+
 /**
- * CONTENT ELEMENTS
- *
- * Content elements are stored in a global array called "TL_CTE". You can add
- * your own content elements by adding them to the array.
- *
- * $GLOBALS['TL_CTE'] = array
- * (
- *    'group_1' => array
- *    (
- *       'cte_1' => 'ContentClass1',
- *       'cte_2' => 'ContentClass2'
- *    )
- * );
- *
- * The keys (like "cte_1") are the element names, which are e.g. stored in the
- * database and used to find the corresponding translations. The values (like
- * "ContentClass1") are the names of the classes, which will be loaded when the
- * element is rendered. The class "ContentClass1" has to be stored in a file
- * named "ContentClass1.php" in your module folder.
+ * Back end modules
  */
-array_insert($GLOBALS['TL_CTE'], 3, array(
-	'texts' => array(
-		'dk_cfs' => 'carouFredSel\ContentCarouFredSel'
+array_insert($GLOBALS['BE_MOD'], 3, array
+(
+	'content' => array
+	(
+		'caroufredsel' => array
+		(
+			'tables'	=> array('tl_dk_caroufredsel', 'tl_content'),
+			'icon'		=> 'system/modules/dk_caroufredsel/assets/images/caroufredsel.png',
 		)
 	)
-);
+));
+
+
+/**
+ * Content elements
+ */
+array_insert($GLOBALS['TL_CTE'], 3, array
+(
+	'texts' => array
+	(
+		'caroufredsel'	=> 'carouFredSel\ContentCarouFredSel'
+	)
+));
+
+
+/**
+ * Front end modules
+ */
+array_insert($GLOBALS['FE_MOD'], 3, array
+(
+	'application' => array
+	(
+		'caroufredsel'			=> 'carouFredSel\ModuleCarouFredSel'
+	),
+	'news' => array
+	(
+		'caroufredsel_ticker'	=> 'carouFredSel\ModuleCarouFredSelTicker'
+	)
+));

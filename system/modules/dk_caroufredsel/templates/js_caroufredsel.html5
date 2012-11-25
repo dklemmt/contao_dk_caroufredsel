@@ -1,11 +1,15 @@
-<?php
-	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
-?>
+<?php echo '<pre>' . $this->showTemplateVars() . '</pre>'; ?>
 <script>
 (function($) {
+<?php if ($this->triggerMode == 'onWindowLoad'): ?>
+	$(window).load(function() {
+<?php else: ?>
 	$(document).ready(function() {
-	    $("#ce_caroufredsel_<?php echo $this->id; ?>").carouFredSel({
+<?php endif; ?>
+	    $("#caroufredsel_<?php echo $this->id; ?>").carouFredSel({
 <?php
+	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
+
 	// global options
 	if ($this->carouselType) {		
 		echo ($oComma == true ? ', ' : '') . $this->carouselType;
@@ -37,7 +41,6 @@
 	}
 	if ($this->cookie) {
 		echo ($oComma == true ? ', ' : '') . $this->cookie;
-//		echo ($oComma == true ? ', ' : '') . 'cookie: "#ce_caroufredsel_cookie_' . $this->id . '"';
 		$oComma = true;
 	}
 
@@ -95,8 +98,12 @@
 
 	// subobject 'auto' options
 	if (!$this->autoPlay) {
-		if ($this->autoTimeoutDuration || $this->autoDelay || $this->autoButton) {
+		if ($this->autoButton || $this->autoTimeoutDuration || $this->autoDelay || $this->autoProgress) {
 			echo ($oComma == true ? ', ' : '') . 'auto: { ';
+			if ($this->autoButton) {
+				echo ($iComma == true ? ', ' : '') . 'button: "#caroufredsel_button_' . $this->id . '"';
+				$iComma = true;
+			}
 			if ($this->autoTimeoutDuration) {
 				echo ($iComma == true ? ', ' : '') . $this->autoTimeoutDuration;
 				$iComma = true;
@@ -105,8 +112,13 @@
 				echo ($iComma == true ? ', ' : '') . $this->autoDelay;
 				$iComma = true;
 			}
-			if ($this->autoButton) {
-				echo ($iComma == true ? ', ' : '') . 'button: "#ce_caroufredsel_button_' . $this->id . '"';
+			if ($this->autoProgress) {
+				echo ($iComma == true ? ', ' : '') . 'progress: { ';
+				echo 'bar: "#caroufredsel_bar_' . $this->id . '"';
+				if ($this->autoProgressInterval) {
+					echo ', ' . $this->autoProgressInterval;
+				}
+				echo ' }';
 				$iComma = true;
 			}
 			echo ' }';
@@ -122,7 +134,7 @@
 	if ($this->navigation || $this->prevKey) {
 		echo ($oComma == true ? ', ' : '') . 'prev: { ';
 		if ($this->navigation) {
-			echo 'button: "#ce_caroufredsel_prev_' . $this->id . '"';
+			echo 'button: "#caroufredsel_prev_' . $this->id . '"';
 			$iComma = true;
 		}
 		if ($this->prevKey) {
@@ -138,7 +150,7 @@
 	if ($this->navigation || $this->prevKey) {
 		echo ($oComma == true ? ', ' : '') . 'next: { ';
 		if ($this->navigation) {
-			echo 'button: "#ce_caroufredsel_next_' . $this->id . '"';
+			echo 'button: "#caroufredsel_next_' . $this->id . '"';
 			$iComma = true;
 		}
 		if ($this->nextKey) {
@@ -153,7 +165,7 @@
 	// subobject 'pagination' options
 	if ($this->pagination) {
 		echo ($oComma == true ? ', ' : '') . 'pagination: { ';
-		echo 'container: "#ce_caroufredsel_pagi_' . $this->id . '"';
+		echo 'container: "#caroufredsel_pagi_' . $this->id . '"';
 		$iComma = true;
 		if ($this->paginationKeys) {
 			echo ($iComma == true ? ', ' : '') . $this->paginationKeys;
@@ -185,8 +197,21 @@
 		echo ($oComma == true ? ', ' : '') . $this->mousewheel;
 		$oComma = true;
 	}
+
+	echo ' }, {';
+	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
+
+	if ($this->debug) {		
+		echo ($oComma == true ? ', ' : '') . $this->debug;
+		$oComma = true;
+	}
+
+	echo ($oComma == true ? ', ' : '') . 'wrapper: { classname: "caroufedsel_wrapper caroufredsel_wrapper_' . $this->id . '" }';
+	$oComma = true;
+
+	echo ' }';
 ?>
-	    });
+	    );
 	});
 })(jQuery);
 </script>

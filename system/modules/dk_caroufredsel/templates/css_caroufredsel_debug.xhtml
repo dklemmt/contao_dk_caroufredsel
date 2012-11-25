@@ -1,0 +1,23 @@
+<style type="text/css">
+.ce_caroufredsel_<?php echo $this->id; ?>, .mod_caroufredsel_<?php echo $this->id; ?> {
+<?php if ($this->width) echo $this->width; ?> background-color: #eee !important;
+}
+.caroufredsel_wrapper_<?php echo $this->id; ?> {
+background-color: #ddd !important;
+}
+<?php if ($this->triggerMode == 'onWindowLoad'): ?>
+#caroufredsel_<?php echo $this->id; ?> {
+<?php if ($this->width) echo $this->width; ?> <?php if ($this->height) echo $this->height; ?> overflow: hidden;
+}
+<?php endif; ?>
+#caroufredsel_<?php echo $this->id; ?> .ce_text,
+#caroufredsel_<?php echo $this->id; ?> .ce_image {
+background-color: #C0FFC0 !important;
+}
+/*#caroufredsel_<?php echo $this->id; ?> img {
+	border: 1px solid #ccc;
+	background-color: white;
+	padding: 9px;
+	margin: 7px;
+}*/
+</style>
