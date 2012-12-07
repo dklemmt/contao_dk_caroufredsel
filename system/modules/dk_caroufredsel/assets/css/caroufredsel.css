@@ -1,6 +1,6 @@
 /* dk_caroufredsel global styles */
 
-.caroufredsel div {
+.caroufredsel > div {
 	float: left;
 }
 .clearfix {

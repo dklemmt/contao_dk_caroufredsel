@@ -41,7 +41,7 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['title']					= array('Name des Karusse
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['tstamp']					= array('Änderungsdatum', 'Datum und Uhrzeit der letzten Änderung.');
 
 // --- play behaviour
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['usePlay']				= array('Play behaviour', 'Laufrichtung, Art, automatisches Abspielen, Anzeigedauer, Verzögerung, Maus-Hover.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['usePlay']				= array('Play behaviour', 'Laufrichtung, Art, automatisches Abspielen, Anzeigedauer, Verzögerung, Maus-Hover, Fortschritts-Balken');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['direction']				= array('Direction', 'Scroll direction of the carousel.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['carouselType']			= array('Type', 'Die Art wie die Elemente abgespielt werden.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollItems']			= array('Items', 'The number of items to scroll. If 0, the number of visible items is used.');
