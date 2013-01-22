@@ -43,6 +43,7 @@
 		echo ($oComma == true ? ', ' : '') . $this->cookie;
 		$oComma = true;
 	}
+//	echo ($oComma == true ? ', ' : '') . 'onCreate: function(data) { }';
 
 	// subobject 'items' options
 	if ($this->itemsVisible || $this->itemsStart || $this->itemsWidth || $this->itemsHeight) {
@@ -91,6 +92,10 @@
 			echo ($iComma == true ? ', ' : '') . $this->scrollPauseOnHover;
 			$iComma = true;
 		}
+//		echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
 		echo ' }';
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
@@ -121,6 +126,13 @@
 				echo ' }';
 				$iComma = true;
 			}
+//			echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//			echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
+//			echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
+//			echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
+//			echo ($iComma == true ? ', ' : '') . 'onTimeoutStart: function(percentage, duration) { }';
+//			echo ($iComma == true ? ', ' : '') . 'onTimeoutEnd: function(percentage, duration) { }';
+//			echo ($iComma == true ? ', ' : '') . 'onTimeoutPause: function(percentage, duration) { }';
 			echo ' }';
 			$iComma = false; // reset inside subobject comma flag
 			$oComma = true;
@@ -141,13 +153,17 @@
 			echo ($iComma == true ? ', ' : '') . $this->prevKey;
 			$iComma = true;
 		}
+//		echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
 		echo ' }';
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
 
 	// subobject 'next' options
-	if ($this->navigation || $this->prevKey) {
+	if ($this->navigation || $this->nextKey) {
 		echo ($oComma == true ? ', ' : '') . 'next: { ';
 		if ($this->navigation) {
 			echo 'button: "#caroufredsel_next_' . $this->id . '"';
@@ -158,6 +174,10 @@
 			$iComma = true;
 		}
 		echo ' }';
+//		echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
@@ -171,6 +191,11 @@
 			echo ($iComma == true ? ', ' : '') . $this->paginationKeys;
 			$iComma = true;
 		}
+//		echo ($iComma == true ? ', ' : '') . 'anchorBuilder: function(nr) { }';
+//		echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
 		echo ' }';
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
@@ -187,6 +212,10 @@
 			echo ($iComma == true ? ', ' : '') . $this->swipeOnMouse;
 			$iComma = true;
 		}
+//		echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
+//		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
 		echo ' }';
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
@@ -198,7 +227,7 @@
 		$oComma = true;
 	}
 
-	echo ' }, {';
+	echo ' }, { ';
 	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
 
 	if ($this->debug) {		

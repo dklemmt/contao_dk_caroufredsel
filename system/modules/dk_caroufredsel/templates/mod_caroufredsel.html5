@@ -1,26 +1,38 @@
 
 <div class="<?php echo $this->class . ' ' . $this->class . '_' . $this->id; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<div class="caroufredsel_skin" id="caroufredsel_skin_<?php echo $this->id; ?>">
 <?php if ($this->headline): ?>
 
 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
 <?php endif; ?>
-<div class="caroufredsel caroufredsel_<?php echo $this->id; ?>" id="caroufredsel_<?php echo $this->id; ?>">
+<div class="caroufredsel" id="caroufredsel_<?php echo $this->id; ?>">
 <?php echo implode('', $this->elements); ?>
 </div>
 <?php if ($this->autoProgress || $this->navigation): ?>
 <div class="clearfix"></div>
 <?php if ($this->autoProgress): ?>
-<div class="caroufredsel_bar caroufredsel_bar_<?php echo $this->id; ?>" id="caroufredsel_bar_<?php echo $this->id; ?>"></div>
+<div class="caroufredsel_bar_wrapper" id="caroufredsel_bar_wrapper_<?php echo $this->id; ?>">
+<?php if ($this->autoProgress == 'pie'): ?>
+<canvas class="caroufredsel_bar" id="caroufredsel_bar_<?php echo $this->id; ?>"></canvas>
+<?php else: ?> 
+<div class="caroufredsel_bar" id="caroufredsel_bar_<?php echo $this->id; ?>"></div>
+<?php endif; ?>
+</div>
 <?php endif; ?>
 <?php if ($this->navigation): ?>
-<a class="caroufredsel_prev caroufredsel_prev_<?php echo $this->id; ?>" id="caroufredsel_prev_<?php echo $this->id; ?>" href="#"><span>prev</span></a>
-<a class="caroufredsel_next caroufredsel_next_<?php echo $this->id; ?>" id="caroufredsel_next_<?php echo $this->id; ?>" href="#"><span>next</span></a>
+<div class="caroufredsel_controls" id="caroufredsel_controls_<?php echo $this->id; ?>">
+<div class="caroufredsel_navi" id="caroufredsel_navi_<?php echo $this->id; ?>">
+<a class="caroufredsel_prev" id="caroufredsel_prev_<?php echo $this->id; ?>" href="#"><span><?php echo $GLOBALS['TL_LANG']['DK_CFS']['previous']; ?></span></a>
+<a class="caroufredsel_next" id="caroufredsel_next_<?php echo $this->id; ?>" href="#"><span><?php echo $GLOBALS['TL_LANG']['DK_CFS']['next']; ?></span></a>
 <?php if ($this->autoButton): ?>
-<a class="caroufredsel_button caroufredsel_button_<?php echo $this->id; ?>" id="caroufredsel_button_<?php echo $this->id; ?>" href="#"><span>pause</span></a>
+<a class="caroufredsel_button" id="caroufredsel_button_<?php echo $this->id; ?>" href="#"><span><?php echo $GLOBALS['TL_LANG']['DK_CFS']['pause']; ?></span></a>
 <?php endif; ?>
+</div>
 <?php if ($this->pagination): ?>
-<div class="caroufredsel_pagi caroufredsel_pagi_<?php echo $this->id; ?>" id="caroufredsel_pagi_<?php echo $this->id; ?>"></div>
+<div class="caroufredsel_pagi" id="caroufredsel_pagi_<?php echo $this->id; ?>"></div>
+<?php endif; ?>
+</div>
 <?php endif; ?>
 <?php endif; ?>
-<?php endif; ?>
+</div>
 </div>

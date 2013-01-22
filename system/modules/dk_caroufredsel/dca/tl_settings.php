@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2012 Leo Feyer
+ * Copyright (C) 2005-2013 Leo Feyer
  * 
  * @package   carouFredSel 
  * @author    Dirk Klemmt 
  * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012 
+ * @copyright Dirk Klemmt 2012-2013 
  */
 
 
@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsTriggerMode'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsTriggerMode'],
 	'inputType'			=> 'select',
-	'default'			=> 'onDocumentReady',
+	'default'			=> 'onWindowLoad',
 	'options'			=> array( 'onDocumentReady', 'onWindowLoad'),
 	'eval'				=> array('tl_class' => 'w50')
 );

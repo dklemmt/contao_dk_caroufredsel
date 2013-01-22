@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2012 Leo Feyer
+ * Copyright (C) 2005-2013 Leo Feyer
  * 
  * @package   carouFredSel 
  * @author    Dirk Klemmt 
  * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012 
+ * @copyright Dirk Klemmt 2012-2013 
  */
 
 
@@ -19,20 +19,17 @@ namespace Dirch\carouFredSel;
 
 
 /**
- * Class Dk_carouFredSel 
+ * Class CarouFredSel 
  *
  * @package   carouFredSel 
  * @author    Dirk Klemmt 
  * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012
+ * @copyright Dirk Klemmt 2012-2013
  */
 class CarouFredSel extends \Frontend 
 {
 
-	/**
-	 *
-	 *
-	 */
+
 	public function createTemplateData($carouFredSelId, \Template $objTemplateHtml, \Template $objTemplateCss, \Template $objTemplateJs)
 	{
 		$objCarouFredSel = \Database::getInstance()
@@ -57,6 +54,7 @@ class CarouFredSel extends \Frontend
 			if ($objCarouFredSel->direction != 'left')
 			{
 				$objTemplateJs->direction = 'direction: "' . $objCarouFredSel->direction . '"';
+				$objTemplateCss->direction = $objCarouFredSel->direction;
 			}
 
 			// carouFredSel options 'circular' and 'infinite': default (contao extension) value is 'circular'
@@ -100,10 +98,11 @@ class CarouFredSel extends \Frontend
 				}
 
 				// carouFredSel option 'auto.progress': default value is 'null'
-				if ($objCarouFredSel->autoProgress)
+				if ($objCarouFredSel->autoProgress != 'none')
 				{
 					$objTemplateHtml->autoProgress =
-					$objTemplateJs->autoProgress = $objCarouFredSel->autoProgress;
+					$objTemplateJs->autoProgress =
+					$objTemplateCss->autoProgress = $objCarouFredSel->autoProgress;
 
 					// carouFredSel option 'auto.progress.interval': default value is '50'
 					if ($objCarouFredSel->autoProgressInterval != '50')
@@ -153,13 +152,17 @@ class CarouFredSel extends \Frontend
 				case 'fixed':
 					$width = unserialize($objCarouFredSel->width);
 					$objTemplateJs->width = 'width: ' . $width['value'];
-					$objTemplateCss->width = $objTemplateJs->width . 'px;';
+					$objTemplateCss->width = $objTemplateJs->width . $width['unit'] . ';';
+					$objTemplateCss->widthValue = $width['value'];
+					$objTemplateCss->widthUnit = $width['unit'];
 					break;
 
 				case 'fluid':
 					$width = unserialize($objCarouFredSel->width);
 					$objTemplateJs->width = sprintf('width: "%s%s"', $width['value'], $width['unit']);
-					$objTemplateCss->width = $objTemplateJs->width . ';';
+					$objTemplateCss->width = sprintf('width: %s%s;', $width['value'], $width['unit']);
+					$objTemplateCss->widthValue = $width['value'];
+					$objTemplateCss->widthUnit = $width['unit'];
 					break;
 			}
 
@@ -177,13 +180,13 @@ class CarouFredSel extends \Frontend
 				case 'fixed':
 					$height = unserialize($objCarouFredSel->height);
 					$objTemplateJs->height = 'height: ' . $height['value'];
-					$objTemplateCss->height = $objTemplateJs->height . 'px;';
+					$objTemplateCss->height = $objTemplateJs->height . $height['unit']. ';';
 					break;
 
 				case 'fluid':
 					$height = unserialize($objCarouFredSel->height);
 					$objTemplateJs->height = sprintf('height: "%s%s"', $height['value'], $height['unit']);
-					$objTemplateCss->height = $objTemplateJs->height . ';';
+					$objTemplateCss->height = sprintf('height: %s%s;', $height['value'], $height['unit']);
 					break;
 			}
 
@@ -285,6 +288,7 @@ class CarouFredSel extends \Frontend
 
 				case 'fixed':
 					$objTemplateJs->itemsVisible = ($objCarouFredSel->itemsVisible == '0' ? '' : 'visible: ' . $objCarouFredSel->itemsVisible);
+					$objTemplateCss->itemsVisible = $objCarouFredSel->itemsVisible;
 					break;
 
 				case 'min/max':
@@ -348,19 +352,22 @@ class CarouFredSel extends \Frontend
 			if ($objCarouFredSel->navigation)
 			{
 				$objTemplateHtml->navigation =
-				$objTemplateJs->navigation = $objCarouFredSel->navigation;
+				$objTemplateJs->navigation =
+				$objTemplateCss->navigation = $objCarouFredSel->navigation;
 
 				// carouFredSel option 'auto.button': default value is 'null'. Only if auto play is enabled.
 				if ($objCarouFredSel->autoPlay)
 				{
 					$objTemplateHtml->autoButton =
-					$objTemplateJs->autoButton =  $objCarouFredSel->autoButton;
+					$objTemplateJs->autoButton =
+					$objTemplateCss->autoButton = $objCarouFredSel->autoButton;
 				}
 
 				if ($objCarouFredSel->pagination)
 				{
 					$objTemplateHtml->pagination =
-					$objTemplateJs->pagination = $objCarouFredSel->pagination;
+					$objTemplateJs->pagination =
+					$objTemplateCss->pagination = $objCarouFredSel->pagination;
 
 					// carouFredSel option 'keys'
 					if ($objCarouFredSel->paginationKeys)
@@ -394,5 +401,49 @@ class CarouFredSel extends \Frontend
 
 		// ... the caroufredsel javascript itselfs
 		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.1.0-packed.js|static';
+		if ($objCarouFredSel->autoProgress == 'pie')
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSelHelper.js';
+		}
+	}
+	
+	
+	public function createTemplateDataStopElement($carouFredSelId, \Template $objTemplateHtml)
+	{
+		$objCarouFredSel = \Database::getInstance()
+			->prepare("SELECT *
+					   FROM tl_dk_caroufredsel
+					   WHERE id = ?")
+			->limit(1)
+			->execute($carouFredSelId);
+
+		if ($objCarouFredSel->numRows < 1)
+		{
+			return;
+		}
+
+		// --- fill FE template for carouFredSel element
+		
+		// --- play behaviour
+		if ($objCarouFredSel->usePlay && $objCarouFredSel->autoPlay && $objCarouFredSel->autoProgress != 'none')
+		{	
+			$objTemplateHtml->autoProgress = $objCarouFredSel->autoProgress;
+		}
+
+		// --- navigation
+		if ($objCarouFredSel->useNavigation && $objCarouFredSel->navigation)
+		{
+			$objTemplateHtml->navigation = $objCarouFredSel->navigation;
+
+			if ($objCarouFredSel->autoPlay)
+			{
+				$objTemplateHtml->autoButton = $objCarouFredSel->autoButton;
+			}
+
+			if ($objCarouFredSel->pagination)
+			{
+				$objTemplateHtml->pagination = $objCarouFredSel->pagination;
+			}
+		}
 	}
 }

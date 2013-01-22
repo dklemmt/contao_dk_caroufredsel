@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2012 Leo Feyer
+ * Copyright (C) 2005-2013 Leo Feyer
  * 
  * @package   carouFredSel 
  * @author    Dirk Klemmt 
  * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012 
+ * @copyright Dirk Klemmt 2012-2013 
  */
 
 
@@ -46,11 +46,13 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'ce_caroufredsel'			=> 'system/modules/dk_caroufredsel/templates',
-	'mod_caroufredsel'			=> 'system/modules/dk_caroufredsel/templates',
-	'mod_caroufredsel_ticker'	=> 'system/modules/dk_caroufredsel/templates',
-	'news_caroufredsel_ticker'	=> 'system/modules/dk_caroufredsel/templates',
-	'css_caroufredsel'			=> 'system/modules/dk_caroufredsel/templates',
-	'css_caroufredsel_debug'	=> 'system/modules/dk_caroufredsel/templates',
-	'js_caroufredsel'			=> 'system/modules/dk_caroufredsel/templates'
+	'ce_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates',
+	'ce_caroufredsel_light'			=> 'system/modules/dk_caroufredsel/templates',
+	'mod_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates',
+	'mod_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates',
+	'news_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates',
+	'css_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates',
+	'css_caroufredsel_light'		=> 'system/modules/dk_caroufredsel/templates',
+	'css_caroufredsel_debug'		=> 'system/modules/dk_caroufredsel/templates',
+	'js_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates'
 ));

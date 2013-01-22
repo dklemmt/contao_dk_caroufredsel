@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2012 Leo Feyer
+ * Copyright (C) 2005-2013 Leo Feyer
  * 
  * @package   carouFredSel 
  * @author    Dirk Klemmt 
  * @license   MIT/GPL 
- * @copyright 2012 Dirk Klemmt 
+ * @copyright Dirk Klemmt 2012-2013 
  */
 
 
@@ -49,7 +49,7 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoPlay']				= array('auto play', 'D
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoTimeoutDuration']	= array('Duration', 'The amount of milliseconds the carousel will pause.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoDelay']				= array('Delay', 'Additional delay in milliseconds before the carousel starts scrolling the first time. This can also be a negative number.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']		= array('Pause on hover', 'Determines whether the timeout between transitions should be paused on mouse hover and how the transition will be handled afterwards.');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']			= array('Fortschritts-Balken einblenden', 'Bestimmt, ob ein visueller Balken eingeblendet wird, der durch seinen Füllstand anzeigt wann erneut gescrollt wird.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']			= array('Fortschritts-Balken einblenden', 'Bestimmt, ob ein visuelles Element eingeblendet wird, das durch seinen Füllstand anzeigt wann erneut gescrollt wird.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgressInterval']	= array('Aktualisierungs-Intervall', 'Bestimmt den zeitlichen Abstand mit dem der Füllstand aktualisiert wird in Millisekunden.');
 
 // --- transistions
@@ -115,6 +115,10 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['restart']			= a
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['resume']			= array('Pause + Anzeigedauer fortsetzen', 'Bei Maus-Hover pausiert das Karussell. Im Anschluß wird die bisherige Anzeigedauer mit der verbliebenen Restzeit bis zum erneuten Scrollen fortgesetzt.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['immediate']		= array('sofortiger Stop + Anzeigedauer neu starten', 'Bei Maus-Hover stoppt das Karussell sofort. Im Anschluß wird die bisherige Anzeigedauer zurückgesetzt und es wird erst nach der kompletten Anzeigedauer erneut gescrollt.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['immediate-resume']	= array('sofortiger Stop + Anzeigedauer fortsetzen', 'Bei Maus-Hover stoppt das Karussell sofort. Im Anschluß wird die bisherige Anzeigedauer mit der verbliebenen Restzeit bis zum erneuten Scrollen fortgesetzt');
+
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['none']					= array('kein', 'Die Fortschritts-Anzeige ist ausgeblendet.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['bar']					= array('Balken', 'Es wird ein Fortschritts-Balken eingeblendet.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['pie']					= array('Kreis', 'Es wird ein Kreis-Diagramm eingeblendet. Dies steht nur im Ausgabeformat \'HTML\' zur Verfügung.');
 
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['none']							= array('none', '');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['center']						= array('denter', '');

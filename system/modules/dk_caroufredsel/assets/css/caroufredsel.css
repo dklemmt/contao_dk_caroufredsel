@@ -1,9 +1,12 @@
 /* dk_caroufredsel global styles */
 
+.caroufredsel .image_container img {
+	vertical-align: bottom;
+}
 .caroufredsel > div {
 	float: left;
 }
-.clearfix {
+.caroufredsel .clearfix {
 	float: none;
 	clear: both;
 }

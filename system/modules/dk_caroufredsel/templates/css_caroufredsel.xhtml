@@ -1,13 +1,38 @@
+<?php
+	// progress bar definitions
+	$progressBarHeight = 2;
+	$progressBarBackgroundHeight = 6;
+	$progressBarColor = '#eeeeee';
+	$progressBarBackgroundColor = '#222222';
+?>
 <style type="text/css">
 .ce_caroufredsel_<?php echo $this->id; ?>, .mod_caroufredsel_<?php echo $this->id; ?> {
 <?php if ($this->width) echo $this->width; ?> position: relative;
 }
-
 <?php if ($this->triggerMode == 'onWindowLoad'): ?>
 #caroufredsel_<?php echo $this->id; ?> {
 <?php if ($this->width) echo $this->width; ?> <?php if ($this->height) echo $this->height; ?> overflow: hidden;
 }
 <?php endif; ?>
-
-.caroufredsel_bar { background-color: #999; height: 6px; width: 0px; }
+<?php if ($this->autoProgress): ?>
+/* progress bar */
+#caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_bar_wrapper {
+<?php if ($this->autoProgress == 'pie'): ?>
+	position: absolute;
+	top: 5px;
+	right: 5px;
+<?php else: ?>
+	height: <?php echo $progressBarBackgroundHeight; ?>px;
+	background-color: <?php echo $progressBarBackgroundColor; ?>;
+<?php endif; ?>
+}
+<?php if ($this->autoProgress != 'pie'): ?>
+#caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_bar {
+	position: relative;
+	top: <?php echo ($progressBarBackgroundHeight - $progressBarHeight) / 2; ?>px;
+	height: <?php echo $progressBarHeight; ?>px;
+	background-color: <?php echo $progressBarColor; ?>;
+}
+<?php endif; ?>
+<?php endif; ?>
 </style>

@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2012 Leo Feyer
+ * Copyright (C) 2005-2013 Leo Feyer
  * 
  * @package   carouFredSel 
  * @author    Dirk Klemmt 
  * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012 
+ * @copyright Dirk Klemmt 2012-2013 
  */
 
 
@@ -100,12 +100,6 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			)
 		)
 	),
-
-	// Edit
-/*	'edit' => array
-	(
-		'buttons_callback'		=> array()
-	),*/
 
 	// Palettes
 	'palettes' => array
@@ -223,9 +217,12 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 		(
 			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress'],
 			'exclude'			=> true,
-			'inputType'			=> 'checkbox',
-			'eval'				=> array('submitOnChange' => true, 'tl_class' => 'w50 m12'),
-			'sql'				=> "char(1) NOT NULL default ''"
+			'inputType'			=> 'select',
+			'default'			=> 'none',
+			'options'			=> array('none', 'bar', 'pie'),
+			'reference'			=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress'],
+			'eval'				=> array('submitOnChange' => true, 'helpwizard' => true, 'tl_class' => 'w50'),
+			'sql'				=> "varchar(32) NOT NULL default ''"
 		),
 		'autoProgressInterval' => array
 		(
@@ -560,8 +557,8 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 /**
  * Class tl_dk_caroufredsell 
  *
- * @copyright  Dirk Klemmt 2012 
- * @author     Dirk Klemmt 
+ * @copyright  Dirk Klemmt 2012-2013
+ * @author     Dirk Klemmt
  * @package    carouFredSel
  */
 class tl_dk_caroufredsel extends Backend
@@ -596,7 +593,7 @@ class tl_dk_caroufredsel extends Backend
 			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay'] = str_replace('autoPlay', 'autoPlay,autoTimeoutDuration,autoDelay,scrollPauseOnHover,autoProgress', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay']);
 		}
 
-		if ($obj->autoProgress)
+		if ($obj->autoProgress != 'none')
 		{
 			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay'] = str_replace('autoProgress', 'autoProgress,autoProgressInterval', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay']);
 		}
@@ -653,8 +650,8 @@ class tl_dk_caroufredsel extends Backend
 			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useItemsSize'] = str_replace('itemsHeightSelect', 'itemsHeightSelect,itemsHeight', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useItemsSize']);
 		}
 	}
-
-
+	
+	
 	/**
 	 * Return all possible easing options as array
 	 *
@@ -674,7 +671,7 @@ class tl_dk_caroufredsel extends Backend
 							'easeInExpo', 'easeOutExpo', 'easeInOutExpo', 'easeInCirc', 'easeOutCirc',
 							'easeInOutCirc', 'easeInElastic', 'easeOutElastic', 'easeInOutElastic', 'easeInBack',
 							'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce', 'easeInOutBounce');
-		} 
+		}
 
 		return $easingOptions;
 	}
