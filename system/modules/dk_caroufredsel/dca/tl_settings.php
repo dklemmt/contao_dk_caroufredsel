@@ -25,9 +25,9 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsTriggerMode'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsTriggerMode'],
 	'inputType'			=> 'select',
-	'default'			=> 'onWindowLoad',
-	'options'			=> array( 'onDocumentReady', 'onWindowLoad'),
-	'eval'				=> array('tl_class' => 'w50')
+	'options'			=> array('onDocumentReady', 'onWindowLoad', 'readyLoad'),
+	'reference'			=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsTriggerMode'],
+	'eval'				=> array('helpwizard' => true, 'tl_class' => 'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsDebug'] = array

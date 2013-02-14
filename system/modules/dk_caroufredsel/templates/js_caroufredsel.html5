@@ -1,7 +1,15 @@
 <script>
 (function($) {
 <?php if ($this->triggerMode == 'onWindowLoad'): ?>
+	$(document).ready(function() {
+		$("#caroufredsel_skin_<?php echo $this->id; ?>").css('visibility', 'hidden');
+	});
 	$(window).load(function() {
+		$("#caroufredsel_skin_<?php echo $this->id; ?>").css('visibility', 'visible');
+	});
+	$(window).load(function() {
+<?php elseif ($this->triggerMode == 'readyLoad'): ?>
+	$.readyLoad(function() {
 <?php else: ?>
 	$(document).ready(function() {
 <?php endif; ?>

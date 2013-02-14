@@ -378,11 +378,11 @@ class CarouFredSel extends \Frontend
 			}
 		}
 
-		// carouFredel JavaScript trigger mode 
+		// carouFredSel javascript trigger mode 
 		$objTemplateCss->triggerMode = 
 		$objTemplateJs->triggerMode = $GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'];
 
-		// carouFredel debug mode 
+		// carouFredSel debug mode 
 		if ($GLOBALS['TL_CONFIG']['dk_cfsDebug'])
 		{
 			$objTemplateJs->debug = 'debug: true';
@@ -399,8 +399,14 @@ class CarouFredSel extends \Frontend
 		// ... element dependent javascript caller
 		$GLOBALS['TL_HEAD'][] = $objTemplateJs->parse();					
 
-		// ... the caroufredsel javascript itselfs
-		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.1.0-packed.js|static';
+		// ... the carouFredSel javascript itselfs
+		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.2.0-packed.js|static';
+
+		// ... and helper stuff
+		if ($GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'] == 'readyLoad')
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.readyLoad.js';
+		}
 		if ($objCarouFredSel->autoProgress == 'pie')
 		{
 			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSelHelper.js';
