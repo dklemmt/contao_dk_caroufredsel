@@ -50,7 +50,11 @@
 		echo ($oComma == true ? ', ' : '') . $this->cookie;
 		$oComma = true;
 	}
-//	echo ($oComma == true ? ', ' : '') . 'onCreate: function(data) { }';
+	// function called once at creation of carousel
+	echo ($oComma == true ? ', ' : '') . 'onCreate: function(data) { data.items.addClass("visible");';
+	// --> your code here <--
+	echo ' }'; // end of 'onCreate'
+	$oComma = true;
 
 	// subobject 'items' options
 	if ($this->itemsVisible || $this->itemsStart || $this->itemsWidth || $this->itemsHeight) {
@@ -71,49 +75,53 @@
 			echo ($iComma == true ? ', ' : '') . $this->itemsHeight;
 			$iComma = true;
 		}
-			echo ' }';
+		echo ' }'; // end of subobject 'items' options
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
 
 	// subobject 'scroll' options
-	if ($this->scrollItems || $this->scrollFx || $this->scrollEasing || $this->scrollDuration || $this->scrollPauseOnHover) {
-		echo ($oComma == true ? ', ' : '') . 'scroll: { ';
-		if ($this->scrollItems) {
-			echo ($iComma == true ? ', ' : '') . $this->scrollItems;
-			$iComma = true;
-		}
-		if ($this->scrollFx) {
-			echo ($iComma == true ? ', ' : '') . $this->scrollFx;
-			$iComma = true;
-		}
-		if ($this->scrollEasing) {
-			echo ($iComma == true ? ', ' : '') . $this->scrollEasing;
-			$iComma = true;
-		}
-		if ($this->scrollDuration) {
-			echo ($iComma == true ? ', ' : '') . $this->scrollDuration;
-			$iComma = true;
-		}
-		if ($this->scrollPauseOnHover) {
-			echo ($iComma == true ? ', ' : '') . $this->scrollPauseOnHover;
-			$iComma = true;
-		}
-//		echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
-//		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
-		if (!$this->autoPlay && $this->autoProgress == 'pie') {
-			echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { $().hideProgressBar("caroufredsel_bar_wrapper_' . $this->id . '"); }';
-		}
-//		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
-		if (!$this->autoPlay && $this->autoProgress == 'pie') {
-			echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { $().initProgressBar("caroufredsel_bar_' . $this->id . '", { barBackgroundColor: progressBarBackgroundColor_' . $this->id . ' }); }';
-		}
-//		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
-
-		echo ' }';
-		$iComma = false; // reset inside subobject comma flag
-		$oComma = true;
+	echo ($oComma == true ? ', ' : '') . 'scroll: { ';
+	if ($this->scrollItems) {
+		echo ($iComma == true ? ', ' : '') . $this->scrollItems;
+		$iComma = true;
 	}
+	if ($this->scrollFx) {
+		echo ($iComma == true ? ', ' : '') . $this->scrollFx;
+		$iComma = true;
+	}
+	if ($this->scrollEasing) {
+		echo ($iComma == true ? ', ' : '') . $this->scrollEasing;
+		$iComma = true;
+	}
+	if ($this->scrollDuration) {
+		echo ($iComma == true ? ', ' : '') . $this->scrollDuration;
+		$iComma = true;
+	}
+	if ($this->scrollPauseOnHover) {
+		echo ($iComma == true ? ', ' : '') . $this->scrollPauseOnHover;
+		$iComma = true;
+	}
+//	echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+	// function called every time before scrolling occurs
+	echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { data.items.old.removeClass("visible");';
+	if (!$this->autoPlay && $this->autoProgress == 'pie') {
+		echo ' $().hideProgressBar("caroufredsel_bar_wrapper_' . $this->id . '");';
+	}
+	// --> your code here <--
+	echo ' }'; // end of 'onBefore'
+	$iComma = true;
+	// function called every time after scrolling occurred
+	echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { data.items.visible.addClass("visible");';
+	if (!$this->autoPlay && $this->autoProgress == 'pie') {
+		echo ' $().initProgressBar("caroufredsel_bar_' . $this->id . '", { barBackgroundColor: progressBarBackgroundColor_' . $this->id . ' });';
+	}
+	// --> your code here <--
+	echo ' }'; // end of 'onAfter'
+	$iComma = true;
+	echo ' }'; // end of subobject 'scroll' options
+	$iComma = false; // reset inside subobject comma flag
+	$oComma = true;
 
 	// subobject 'auto' options
 	if (!$this->autoPlay) {
@@ -156,7 +164,7 @@
 			if ($this->autoProgress == 'pie') {
 				echo ($iComma == true ? ', ' : '') . 'onTimeoutPause: function(percentage, duration) { $().hideProgressBar("caroufredsel_bar_wrapper_' . $this->id . '"); }';
 			}
-			echo ' }';
+			echo ' }'; // end of subobject 'auto' options
 			$iComma = false; // reset inside subobject comma flag
 			$oComma = true;
 		}
