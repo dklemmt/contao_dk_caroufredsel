@@ -12,12 +12,10 @@ progressBarBackgroundColor_<?php echo $this->id; ?> = '<?php echo $progressBarBa
 </script>
 <?php endif; ?>
 <style type="text/css">
+
+<?php if ($this->type != 'caroufredsel_background'): ?>
 .ce_caroufredsel_<?php echo $this->id; ?>, .mod_caroufredsel_<?php echo $this->id; ?> {
 <?php if ($this->width) echo $this->width; ?> position: relative;
-}
-<?php if ($this->triggerMode == 'onWindowLoad'): ?>
-#caroufredsel_<?php echo $this->id; ?> {
-<?php if ($this->width) echo $this->width; ?> <?php if ($this->height) echo $this->height; ?> overflow: hidden;
 }
 <?php endif; ?>
 <?php if ($this->autoProgress): ?>

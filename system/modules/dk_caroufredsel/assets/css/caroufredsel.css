@@ -1,9 +1,9 @@
 /* dk_caroufredsel global styles */
 
-.caroufredsel .image_container img {
+.caroufredsel_skin .image_container img, .caroufredsel_thumbnails_skin .image_container img {
 	vertical-align: bottom;
 }
-.caroufredsel > div {
+.caroufredsel > div, .caroufredsel > section, .caroufredsel_thumbnails > div {
 	float: left;
 }
 .caroufredsel .clearfix {

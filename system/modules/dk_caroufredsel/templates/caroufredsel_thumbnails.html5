@@ -1,0 +1,10 @@
+
+<?php foreach ($this->bodyThumbnails as $class=>$col): ?>
+<?php if ($col->addImage): ?>
+<div class="caroufredsel_thumbnail" id="caroufredsel_thumbnail_<?php echo $this->id; ?>_<?php echo $class; ?>">
+  <figure class="image_container">
+    <img src="<?php echo $col->src; ?>"<?php echo $col->imgSize; ?> alt="<?php echo $col->alt; ?>">
+  </figure>
+</div>
+<?php endif; ?>
+<?php endforeach; ?>

@@ -1,0 +1,17 @@
+
+<?php foreach ($this->body as $class=>$col): ?>
+<?php if ($col->addImage): ?>
+<div class="caroufredsel_gallery" id="caroufredsel_gallery_<?php echo $this->id; ?>_<?php echo $class; ?>">
+  <figure class="image_container">
+<?php if ($col->href): ?>
+    <a href="<?php echo $col->href; ?>"<?php echo $col->attributes; ?> title="<?php echo $col->alt; ?>"><img src="<?php echo $col->src; ?>"<?php echo $col->imgSize; ?> alt="<?php echo $col->alt; ?>"></a>
+<?php else: ?>
+    <img src="<?php echo $col->src; ?>"<?php echo $col->imgSize; ?> alt="<?php echo $col->alt; ?>">
+<?php endif; ?>
+<?php if ($col->caption): ?>
+    <figcaption class="caption" style="width:<?php echo $col->arrSize[0]; ?>px"><?php echo $col->caption; ?></figcaption>
+<?php endif; ?>
+  </figure>
+</div>
+<?php endif; ?>
+<?php endforeach; ?>

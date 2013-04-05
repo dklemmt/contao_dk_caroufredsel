@@ -25,7 +25,7 @@ namespace Dirch\carouFredSel;
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */
-class ContentCarouFredSel extends \ContentElement
+class ContentCarouFredSelWrapper extends \ContentElement
 {
 
 	/**
@@ -38,7 +38,6 @@ class ContentCarouFredSel extends \ContentElement
 	/**
 	 * Display a wildcard in the back end
 	 *
-	 * @param boolean
 	 * @return string
 	 */
 	public function generate()
@@ -63,40 +62,6 @@ class ContentCarouFredSel extends \ContentElement
 	{
 		if (TL_MODE == 'FE')
 		{
-/*			if ($this->dk_cfsType == 'dk_cfsStart')
-			{*/
-				/*
-				 * search for first visible carouFredSel stop element with a
-				 * position after visible start element (sorting>$this->sorting)
-				 */
-/*				$objStopElement = $this->Database->prepare("SELECT sorting " .
-														   "FROM tl_content " .
-														   "WHERE pid = ? AND type = ? AND dk_cfsType = ? AND sorting > ? AND invisible != 1 " .
-														   "ORDER by sorting ASC")
-													->limit(1)
-													->execute($this->pid, 'dk_cfs', 'dk_cfsStop', $this->sorting);
-
-				if ($objStopElement->numRows < 1)
-				{
-					$this->log('carouFredSel stop element is missing!', 'ContentCarouFredSel compile()', TL_ERROR);
-//					return;
-// todo: maybe error handling but stop element shouldn't be missing!
-				}
-*/
-//echo $objStopElement->sorting . '<br />';
-
-				/*
-				 * get every Content Element between carouFredSel start and
-				 * stop elements
-				 */
-/*				$objContentElements = $this->Database->prepare("SELECT id, type " .
-															   "FROM tl_content " .
-															   "WHERE pid = ? AND invisible != 1 AND sorting > ? AND sorting < ? " .
-															   "ORDER by sorting ASC")
-													->execute($this->pid, $this->sorting, $objStopElement->sorting);
-*/
-/*			}*/
-
 			if ($this->dk_cfsType == 'dk_cfsStop')
 			{
 				// --- create FE template for carouFredSel stop element using same template as start element
@@ -120,14 +85,13 @@ class ContentCarouFredSel extends \ContentElement
 			// --- create FE template for carouFredSel element
 			$this->Template = new \FrontendTemplate(($this->dk_cfsType == 'dk_cfsStart' ? $this->dk_cfsHtmlTpl : $objStartElement->dk_cfsHtmlTpl));
 
+			$this->Template->type = $this->type;
 			$this->Template->dk_cfsType = $this->dk_cfsType;
 			$this->Template->id = ($this->dk_cfsType == 'dk_cfsStart' ? $this->id : $objStartElement->id);
 
 			if ($this->dk_cfsType == 'dk_cfsStart')
 			{
-				// (unique) Element id will be used for unique HTML id element
-
-				// --- create FE template for css
+				// --- create FE template for CSS
 				$objTemplateCss = new \FrontendTemplate($this->dk_cfsCssTpl);
 				$objTemplateCss->id = $this->id;
 				$objTemplateCss->cssIDOnly = $this->cssID[0];
@@ -135,9 +99,13 @@ class ContentCarouFredSel extends \ContentElement
 				// --- create FE template for javascript caller
 				$objTemplateJs = new \FrontendTemplate($this->dk_cfsJsTpl);
 				$objTemplateJs->id = $this->id;
+				if ($this->dk_cfsSynchronise != '')
+				{
+					$objTemplateJs->synchronise = $this->dk_cfsSynchronise;
+				}
 	
 				$carouFredSel = new CarouFredSel();
-				$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->Template, $objTemplateCss, $objTemplateJs);
+				$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->type, $this->Template, $objTemplateCss, $objTemplateJs);
 			}
 
 			if ($this->dk_cfsType == 'dk_cfsStop')

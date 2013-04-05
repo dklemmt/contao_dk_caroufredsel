@@ -38,7 +38,6 @@ class ModuleCarouFredSelTicker extends \ModuleNewsList
 	/**
 	 * Display a wildcard in the back end
 	 *
-	 * @param boolean
 	 * @return string
 	 */
 	public function generate()
@@ -84,6 +83,6 @@ class ModuleCarouFredSelTicker extends \ModuleNewsList
 		$objTemplateJs->id = $this->id;
 	
 		$carouFredSel = new CarouFredSel();
-		$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->Template, $objTemplateCss, $objTemplateJs);
+		$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->type, $this->Template, $objTemplateCss, $objTemplateJs);
 	}
 }

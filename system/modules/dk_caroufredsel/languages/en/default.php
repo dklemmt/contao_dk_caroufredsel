@@ -15,10 +15,13 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_LANG']['CTE']['caroufredsel'] = array('carouFredSel carousel', 'Creates a jQuery carouFredSel element.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel_category'] = 'carouFredSel';
+$GLOBALS['TL_LANG']['CTE']['caroufredsel'] = array('carouFredSel - Wrapper', 'Creates a carouFredSel wrapper element.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel_gallery'] = array('carouFredSel - Galerie', 'Creates a carouFredSel image gallery.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel_background'] = array('carouFredSel - Hintergrund', 'Creates a fullsize background carousel.');
 
 
-$GLOBALS['TL_LANG']['DK_CFS']['previous'] = 'zurück';
-$GLOBALS['TL_LANG']['DK_CFS']['next'] = 'vor';
-$GLOBALS['TL_LANG']['DK_CFS']['pause'] = 'Pause';
-$GLOBALS['TL_LANG']['DK_CFS']['play'] = 'Abspielen';
+$GLOBALS['TL_LANG']['DK_CFS']['previous'] = 'previous';
+$GLOBALS['TL_LANG']['DK_CFS']['next'] = 'next';
+$GLOBALS['TL_LANG']['DK_CFS']['pause'] = 'pause';
+$GLOBALS['TL_LANG']['DK_CFS']['play'] = 'play';

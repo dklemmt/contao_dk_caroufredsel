@@ -51,21 +51,12 @@ progressBarBackgroundColor_<?php echo $this->id; ?> = '<?php echo $progressBarBa
 </script>
 <?php endif; ?>
 <style type="text/css">
-<?php if ($this->triggerMode == 'onWindowLoad'): ?>
-#caroufredsel_<?php echo $this->id; ?> {
-<?php if ($this->width && 0) echo $this->width; ?> <?php if ($this->height) echo $this->height; ?> overflow: hidden;
-}
-<?php endif; ?>
-#caroufredsel_skin_<?php echo $this->id; ?>  { position: relative; overflow: hidden; }
+#caroufredsel_skin_<?php echo $this->id; ?>, #caroufredsel_thumbnails_skin_<?php echo $this->id; ?>  { position: relative; overflow: hidden; }
 /* slides */
 <?php if ($this->width && ($this->widthUnit == 'px')): ?>
 #caroufredsel_skin_<?php echo $this->id; ?> { <?php echo 'width: ' . $this->widthValue . $this->widthUnit; ?>; }
 <?php endif; ?>
-<?php if ($this->itemsVisible == '1'): ?>
-#caroufredsel_skin_<?php echo $this->id; ?> {
-<?php else: ?>
 #caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel > div {
-<?php endif; ?>
 	background-color: white;
 <?php if ($margin): ?>
 	margin: <?php echo $margin; ?>px;
@@ -80,7 +71,7 @@ progressBarBackgroundColor_<?php echo $this->id; ?> = '<?php echo $progressBarBa
 }
 <?php if ($this->navigation): ?>
 /* navigation */
-#caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_navi a {
+#caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_navi a, #caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails_navi a {
 	text-indent: -999em;
 	background-size: <?php echo $buttonSize; ?>px <?php echo $buttonSize; ?>px;
 	background-repeat: no-repeat;
@@ -187,5 +178,59 @@ progressBarBackgroundColor_<?php echo $this->id; ?> = '<?php echo $progressBarBa
 	background-color: <?php echo $progressBarColor; ?>;
 }
 <?php endif; ?>
+<?php endif; ?>
+<?php if ($this->useThumbnails): ?>
+/* thumbnails */
+<?php if ($this->width && ($this->widthUnit == 'px')): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { <?php echo 'width: ' . $this->widthValue . $this->widthUnit; ?>; }
+<?php endif; ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails > div {
+	background-color: white;
+<?php if ($margin): ?>
+	margin: <?php echo ($margin / 2); ?>px;
+<?php endif; ?>
+<?php if ($borderWidth > 0): ?>
+	padding: 5px;<?php echo $borderWidth; ?>px;
+	border-radius: 4px;
+<?php endif; ?>
+<?php if ($shadow > 0): ?>
+	box-shadow: 0px 0px <?php echo ($shadow / 2); ?>px rgba( 0, 0, 0, 0.3 );
+<?php endif; ?>
+}
+/* thumbnails navigation */
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails_navi a {
+	text-indent: -999em;
+	background-size: <?php echo ($buttonSize / 2); ?>px <?php echo ($buttonSize / 2); ?>px;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: <?php echo ($buttonSize / 2); ?>px;
+	height: <?php echo ($buttonSize / 2); ?>px;
+	position: absolute;
+	opacity: 1;
+	transition: opacity 0.4s;
+	-webkit-transition: opacity 0.4s;
+}
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?>:hover .caroufredsel_thumbnails_prev,
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?>:hover .caroufredsel_thumbnails_next { opacity: 1; }
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails_navi a {
+	top: 50%; margin-top: -<?php echo ($buttonMarginTop / 2); ?>px;
+}
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails_navi a.disabled { cursor: default; opacity: 0; }
+/* prev */
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_prev {
+	left: 20px;
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_left.svg);
+}
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_prev:hover {
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_left_hover.svg);
+}
+/* next */
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_next {
+	right: 20px;
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_right.svg);
+}
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_next:hover {
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_right_hover.svg);
+}
 <?php endif; ?>
 </style>

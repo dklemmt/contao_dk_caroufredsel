@@ -111,7 +111,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 	// Subpalettes
 	'subpalettes' => array
 	(
-		'usePlay'				=> 'direction,carouselType,scrollItems,autoPlay',
+		'usePlay'				=> 'direction,carouselType,scrollItems,scrollQueue,autoPlay',
 		'useTransitions'		=> 'scrollFx,scrollEasing,scrollDuration',
 		'useGeneralSize'		=> 'widthSelect,heightSelect,padding',
 		'useItemsGeneral'		=> 'responsive,cookie,itemsVisibleSelect,itemsStart,itemsStartRnd',
@@ -176,6 +176,17 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'inputType'			=> 'text',
 			'eval'				=> array('maxlength' => 5, 'rgxp' => 'digit'),
 			'sql'				=> "smallint(5) unsigned NOT NULL default '0'"
+		),
+		'scrollQueue' => array
+		(
+			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollQueue'],
+			'exclude'			=> true,
+			'inputType'			=> 'select',
+			'default'			=> 'none',
+			'options'			=> array('none', 'all', 'first', 'last'),
+			'reference'			=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollQueue'],
+			'eval'				=> array('helpwizard' => true),
+			'sql'				=> "varchar(32) NOT NULL default ''"
 		),
 		'autoPlay' => array
 		(
@@ -583,7 +594,7 @@ class tl_dk_caroufredsel extends Backend
 		}
 
 		/*
-		 * Unfortunately a checkbox triggering a subpalette in a subpalette triggerd by a checkbox is not possible.
+		 * Unfortunately a checkbox triggering a subpalette in a subpalette triggered by a checkbox is not possible.
 		 * Thus there is need for a small workaround:
 		 * - grab the data of the inner checkbox
 		 * - if it's selected show the fields (which normally should have been shown due to contao palette switch) 

@@ -15,7 +15,10 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_LANG']['CTE']['caroufredsel'] = array('carouFredSel-Karussell', 'Erzeugt ein jQuery carouFredSel-Element.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel_category'] = 'carouFredSel';
+$GLOBALS['TL_LANG']['CTE']['caroufredsel'] = array('carouFredSel - Wrapper', 'Erzeugt einen carouFredSel-Wrapper.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel_gallery'] = array('carouFredSel - Galerie', 'Erzeugt eine carouFredSel-Bildergalerie.');
+$GLOBALS['TL_LANG']['CTE']['caroufredsel_background'] = array('carouFredSel - Hintergrund', 'Erzeugt ein fensterfüllendes Hintergrundbild-Karussell.');
 
 
 $GLOBALS['TL_LANG']['DK_CFS']['previous'] = 'zurück';

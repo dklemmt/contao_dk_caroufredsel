@@ -31,26 +31,25 @@ array_insert($GLOBALS['BE_MOD'], 3, array
 /**
  * Content elements
  */
-array_insert($GLOBALS['TL_CTE'], 3, array
-(
-	'texts' => array
-	(
-		'caroufredsel'	=> 'carouFredSel\ContentCarouFredSel'
-	)
-));
+$GLOBALS['TL_CTE']['caroufredsel_category'] = array(
+	'caroufredsel'				=> 'carouFredSel\ContentCarouFredSelWrapper',
+	'caroufredsel_background'	=> 'carouFredSel\ContentCarouFredSelBackground',
+	'caroufredsel_gallery'		=> 'carouFredSel\ContentCarouFredSelGallery'
+);
+
+
+/**
+ * Back end form fields
+ */
+$GLOBALS['BE_FFL']['cfsFileTree'] = 'carouFredSel\CarouFredSelFileTree';
 
 
 /**
  * Front end modules
  */
-array_insert($GLOBALS['FE_MOD'], 3, array
-(
-	'application' => array
-	(
-		'caroufredsel'			=> 'carouFredSel\ModuleCarouFredSel'
-	),
-	'news' => array
-	(
-		'caroufredsel_ticker'	=> 'carouFredSel\ModuleCarouFredSelTicker'
-	)
-));
+$GLOBALS['FE_MOD']['caroufredsel_category'] = array(
+	'caroufredsel'				=> 'carouFredSel\ModuleCarouFredSel',
+//	'caroufredsel_background'	=> 'carouFredSel\ModuleCarouFredSelBackground',
+//	'caroufredsel_gallery'		=> 'carouFredSel\ModuleCarouFredSelGallery',
+	'caroufredsel_ticker'		=> 'carouFredSel\ModuleCarouFredSelTicker'
+);

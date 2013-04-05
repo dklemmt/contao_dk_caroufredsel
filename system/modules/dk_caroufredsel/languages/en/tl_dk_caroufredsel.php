@@ -110,6 +110,11 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['circular']								= array('circular',
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['infinite']								= array('infinite', 'Beim Erreichen des letzten Elements wird zurückgespult und erneut begonnen.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['once']									= array('once', 'Beim Erreichen des letzten Elements wird angehalten.');
 
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollQueue']['none']					= array('keine', 'Alle eintreffenden Scroll-Ereignisse während des Scrollens werden ignoriert.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollQueue']['all']						= array('alle', 'Alle eintreffenden Scroll-Ereignisse während des Scrollens werden vermerkt und nacheinander ausgeführt.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollQueue']['first']					= array('nur erstes', 'Nur das erste eintreffende Scroll-Ereigniss während des Scrollens wird vermerkt und im Anschluß ausgeführt.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollQueue']['last']					= array('nur letztes', 'Nur das letzte eintreffende Scroll-Ereigniss während des Scrollens wird vermerkt und im Anschluß ausgeführt.');
+
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['none']				= array('keine', 'Es wird unabhängig davon gescrollt, ob sich die Maus über dem Karussell befindet oder nicht.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['restart']			= array('Pause + Anzeigedauer neu starten', 'Bei Maus-Hover pausiert das Karussell. Im Anschluß wird die bisherige Anzeigedauer zurückgesetzt und es wird erst nach der kompletten Anzeigedauer erneut gescrollt.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['resume']			= array('Pause + Anzeigedauer fortsetzen', 'Bei Maus-Hover pausiert das Karussell. Im Anschluß wird die bisherige Anzeigedauer mit der verbliebenen Restzeit bis zum erneuten Scrollen fortgesetzt.');

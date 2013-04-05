@@ -21,6 +21,8 @@ namespace Dirch\carouFredSel;
 /**
  * Class ModuleCarouFredSel
  *
+ * Front end modul "caroufredsel".
+ *
  * @copyright  Dirk Klemmt 2012-2013
  * @author     Dirk Klemmt
  * @package    carouFredSel
@@ -38,7 +40,6 @@ class ModuleCarouFredSel extends \Module
 	/**
 	 * Display a wildcard in the back end
 	 *
-	 * @param boolean
 	 * @return string
 	 */
 	public function generate()
@@ -96,6 +97,6 @@ class ModuleCarouFredSel extends \Module
 		$objTemplateJs->id = $this->id;
 	
 		$carouFredSel = new CarouFredSel();
-		$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->Template, $objTemplateCss, $objTemplateJs);
+		$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->type, $this->Template, $objTemplateCss, $objTemplateJs);
 	}
 }

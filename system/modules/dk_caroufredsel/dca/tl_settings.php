@@ -15,7 +15,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{caroufredsel_legend:hide},dk_cfsTriggerMode,dk_cfsDebug';
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{caroufredsel_legend:hide},dk_cfsTriggerMode,dk_cfsOnWindowResize,dk_cfsImageLoader,dk_cfsTransition,dk_cfsDebug';
 
 
 /**
@@ -30,9 +30,33 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsTriggerMode'] = array
 	'eval'				=> array('helpwizard' => true, 'tl_class' => 'w50')
 );
 
+$GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsOnWindowResize'] = array
+(
+	'label'				=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsOnWindowResize'],
+	'inputType'			=> 'select',
+	'options'			=> array('throttle', 'debounce'),
+	'reference'			=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsOnWindowResize'],
+	'eval'				=> array('helpwizard' => true, 'includeBlankOption' => true, 'tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsImageLoader'] = array
+(
+  	'label'				=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsImageLoader'],
+	'inputType'			=> 'checkbox',
+	'default'			=> '1',
+	'eval'				=> array('tl_class' => 'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsTransition'] = array
+(
+  	'label'				=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsTransition'],
+	'inputType'			=> 'checkbox',
+	'eval'				=> array('tl_class' => 'w50')
+);
+
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dk_cfsDebug'] = array
 (
   	'label'				=> &$GLOBALS['TL_LANG']['tl_settings']['dk_cfsDebug'],
 	'inputType'			=> 'checkbox',
-	'eval'				=> array('tl_class' => 'w50 m12')
+	'eval'				=> array('tl_class' => 'w50')
 );

@@ -12,11 +12,6 @@
 .caroufredsel_wrapper_<?php echo $this->id; ?> {
 background-color: #ddd !important;
 }
-<?php if ($this->triggerMode == 'onWindowLoad'): ?>
-#caroufredsel_<?php echo $this->id; ?> {
-<?php if ($this->width) echo $this->width; ?> <?php if ($this->height) echo $this->height; ?> overflow: hidden;
-}
-<?php endif; ?>
 #caroufredsel_<?php echo $this->id; ?> .ce_text,
 #caroufredsel_<?php echo $this->id; ?> .ce_image {
 background-color: #C0FFC0 !important;

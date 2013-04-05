@@ -30,7 +30,7 @@ class CarouFredSel extends \Frontend
 {
 
 
-	public function createTemplateData($carouFredSelId, \Template $objTemplateHtml, \Template $objTemplateCss, \Template $objTemplateJs)
+	public function createTemplateData($carouFredSelId, $strCarouFredSelType, \Template $objTemplateHtml, \Template $objTemplateCss, \Template $objTemplateJs)
 	{
 		$objCarouFredSel = \Database::getInstance()
 			->prepare("SELECT *
@@ -42,6 +42,17 @@ class CarouFredSel extends \Frontend
 		if ($objCarouFredSel->numRows < 1)
 		{
 			return;
+		}
+
+		// set element type
+		$objTemplateHtml->type =
+		$objTemplateJs->type =
+		$objTemplateCss->type = $strCarouFredSelType;
+
+		if ($objTemplateJs->synchronise)
+		{
+			$objTemplateJs->synchronise = 'synchronise : ["#caroufredsel_' . $objTemplateJs->synchronise . '", false]';
+//			$objTemplateJs->synchronise = 'synchronise : "#caroufredsel_' . $objTemplateJs->synchronise . '"';
 		}
 
 		// --- fill FE template for carouFredSel element and javascript caller
@@ -70,6 +81,12 @@ class CarouFredSel extends \Frontend
 			if ($objCarouFredSel->scrollItems != '0')
 			{
 				$objTemplateJs->scrollItems = 'items: ' . $objCarouFredSel->scrollItems;
+			}
+
+			// carouFredSel option 'scroll.queue': default value is 'false'
+			if ($objCarouFredSel->scrollQueue != 'none')
+			{
+				$objTemplateJs->scrollQueue = 'queue: ' . ($objCarouFredSel->scrollQueue == 'all' ? 'true' : '"' . $objCarouFredSel->scrollQueue . '"');
 			}
 
 			if (!$objCarouFredSel->autoPlay)
@@ -378,9 +395,40 @@ class CarouFredSel extends \Frontend
 			}
 		}
 
+		// overwrite type dependent settings for background content element
+		if ($strCarouFredSelType == 'caroufredsel_background')
+		{
+			// general size
+			$objTemplateJs->width = 'width: $(window).width()';
+			$objTemplateJs->height = 'height: $(window).height()';
+			$objTemplateJs->align = 'align: false';
+
+			// items size
+			$objTemplateJs->itemsWidth = 'width: "variable"';
+			$objTemplateJs->itemsHeight = 'width: "variable"';
+
+			// items general
+			$objTemplateJs->itemsVisible = 'visible: 1';
+		}
+
 		// carouFredSel javascript trigger mode 
 		$objTemplateCss->triggerMode = 
 		$objTemplateJs->triggerMode = $GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'];
+
+		// image loader 
+		$objTemplateJs->useImageLoader = $GLOBALS['TL_CONFIG']['dk_cfsImageLoader'];
+
+		// carouFredSel window resize mode 
+		if ($GLOBALS['TL_CONFIG']['dk_cfsOnWindowResize'] != '')
+		{
+			$objTemplateJs->onWindowResize = 'onWindowResize: "' . $GLOBALS['TL_CONFIG']['dk_cfsOnWindowResize'] . '"';
+		}
+
+		// carouFredSel transition mode 
+		if ($GLOBALS['TL_CONFIG']['dk_cfsTransition'])
+		{
+			$objTemplateJs->transition = 'transition: true';
+		}
 
 		// carouFredSel debug mode 
 		if ($GLOBALS['TL_CONFIG']['dk_cfsDebug'])
@@ -402,18 +450,39 @@ class CarouFredSel extends \Frontend
 		// ... the carouFredSel javascript itselfs
 		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.2.0-packed.js|static';
 
-		// ... and helper stuff
+		if ($objCarouFredSel->autoProgress == 'pie')
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSelHelper.js|static';
+		}
+
+		// helper stuff:
+
+		// ... ready load javascript trigger mode
 		if ($GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'] == 'readyLoad')
 		{
 			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.readyLoad.js';
 		}
-		if ($objCarouFredSel->autoProgress == 'pie')
+
+		// ... window resize event throtteling/debouncing
+		if ($GLOBALS['TL_CONFIG']['dk_cfsOnWindowResize'] != '')
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSelHelper.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.ba-throttle-debounce.min.js';
+		}
+
+		// ... CSS transitions instead of jQuery transitions
+		if ($GLOBALS['TL_CONFIG']['dk_cfsTransition'])
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.transit.min.js';
+		}
+
+		// ... image loader
+		if ($GLOBALS['TL_CONFIG']['dk_cfsImageLoader'])
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.krioImageLoader.js';
 		}
 	}
 	
-	
+
 	public function createTemplateDataStopElement($carouFredSelId, \Template $objTemplateHtml)
 	{
 		$objCarouFredSel = \Database::getInstance()
