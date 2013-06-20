@@ -5,10 +5,10 @@
  * 
  * Copyright (C) 2005-2013 Leo Feyer
  * 
- * @package   carouFredSel 
- * @author    Dirk Klemmt 
- * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012-2013 
+ * @package   carouFredSel
+ * @author    Dirk Klemmt
+ * @license   MIT/GPL
+ * @copyright Dirk Klemmt 2012-2013
  */
 
 
@@ -30,17 +30,18 @@ ClassLoader::addClasses(array
 	'Dirch\carouFredSel\CarouFredSel'					=> 'system/modules/dk_caroufredsel/classes/CarouFredSel.php',
 
 	// Elements
-	'Dirch\carouFredSel\ContentCarouFredSelBackground'	=> 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelBackground.php',
+	'Dirch\carouFredSel\ContentCarouFredSelStart'		=> 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelStart.php',
+	'Dirch\carouFredSel\ContentCarouFredSelStop'		=> 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelStop.php',
 	'Dirch\carouFredSel\ContentCarouFredSelGallery'		=> 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelGallery.php',
-	'Dirch\carouFredSel\ContentCarouFredSelWrapper'		=> 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelWrapper.php',
+	'Dirch\carouFredSel\ContentCarouFredSelBackground'	=> 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelBackground.php',
 
 	// Models
-//	'Dirch\carouFredSel\CarouFredSelModel'				=> 'system/modules/dk_caroufredsel/models/CarouFredSelModel.php',
+	'Dirch\carouFredSel\CarouFredSelModel'				=> 'system/modules/dk_caroufredsel/models/CarouFredSelModel.php',
 
 	// Modules
 	'Dirch\carouFredSel\ModuleCarouFredSel'				=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSel.php',
-//	'Dirch\carouFredSel\ModuleCarouFredSelBackground'	=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelBackground.php',
-//	'Dirch\carouFredSel\ModuleCarouFredSelGallery'		=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelGallery.php',
+	'Dirch\carouFredSel\ModuleCarouFredSelGallery'		=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelGallery.php',
+	'Dirch\carouFredSel\ModuleCarouFredSelBackground'	=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelBackground.php',
 	'Dirch\carouFredSel\ModuleCarouFredSelTicker'		=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelTicker.php',
 
 	// Widgets
@@ -53,14 +54,16 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'ce_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates',
-	'caroufredsel_gallery'			=> 'system/modules/dk_caroufredsel/templates',
-	'caroufredsel_thumbnails'		=> 'system/modules/dk_caroufredsel/templates',
-	'mod_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates',
-	'mod_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates',
-	'news_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates',
-	'css_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates',
-	'css_caroufredsel_light'		=> 'system/modules/dk_caroufredsel/templates',
-	'css_caroufredsel_debug'		=> 'system/modules/dk_caroufredsel/templates',
-	'js_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates'
+	'be_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates/backend',
+	'ce_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates/elements',
+	'caroufredsel_gallery'			=> 'system/modules/dk_caroufredsel/templates/gallery',
+	'caroufredsel_thumbnails'		=> 'system/modules/dk_caroufredsel/templates/gallery',
+	'js_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates/jquery',
+	'mod_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates/modules',
+	'mod_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates/modules',
+	'news_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates/modules',
+	'css_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates/themes',
+//	'css_caroufredsel_classic'		=> 'system/modules/dk_caroufredsel/templates/themes',
+	'css_caroufredsel_light'		=> 'system/modules/dk_caroufredsel/templates/themes'
+//	'css_caroufredsel_debug'		=> 'system/modules/dk_caroufredsel/templates/themes'
 ));

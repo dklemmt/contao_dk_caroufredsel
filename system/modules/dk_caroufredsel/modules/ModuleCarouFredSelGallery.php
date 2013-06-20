@@ -19,15 +19,15 @@ namespace Dirch\carouFredSel;
 
 
 /**
- * Class ContentCarouFredSelGallery
+ * Class ModuleCarouFredSelGallery
  *
- * Front end content element "caroufredsel_gallery".
+ * Front end modul "caroufredsel_gallery".
  *
  * @copyright  Dirk Klemmt 2012-2013
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */
-class ContentCarouFredSelGallery extends \ContentElement
+class ModuleCarouFredSelGallery extends \Module
 {
 
 	/**
@@ -41,7 +41,7 @@ class ContentCarouFredSelGallery extends \ContentElement
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_caroufredsel';
+	protected $strTemplate = 'mod_caroufredsel';
 
 
 	/**
@@ -58,6 +58,19 @@ class ContentCarouFredSelGallery extends \ContentElement
 	 */
 	public function generate()
 	{
+		if (TL_MODE == 'BE')
+		{
+			// --- create BE template for carouFredSel gallery module
+			$objTemplate = new \BackendTemplate('be_wildcard');
+			$objTemplate->wildcard = '### CAROUFREDSEL GALLERY MODULE ###';
+			$objTemplate->title = $this->headline;
+			$objTemplate->id = $this->id;
+			$objTemplate->link = $this->name;
+			$objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+
+			return $objTemplate->parse();
+		}
+
 		$this->multiSRC = deserialize($this->dk_cfsMultiSRC);
 
 		// Return if there are no files
@@ -252,14 +265,14 @@ class ContentCarouFredSelGallery extends \ContentElement
 			$images = array_slice($images, 0, $this->dk_cfsNumberOfItems);
 		}
 
-		$intMaxWidth = (TL_MODE == 'BE') ? 160 : $GLOBALS['TL_CONFIG']['maxImageWidth'];
+		$intMaxWidth = (TL_MODE == 'BE') ? 640 : $GLOBALS['TL_CONFIG']['maxImageWidth'];
 		$intMaxImageWidth = 0;
 		$intMaxImageHeight = 0;
 		$strLightboxId = 'lightbox[lb' . $this->id . ']';
 		$body = array();
 		$bodyThumbnails = array();
 
-		// create images and thumbnails
+		// create images and thumbails
 		for ($i = 0; $i < count($images); $i++)
 		{
 			if ($this->dk_cfsUseThumbnails)
@@ -279,13 +292,13 @@ class ContentCarouFredSelGallery extends \ContentElement
 			// get max image width/height for thumbnails if the extension has to calculate the quantity
 			if ($this->dk_cfsUseThumbnails && $this->dk_cfsThumbnailsVisibleSelect == "fixed")
 			{
-				if ($body[$i]->arrSize[0] > $intMaxImageWidth)
+				if ($body[$i]->width > $intMaxImageWidth)
 				{
-					$intMaxImageWidth = $body[$i]->arrSize[0];
+					$intMaxImageWidth = $body[$i]->width;
 				}
-				if ($body[$i]->arrSize[1] > $intMaxImageHeight)
+				if ($body[$i]->height > $intMaxImageHeight)
 				{
-					$intMaxImageHeight = $body[$i]->arrSize[1];
+					$intMaxImageHeight = $body[$i]->height;
 				}
 			}
 		}
@@ -367,6 +380,7 @@ class ContentCarouFredSelGallery extends \ContentElement
 			}
 		}
 
+
 		// --- create FE template for gallery
 /*		if (TL_MODE == 'FE' && $this->dk_cfsGalleryTpl != '')
 		{
@@ -377,113 +391,95 @@ class ContentCarouFredSelGallery extends \ContentElement
 		$objTemplate->setData($this->arrData);
 		$objTemplate->body = $body;
 
-		if (TL_MODE == 'FE')
+		$this->Template->images = $objTemplate->parse();
+
+		// --- create FE template for thumbnails
+		if ($this->dk_cfsUseThumbnails)
 		{
-			$this->Template->images = $objTemplate->parse();
+			$objTemplateThumbnails = new \FrontendTemplate("caroufredsel_thumbnails");
+			$objTemplateThumbnails->id = $this->id;
+			$objTemplateThumbnails->bodyThumbnails = $bodyThumbnails;
 
-			// --- create FE template for thumbnails
-			if ($this->dk_cfsUseThumbnails)
-			{
-				$objTemplateThumbnails = new \FrontendTemplate("caroufredsel_thumbnails");
-				$objTemplateThumbnails->id = $this->id;
-				$objTemplateThumbnails->bodyThumbnails = $bodyThumbnails;
-
-				$this->Template->thumbnails = $objTemplateThumbnails->parse();
-			}
-	
-			// --- create FE template for CSS
-			$objTemplateCss = new \FrontendTemplate($this->dk_cfsCssTpl);
-			$objTemplateCss->id = $this->id;
-	
-			// --- create FE template for javascript caller
-			$objTemplateJs = new \FrontendTemplate($this->dk_cfsJsTpl);
-		
-			// (unique) Element id will be used for unique HTML id element
-			$objTemplateJs->id = $this->id;
-			if ($this->dk_cfsUseThumbnails)
-			{
-				$this->Template->useThumbnails =
-				$objTemplateCss->useThumbnails =
-				$objTemplateJs->useThumbnails = $this->dk_cfsUseThumbnails;
-	
-				if (isset($this->dk_cfsThumbnailsVisibleSelect))
-				{
-					$this->Template->thumbnailsVisibleSelect =
-					$objTemplateCss->thumbnailsVisibleSelect =
-					$objTemplateJs->thumbnailsVisibleSelect = $this->dk_cfsThumbnailsVisibleSelect;
-				}
-				if ($this->dk_cfsThumbnailsVisibleSelect == "fixed")
-				{
-					$objTemplateJs->thumbnailsVisible = $this->dk_cfsThumbnailsVisible;
-				}
-				$objTemplateJs->thumbnailWidth = $thumbnailWidth;
-				$objTemplateJs->thumbnailHeight = $thumbnailHeight;
-
-				$this->Template->thumbnailsPosition =
-				$objTemplateCss->thumbnailsPosition =
-				$objTemplateJs->thumbnailsPosition = $this->dk_cfsThumbnailsPosition;
-	
-				if ($this->dk_cfsThumbnailsAlign != 'center')
-				{
-					$objTemplateJs->thumbnailsAlign = 'align: "' . $this->dk_cfsThumbnailsAlign . '"';
-				}
-	
-				$thumbnailsWidth = unserialize($this->dk_cfsThumbnailsWidth);
-				if (isset($thumbnailsWidth['value']) && $thumbnailsWidth['value'] != '')
-				{
-					switch ($thumbnailsWidth['unit'])
-					{
-						case 'px':
-							$objTemplateCss->thumbnailsWidth = 'width: ' . $thumbnailsWidth['value'] . $thumbnailsWidth['unit'] . ';';
-							$objTemplateJs->thumbnailsWidth = 'width: ' . $thumbnailsWidth['value'];
-							break;
-			
-						case '%':
-							$objTemplateCss->thumbnailsWidth = 'width: ' . $thumbnailsWidth['value'] . $thumbnailsWidth['unit'] . ';';
-							$objTemplateJs->thumbnailsWidth = sprintf('width: "%s%s"', $thumbnailsWidth['value'], $thumbnailsWidth['unit']);
-							break;
-					}
-				}
-	
-				$thumbnailsHeight = unserialize($this->dk_cfsThumbnailsHeight);
-				if (isset($thumbnailsHeight['value']) && $thumbnailsHeight['value'] != '')
-				{
-					switch ($thumbnailsHeight['unit'])
-					{
-						case 'px':
-							$objTemplateCss->thumbnailsHeight = 'height: ' . $thumbnailsHeight['value'] . $thumbnailsHeight['unit'] . ';';
-							$objTemplateJs->thumbnailsHeight = 'height: ' . $thumbnailsHeight['value'];
-							break;
-		
-						case '%':
-							$objTemplateCss->thumbnailsHeight = 'height: ' . $thumbnailsHeight['value'] . $thumbnailsHeight['unit'] . ';';
-							$objTemplateJs->thumbnailsHeight = sprintf('height: "%s%s"', $thumbnailsHeight['value'], $thumbnailsHeight['unit']);
-							break;
-					}
-				}
-			}
-			if (isset($this->dk_cfsSynchronise) && $this->dk_cfsSynchronise != '')
-			{
-				$objTemplateJs->synchronise = $this->dk_cfsSynchronise;
-			}
-	
-			$carouFredSel = new CarouFredSel();
-			$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->type, $this->Template, $objTemplateCss, $objTemplateJs);
+			$this->Template->thumbnails = $objTemplateThumbnails->parse();
 		}
-		else
+
+		// --- create FE template for CSS
+		$objTemplateCss = new \FrontendTemplate($this->dk_cfsCssTpl);
+		$objTemplateCss->id = $this->id;
+
+		// --- create FE template for javascript caller
+		$objTemplateJs = new \FrontendTemplate($this->dk_cfsJsTpl);
+	
+		// (unique) Element id will be used for unique HTML id element
+		$objTemplateJs->id = $this->id;
+		if ($this->dk_cfsUseThumbnails)
 		{
-			$this->strTemplate = 'be_caroufredsel';
-			$this->Template = new \BackendTemplate($this->strTemplate);
-/*			$this->Template->wildcard = 'carouFredSel - Gallery (' . count($images) . ' images';
-			if ($this->dk_cfsUseThumbnails)
-			{
-				$this->Template->wildcard .= ' with thumbnails';
-			}
-			$this->Template->wildcard .= ')';*/
-			$this->Template->images = $objTemplate->parse();
+			$this->Template->useThumbnails =
+			$objTemplateCss->useThumbnails =
+			$objTemplateJs->useThumbnails = $this->dk_cfsUseThumbnails;
 
-			// for BE styling include carouFredSel CSS file
-			$GLOBALS['TL_CSS'][] = 'system/modules/dk_caroufredsel/assets/css/caroufredsel.css';
+			if (isset($this->dk_cfsThumbnailsVisibleSelect))
+			{
+				$this->Template->thumbnailsVisibleSelect =
+				$objTemplateCss->thumbnailsVisibleSelect =
+				$objTemplateJs->thumbnailsVisibleSelect = $this->dk_cfsThumbnailsVisibleSelect;
+			}
+			if ($this->dk_cfsThumbnailsVisibleSelect == "fixed")
+			{
+				$objTemplateJs->thumbnailsVisible = $this->dk_cfsThumbnailsVisible;
+			}
+			$objTemplateJs->thumbnailWidth = $thumbnailWidth;
+			$objTemplateJs->thumbnailHeight = $thumbnailHeight;
+
+			$this->Template->thumbnailsPosition =
+			$objTemplateCss->thumbnailsPosition =
+			$objTemplateJs->thumbnailsPosition = $this->dk_cfsThumbnailsPosition;
+
+			if ($this->dk_cfsThumbnailsAlign != 'center')
+			{
+				$objTemplateJs->thumbnailsAlign = 'align: "' . $this->dk_cfsThumbnailsAlign . '"';
+			}
+
+			$thumbnailsWidth = unserialize($this->dk_cfsThumbnailsWidth);
+			if (isset($thumbnailsWidth['value']) && $thumbnailsWidth['value'] != '')
+			{
+				switch ($thumbnailsWidth['unit'])
+				{
+					case 'px':
+						$objTemplateCss->thumbnailsWidth = 'width: ' . $thumbnailsWidth['value'] . $thumbnailsWidth['unit'] . ';';
+						$objTemplateJs->thumbnailsWidth = 'width: ' . $thumbnailsWidth['value'];
+						break;
+		
+					case '%':
+						$objTemplateCss->thumbnailsWidth = 'width: ' . $thumbnailsWidth['value'] . $thumbnailsWidth['unit'] . ';';
+						$objTemplateJs->thumbnailsWidth = sprintf('width: "%s%s"', $thumbnailsWidth['value'], $thumbnailsWidth['unit']);
+						break;
+				}
+			}
+
+			$thumbnailsHeight = unserialize($this->dk_cfsThumbnailsHeight);
+			if (isset($thumbnailsHeight['value']) && $thumbnailsHeight['value'] != '')
+			{
+				switch ($thumbnailsHeight['unit'])
+				{
+					case 'px':
+						$objTemplateCss->thumbnailsHeight = 'height: ' . $thumbnailsHeight['value'] . $thumbnailsHeight['unit'] . ';';
+						$objTemplateJs->thumbnailsHeight = 'height: ' . $thumbnailsHeight['value'];
+						break;
+	
+					case '%':
+						$objTemplateCss->thumbnailsHeight = 'height: ' . $thumbnailsHeight['value'] . $thumbnailsHeight['unit'] . ';';
+						$objTemplateJs->thumbnailsHeight = sprintf('height: "%s%s"', $thumbnailsHeight['value'], $thumbnailsHeight['unit']);
+						break;
+				}
+			}
 		}
+		if ($this->dk_cfsSynchronise != '')
+		{
+			$objTemplateJs->synchronise = $this->dk_cfsSynchronise;
+		}
+
+		$carouFredSel = new CarouFredSel();
+		$carouFredSel->createTemplateData($this->dk_cfsCarouFredSel, $this->type, $this->Template, $objTemplateCss, $objTemplateJs);
 	}
 }

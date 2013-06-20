@@ -5,31 +5,55 @@
  * 
  * Copyright (C) 2005-2013 Leo Feyer
  * 
- * @package   carouFredSel 
+ * @package   carouFredSel
  * @author    Dirk Klemmt 
- * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012-2013 
+ * @license   MIT/GPL
+ * @copyright Dirk Klemmt 2012-2013
  */
 
 
 /**
- * Palettes
+ * Add config to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel']				= '{title_legend},name,headline,type;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsSynchronise,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_gallery']		= '{title_legend},name,headline,type;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsSynchronise,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_background']	= '{title_legend},name,headline,type;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsSynchronise,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_ticker']		= '{title_legend},name,headline,type;{config_legend},news_archives,numberOfItems,news_featured,perPage,skipFirst;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsSynchronise,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{template_legend:hide},news_metaFields,news_template,imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-/*$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_background']	= '{title_legend},name,headline,type;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{image_legend},dk_cfsNumberOfItems;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsSynchronise,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_ticker']		= '{title_legend},name,headline,type;{config_legend},news_archives,numberOfItems,news_featured,perPage,skipFirst;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsSynchronise,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{template_legend:hide},news_metaFields,news_template,imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';*/
-$GLOBALS['TL_DCA']['tl_module']['subpalettes']['dk_cfsUseThumbnails']	= 'dk_cfsThumbnailSize';//dk_cfsThumbnailsVisibleSelect';
+//$GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][] = array('tl_module_dk_csf', 'changePalette');
+switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
+{
+	default:
+	case 'basic':
+		$paletteCaroufredsel = '{title_legend},name,headline,type;{caroufredsel_legend},dk_cfsCarouFredSel;{protected_legend:hide},protected;{expert_legend:hide},cssID,space';
+		$paletteCaroufredsel_gallery = '{title_legend},name,headline,type;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+		$paletteCaroufredsel_background = '{type_legend},type,headline;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+		$paletteCaroufredsel_ticker = '{title_legend},name,headline,type;{config_legend},news_archives,numberOfItems,news_featured,perPage,skipFirst;{caroufredsel_legend},dk_cfsCarouFredSel;{template_legend:hide},news_metaFields,news_template,imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+		break;
+
+	case 'advanced':
+		$paletteCaroufredsel = '{title_legend},name,headline,type;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID,space';
+		$paletteCaroufredsel_gallery = '{title_legend},name,headline,type;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{caroufredsel_image_legend},dk_cfsImageSize,dk_cfsFullsize,dk_cfsNumberOfItems;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+		$paletteCaroufredsel_background = '{title_legend},name,headline,type;{source_legend},dk_cfsMultiSRC,dk_cfsSortBy;{caroufredsel_image_legend},dk_cfsNumberOfItems;{caroufredsel_thumbnails_legend},dk_cfsUseThumbnails;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+		$paletteCaroufredsel_ticker = '{title_legend},name,headline,type;{config_legend},news_archives,numberOfItems,news_featured,perPage,skipFirst;{caroufredsel_legend},dk_cfsCarouFredSel,dk_cfsHtmlTpl,dk_cfsCssTpl,dk_cfsJsTpl;{template_legend:hide},news_metaFields,news_template,imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+		break;
+}
 
 
 /**
- * Fields
+ * Add palettes to tl_module
+ */
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][]			= 'dk_cfsUseThumbnails';
+
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel']				= $paletteCaroufredsel;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_gallery']		= $paletteCaroufredsel_gallery;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_background']	= $paletteCaroufredsel_background;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_ticker']		= $paletteCaroufredsel_ticker;
+
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['dk_cfsUseThumbnails']	= 'dk_cfsThumbnailSize,dk_cfsThumbnailsPosition,dk_cfsThumbnailsAlign,dk_cfsThumbnailsWidth,dk_cfsThumbnailsHeight';
+
+
+/**
+ * Add fields to tl_module
  */
 $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsMultiSRC'] = array
 (
-	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['multiSRC'],
+	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsMultiSRC'],
 	'exclude'			=> true,
 	'inputType'			=> 'cfsFileTree',
 	'eval'				=> array('multiple' => true, 'fieldType' => 'checkbox', 'orderField' => 'orderSRC', 'files' => true, 'mandatory' => true),
@@ -38,11 +62,11 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsMultiSRC'] = array
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsSortBy'] = array
 (
-	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['sortBy'],
+	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsSortBy'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
 	'options'			=> array('custom', 'name_asc', 'name_desc', 'date_asc', 'date_desc', 'random'),
-	'reference'			=> &$GLOBALS['TL_LANG']['tl_module'],
+	'reference'			=> &$GLOBALS['TL_LANG']['tl_content'],
 	'eval'				=> array('tl_class' => 'w50'),
 	'sql'				=> "varchar(32) NOT NULL default ''"
 );
@@ -56,6 +80,15 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsImageSize'] = array
 	'reference'			=> &$GLOBALS['TL_LANG']['MSC'],
 	'eval'				=> array('rgxp' => 'digit', 'nospace' => true, 'helpwizard' => true, 'tl_class' => 'w50'),
 	'sql'				=> "varchar(64) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsFullsize'] = array
+(
+	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsFullsize'],
+	'exclude'			=> true,
+	'inputType'			=> 'checkbox',
+	'eval'				=> array('tl_class' => 'w50 m12'),
+	'sql'				=> "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsNumberOfItems'] = array
@@ -81,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsThumbnailsVisibleSelect'] = arr
 	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsVisibleSelect'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options'			=> array('variable'),//, 'fixed'),
+	'options'			=> array('variable'),// 'fixed'),
 	'reference'			=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsVisibleSelect'],
 	'eval'				=> array('helpwizard' => true, 'submitOnChange' => true, 'tl_class' => 'w50 clr'),
 	'sql'				=> "varchar(32) NOT NULL default ''"
@@ -105,6 +138,50 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsThumbnailsVisible'] = array
   	'inputType'			=> 'text',
   	'eval'				=> array('maxlength' => 4, 'rgxp' => 'digit', 'tl_class' => 'w50'),
 	'sql'				=> "smallint(5) unsigned NOT NULL default '5'"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsThumbnailsPosition'] = array
+(
+  	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsPosition'],
+	'exclude'			=> true,
+  	'inputType'			=> 'select',
+	'default'			=> 'bottom',
+	'options'			=> array('top', 'bottom', 'left', 'right'),
+	'reference'			=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsPosition'],
+	'eval'				=> array('tl_class' => 'clr w50'),
+	'sql'				=> "varchar(32) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsThumbnailsAlign'] = array
+(
+	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsAlign'],
+	'exclude'			=> true,
+	'inputType'			=> 'select',
+	'default'			=> 'center',
+	'options'			=> array('center', 'left', 'right'),
+	'reference'			=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsAlign'],
+	'eval'				=> array('tl_class' => 'w50'),
+	'sql'				=> "varchar(32) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsThumbnailsWidth'] = array
+(
+  	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsWidth'],
+	'exclude'			=> true,
+	'inputType'			=> 'inputUnit',
+	'options'			=> array('px', '%'),
+	'eval'				=> array('maxlength' => 4, 'rgxp' => 'digit', 'includeBlankOption' => true, 'tl_class' => 'w50'),
+	'sql'				=> "varchar(64) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsThumbnailsHeight'] = array
+(
+  	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsThumbnailsHeight'],
+	'exclude'			=> true,
+  	'inputType'			=> 'inputUnit',
+	'options'			=> array('px', '%'),
+	'eval'				=> array('maxlength' => 4, 'rgxp' => 'digit', 'includeBlankOption' => true, 'tl_class' => 'w50'),
+	'sql'				=> "varchar(64) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsCarouFredSel'] = array
@@ -158,6 +235,16 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsJsTpl'] = array
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );
 
+/*$GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsNewsTpl'] = array
+(
+	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsNewsTpl'],
+	'exclude'			=> true,
+	'inputType'			=> 'select',
+	'options_callback'	=> array('tl_module_dk_csf', 'getCarouFredSelNewsTemplates'),
+	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50'),
+	'sql'				=> "varchar(255) NOT NULL default ''"
+);*/
+
 $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsGalleryTpl'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsGalleryTpl'],
@@ -170,7 +257,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsGalleryTpl'] = array
 
 
 /**
- * Class tl_module_dk_csf 
+ * Class tl_module_dk_csf
  *
  * @copyright  Dirk Klemmt 2012-2013
  * @author     Dirk Klemmt
@@ -186,11 +273,12 @@ class tl_module_dk_csf extends tl_module
 	 */
 	public function changePalette(DataContainer $dc)
 	{
-		$obj = $this->Database->prepare("SELECT dk_cfsThumbnailsVisibleSelect " .
-										"FROM tl_module " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT dk_cfsThumbnailsVisibleSelect
+						   FROM   tl_module
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		if ($obj->numRows < 1)
 		{
@@ -209,7 +297,7 @@ class tl_module_dk_csf extends tl_module
 				break;
 		}
 	}
-	
+
 
 	/**
 	 * Return the edit carouFredSel wizard
@@ -282,6 +370,17 @@ class tl_module_dk_csf extends tl_module
 		return $this->getTemplateGroup('js_caroufredsel');
 	}
 
+
+	/**
+	 * Return all carouFredSel news templates as array
+	 *
+	 * @return array
+	 */
+	public function getCarouFredSelNewsTemplates()
+	{
+		return $this->getTemplateGroup('news_caroufredsel');
+	}
+	
 
 	/**
 	 * Return all carouFredSel gallery templates as array

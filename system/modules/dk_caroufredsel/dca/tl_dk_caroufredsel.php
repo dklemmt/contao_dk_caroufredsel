@@ -5,11 +5,34 @@
  * 
  * Copyright (C) 2005-2013 Leo Feyer
  * 
- * @package   carouFredSel 
- * @author    Dirk Klemmt 
- * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012-2013 
+ * @package   carouFredSel
+ * @author    Dirk Klemmt
+ * @license   MIT/GPL
+ * @copyright Dirk Klemmt 2012-2013
  */
+
+
+switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
+{
+	default:
+	case 'basic':
+		$subpaletteUsePlay = 'direction,carouselType,scrollItems,autoPlay';
+		$subpaletteUseTransitions ='scrollFx,scrollEasing,scrollDuration';
+		$subpaletteUseGeneralSize = 'widthSelect,heightSelect';
+		$subpaletteUseItemsGeneral = 'responsive,itemsVisibleSelect,itemsStartRnd';
+		$subpaletteUseItemsSize = 'itemsWidthSelect,itemsHeightSelect';
+		$subpaletteUseNavigation = 'navigation,pagination';
+		break;
+
+	case 'advanced':
+		$subpaletteUsePlay = 'direction,carouselType,scrollItems,scrollQueue,autoPlay';
+		$subpaletteUseTransitions ='scrollFx,scrollEasing,scrollDuration';
+		$subpaletteUseGeneralSize = 'widthSelect,heightSelect,padding';
+		$subpaletteUseItemsGeneral = 'responsive,cookie,itemsVisibleSelect,itemsStart,itemsStartRnd';
+		$subpaletteUseItemsSize = 'itemsWidthSelect,itemsHeightSelect';
+		$subpaletteUseNavigation = 'prevKey,nextKey,' . (in_array('jquery_touchswipe', $this->Config->getActiveModules()) == true ? 'swipeOnTouch,swipeOnMouse,' : '') . (in_array('jquery_mousewheel', $this->Config->getActiveModules()) == true ? 'mousewheel, ' : '') . 'navigation,pagination';
+		break;
+}
 
 
 /**
@@ -46,6 +69,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'fields'			=> array('title'),
 			'flag'				=> 1,
 			'panelLayout'		=> 'filter;search,limit'
+//			'headerFields'		=> array('title', 'author')
 		),
 		'label' => array
 		(
@@ -111,12 +135,12 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 	// Subpalettes
 	'subpalettes' => array
 	(
-		'usePlay'				=> 'direction,carouselType,scrollItems,scrollQueue,autoPlay',
-		'useTransitions'		=> 'scrollFx,scrollEasing,scrollDuration',
-		'useGeneralSize'		=> 'widthSelect,heightSelect,padding',
-		'useItemsGeneral'		=> 'responsive,cookie,itemsVisibleSelect,itemsStart,itemsStartRnd',
-		'useItemsSize'			=> 'itemsWidthSelect,itemsHeightSelect',
-		'useNavigation'			=> 'prevKey,nextKey,' . (in_array('jquery_touchswipe', $this->Config->getActiveModules()) == true ? 'swipeOnTouch,swipeOnMouse,' : '') . (in_array('jquery_mousewheel', $this->Config->getActiveModules()) == true ? 'mousewheel, ' : '') . 'navigation'
+		'usePlay'						=> $subpaletteUsePlay,
+		'useTransitions'				=> $subpaletteUseTransitions,
+		'useGeneralSize'				=> $subpaletteUseGeneralSize,
+		'useItemsGeneral'				=> $subpaletteUseItemsGeneral,
+		'useItemsSize'					=> $subpaletteUseItemsSize,
+		'useNavigation'					=> $subpaletteUseNavigation
 	),
 
 	// Fields
@@ -536,7 +560,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['navigation'],
 			'exclude'			=> true,
 			'inputType'			=> 'checkbox',
-			'eval'				=> array('submitOnChange' => true, 'tl_class' => 'clr'),
+			'eval'				=> array('tl_class' => 'w50 clr'),
 			'sql'				=> "char(1) NOT NULL default ''"
 		),
 		'autoButton' => array
@@ -544,6 +568,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoButton'],
 			'exclude'			=> true,
 			'inputType'			=> 'checkbox',
+			'eval'				=> array('tl_class' => 'w50'),
 			'sql'				=> "char(1) NOT NULL default ''"
 		),
 		'pagination' => array
@@ -551,7 +576,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['pagination'],
 			'exclude'			=> true,
 			'inputType'			=> 'checkbox',
-			'eval'				=> array('submitOnChange' => true, 'tl_class' => 'w50'),
+			'eval'				=> array('submitOnChange' => true, 'tl_class' => 'w50 clr'),
 			'sql'				=> "char(1) NOT NULL default ''"
 		),
 		'paginationKeys' => array
@@ -565,8 +590,9 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 	)
 );
 
+
 /**
- * Class tl_dk_caroufredsell 
+ * Class tl_dk_caroufredsel
  *
  * @copyright  Dirk Klemmt 2012-2013
  * @author     Dirk Klemmt
@@ -582,11 +608,25 @@ class tl_dk_caroufredsel extends Backend
 	 */
 	public function changePalette(DataContainer $dc)
 	{
-		$obj = $this->Database->prepare("SELECT autoPlay, autoProgress, navigation, pagination, widthSelect, heightSelect, itemsWidthSelect, itemsHeightSelect, itemsVisibleSelect " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
+		{
+			default:
+			case 'basic':
+				Message::addInfo('Die Erweiterung ist so konfiguriert, daß die am häufigsten verwendeten Einstellungen zur Verfügung stehen. Um alle Einstellungen zu nutzen, können Sie diese in den Contao-Einstellungen aktivieren.');
+				$subsubpaletteAutoPlay = 'autoPlay,autoTimeoutDuration,scrollPauseOnHover';
+				break;
+		
+			case 'advanced':
+				$subsubpaletteAutoPlay = 'autoPlay,autoTimeoutDuration,autoDelay,scrollPauseOnHover,autoProgress';
+				break;
+		}
+
+		$obj = $this->Database
+				->prepare("SELECT autoPlay, autoProgress, navigation, pagination, widthSelect, heightSelect, itemsWidthSelect, itemsHeightSelect, itemsVisibleSelect
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		if ($obj->numRows < 1)
 		{
@@ -601,22 +641,27 @@ class tl_dk_caroufredsel extends Backend
 		 */
 		if ($obj->autoPlay)
 		{
-			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay'] = str_replace('autoPlay', 'autoPlay,autoTimeoutDuration,autoDelay,scrollPauseOnHover,autoProgress', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay']);
+			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay'] = str_replace('autoPlay', $subsubpaletteAutoPlay, $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay']);
+			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation'] = str_replace('navigation', 'navigation,autoButton', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation']);
 		}
 
-		if ($obj->autoProgress != 'none')
+		if ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'] != 'basic')
 		{
-			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay'] = str_replace('autoProgress', 'autoProgress,autoProgressInterval', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay']);
-		}
+			if ($obj->autoProgress != 'none')
+			{
+				$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay'] = str_replace('autoProgress', 'autoProgress,autoProgressInterval', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['usePlay']);
+			}
 
-		if ($obj->navigation)
-		{
-			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation'] = str_replace('navigation', 'navigation' . ($obj->autoPlay ? ',autoButton' : '') . ',pagination', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation']);
-		}
-		
-		if ($obj->pagination)
-		{
-			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation'] = str_replace('pagination', 'pagination,paginationKeys', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation']);
+			if ($obj->pagination)
+			{
+				$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation'] = str_replace('pagination', 'pagination,paginationKeys', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useNavigation']);
+			}
+
+			// only show field 'align' if fields 'widthSelect' or 'heightSelect' contain 'fixed'
+			if ($obj->widthSelect == 'fixed' || $obj->heightSelect == 'fixed')
+			{
+				$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useGeneralSize'] = str_replace(',padding', ',padding,align', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useGeneralSize']);
+			}
 		}
 
 		// only show field 'width' if field 'widthSelect' contains 'fixed' or 'fluid'
@@ -629,12 +674,6 @@ class tl_dk_caroufredsel extends Backend
 		if ($obj->heightSelect == 'fixed' || $obj->heightSelect == 'fluid')
 		{
 			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useGeneralSize'] = str_replace('heightSelect', 'heightSelect,height', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useGeneralSize']);
-		}
-
-		// only show field 'align' if fields 'widthSelect' or 'heightSelect' contain 'fixed'
-		if ($obj->widthSelect == 'fixed' || $obj->heightSelect == 'fixed')
-		{
-			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useGeneralSize'] = str_replace(',padding', ',padding,align', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useGeneralSize']);
 		}
 
 		// only show field 'itemsVisible' if field 'itemsVisibleSelect' contains 'fixed'
@@ -699,11 +738,12 @@ class tl_dk_caroufredsel extends Backend
 		$horizontalSizeOptions = array('variable', 'auto', 'fixed');
 
 		// (horizontal) fluid only applies on horizontal carousels so check it
-		$obj = $this->Database->prepare("SELECT direction " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT direction
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		if ($obj->numRows > 0 && ($obj->direction == 'left' || $obj->direction == 'right'))
 		{
@@ -723,11 +763,12 @@ class tl_dk_caroufredsel extends Backend
 	public function getWidthUnitOptions(DataContainer $dc)
 	{
 		// check if horizontal size is fixed or fluid
-		$obj = $this->Database->prepare("SELECT widthSelect " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT widthSelect
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		return array(($obj->numRows && ($obj->widthSelect == 'fluid')) ? '%' : 'px');
 	}
@@ -744,11 +785,12 @@ class tl_dk_caroufredsel extends Backend
 		$verticalSizeOptions = array('variable', 'auto', 'fixed');
 
 		// (vertical) fluid only applies on vertical carousels so check it
-		$obj = $this->Database->prepare("SELECT direction " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT direction
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		if ($obj->numRows > 0 && ($obj->direction == 'up' || $obj->direction == 'down'))
 		{
@@ -768,11 +810,12 @@ class tl_dk_caroufredsel extends Backend
 	public function getHeightUnitOptions(DataContainer $dc)
 	{
 		// check if vertical size is fixed or fluid
-		$obj = $this->Database->prepare("SELECT heightSelect " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT heightSelect
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		return array(($obj->numRows && ($obj->heightSelect == 'fluid')) ? '%' : 'px');
 	}
@@ -789,11 +832,12 @@ class tl_dk_caroufredsel extends Backend
 		$horizontalItemSizeOptions = array('variable', 'fixed');
 
 		// (horizontal) fluid only applies on responsive, vertical carousels so check it
-		$obj = $this->Database->prepare("SELECT responsive, direction " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT responsive, direction
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		if ($obj->numRows > 0 && $obj->responsive && ($obj->direction == 'up' || $obj->direction == 'down'))
 		{
@@ -813,11 +857,12 @@ class tl_dk_caroufredsel extends Backend
 	public function getItemsWidthUnitOptions(DataContainer $dc)
 	{
 		// check if horizontal item size is fixed or fluid
-		$obj = $this->Database->prepare("SELECT itemsWidthSelect " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT itemsWidthSelect
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		return array(($obj->numRows && ($obj->itemsWidthSelect == 'fluid')) ? '%' : 'px');
 	}
@@ -834,11 +879,12 @@ class tl_dk_caroufredsel extends Backend
 		$verticalItemSizeOptions = array('variable', 'fixed');
 
 		// (vertical) fluid only applies on responsive, horizontal carousels so check it
-		$obj = $this->Database->prepare("SELECT responsive, direction " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT responsive, direction
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		if ($obj->numRows > 0 && $obj->responsive && ($obj->direction == 'left' || $obj->direction == 'right'))
 		{
@@ -858,11 +904,12 @@ class tl_dk_caroufredsel extends Backend
 	public function getItemsHeightUnitOptions(DataContainer $dc)
 	{
 		// check if vertical item size is fixed or fluid
-		$obj = $this->Database->prepare("SELECT itemsHeightSelect " .
-										"FROM tl_dk_caroufredsel " .
-										"WHERE id = ? ")
-									->limit(1)
-									->execute($dc->id);
+		$obj = $this->Database
+				->prepare("SELECT itemsHeightSelect
+						   FROM   tl_dk_caroufredsel
+						   WHERE  id = ? ")
+				->limit(1)
+				->execute($dc->id);
 
 		return array(($obj->numRows && ($obj->itemsHeightSelect == 'fluid')) ? '%' : 'px');
 	}

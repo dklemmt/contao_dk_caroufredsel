@@ -5,10 +5,10 @@
  * 
  * Copyright (C) 2005-2013 Leo Feyer
  * 
- * @package   carouFredSel 
- * @author    Dirk Klemmt 
- * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012-2013 
+ * @package   carouFredSel
+ * @author    Dirk Klemmt
+ * @license   MIT/GPL
+ * @copyright Dirk Klemmt 2012-2013
  */
 
 
@@ -19,27 +19,20 @@ namespace Dirch\carouFredSel;
 
 
 /**
- * Class CarouFredSel 
+ * Class CarouFredSel
  *
- * @package   carouFredSel 
- * @author    Dirk Klemmt 
- * @license   MIT/GPL 
+ * @package   carouFredSel
+ * @author    Dirk Klemmt
+ * @license   MIT/GPL
  * @copyright Dirk Klemmt 2012-2013
  */
 class CarouFredSel extends \Frontend 
 {
 
-
 	public function createTemplateData($carouFredSelId, $strCarouFredSelType, \Template $objTemplateHtml, \Template $objTemplateCss, \Template $objTemplateJs)
 	{
-		$objCarouFredSel = \Database::getInstance()
-			->prepare("SELECT *
-					   FROM tl_dk_caroufredsel
-					   WHERE id = ?")
-			->limit(1)
-			->execute($carouFredSelId);
-
-		if ($objCarouFredSel->numRows < 1)
+		$objCarouFredSel = CarouFredSelModel::findByPk($carouFredSelId);
+		if ($objCarouFredSel === null)
 		{
 			return;
 		}
@@ -72,7 +65,8 @@ class CarouFredSel extends \Frontend
 			if ($objCarouFredSel->carouselType == 'once')
 			{		
 				$objTemplateJs->carouselType = 'circular: false, infinite: false';
-			} else if ($objCarouFredSel->carouselType == 'infinite')
+			}
+			elseif ($objCarouFredSel->carouselType == 'infinite')
 			{
 				$objTemplateJs->carouselType =  'circular: false';
 			}
@@ -168,18 +162,24 @@ class CarouFredSel extends \Frontend
 
 				case 'fixed':
 					$width = unserialize($objCarouFredSel->width);
-					$objTemplateJs->width = 'width: ' . $width['value'];
-					$objTemplateCss->width = $objTemplateJs->width . $width['unit'] . ';';
-					$objTemplateCss->widthValue = $width['value'];
-					$objTemplateCss->widthUnit = $width['unit'];
+					if (isset($width['value']) && $width['value'] != '')
+					{
+						$objTemplateJs->width = 'width: ' . $width['value'];
+						$objTemplateCss->width = $objTemplateJs->width . $width['unit'] . ';';
+						$objTemplateCss->widthValue = $width['value'];
+						$objTemplateCss->widthUnit = $width['unit'];
+					}
 					break;
 
 				case 'fluid':
 					$width = unserialize($objCarouFredSel->width);
-					$objTemplateJs->width = sprintf('width: "%s%s"', $width['value'], $width['unit']);
-					$objTemplateCss->width = sprintf('width: %s%s;', $width['value'], $width['unit']);
-					$objTemplateCss->widthValue = $width['value'];
-					$objTemplateCss->widthUnit = $width['unit'];
+					if (isset($width['value']) && $width['value'] != '')
+					{
+						$objTemplateJs->width = sprintf('width: "%s%s"', $width['value'], $width['unit']);
+						$objTemplateCss->width = sprintf('width: %s%s;', $width['value'], $width['unit']);
+						$objTemplateCss->widthValue = $width['value'];
+						$objTemplateCss->widthUnit = $width['unit'];
+					}
 					break;
 			}
 
@@ -196,14 +196,20 @@ class CarouFredSel extends \Frontend
 
 				case 'fixed':
 					$height = unserialize($objCarouFredSel->height);
-					$objTemplateJs->height = 'height: ' . $height['value'];
-					$objTemplateCss->height = $objTemplateJs->height . $height['unit']. ';';
+					if (isset($height['value']) && $height['value'] != '')
+					{
+						$objTemplateJs->height = 'height: ' . $height['value'];
+						$objTemplateCss->height = $objTemplateJs->height . $height['unit']. ';';
+					}
 					break;
 
 				case 'fluid':
 					$height = unserialize($objCarouFredSel->height);
-					$objTemplateJs->height = sprintf('height: "%s%s"', $height['value'], $height['unit']);
-					$objTemplateCss->height = sprintf('height: %s%s;', $height['value'], $height['unit']);
+					if (isset($height['value']) && $height['value'] != '')
+					{
+						$objTemplateJs->height = sprintf('height: "%s%s"', $height['value'], $height['unit']);
+						$objTemplateCss->height = sprintf('height: %s%s;', $height['value'], $height['unit']);
+					}
 					break;
 			}
 
@@ -222,13 +228,16 @@ class CarouFredSel extends \Frontend
 					{
 						$objTemplateJs->padding = 'padding: ' . $paddingTop;
 					}
-				} else if (($paddingTop == $paddingBottom) && ($paddingRight == $paddingLeft))
+				}
+				elseif (($paddingTop == $paddingBottom) && ($paddingRight == $paddingLeft))
 				{
 					$objTemplateJs->padding = sprintf('padding: [%s, %s]', $paddingTop, $paddingRight);
-				} else if ($paddingRight == $paddingLeft)
+				}
+				elseif ($paddingRight == $paddingLeft)
 				{
 					$objTemplateJs->padding = sprintf('padding: [%s, %s, %s]', $paddingTop, $paddingRight, $paddingBottom);
-				} else
+				}
+				else
 				{
 					$objTemplateJs->padding = sprintf('padding: [%s, %s, %s, %s]', $paddingTop, $paddingRight, $paddingBottom, $paddingLeft);
 				}
@@ -253,12 +262,18 @@ class CarouFredSel extends \Frontend
 
 				case 'fixed':
 					$itemsWidth = unserialize($objCarouFredSel->itemsWidth);
-					$objTemplateJs->itemsWidth = 'width: ' . $itemsWidth['value'];
+					if (isset($itemsWidth['value']) && $itemsWidth['value'] != '')
+					{
+						$objTemplateJs->itemsWidth = 'width: ' . $itemsWidth['value'];
+					}
 					break;
 
 				case 'fluid':
 					$itemsWidth = unserialize($objCarouFredSel->itemsWidth);
-					$objTemplateJs->itemsWidth = sprintf('width: "%s%s"', $itemsWidth['value'], $itemsWidth['unit']);
+					if (isset($itemsWidth['value']) && $itemsWidth['value'] != '')
+					{
+						$objTemplateJs->itemsWidth = sprintf('width: "%s%s"', $itemsWidth['value'], $itemsWidth['unit']);
+					}
 					break;
 			}
 
@@ -271,12 +286,18 @@ class CarouFredSel extends \Frontend
 
 				case 'fixed':
 					$itemsHeight = unserialize($objCarouFredSel->itemsHeight);
-					$objTemplateJs->itemsHeight = 'height: ' . $itemsHeight['value'];
+					if (isset($itemsHeight['value']) && $itemsHeight['value'] != '')
+					{
+						$objTemplateJs->itemsHeight = 'height: ' . $itemsHeight['value'];
+					}
 					break;
 
 				case 'fluid':
 					$itemsHeight = unserialize($objCarouFredSel->itemsHeight);
-					$objTemplateJs->itemsHeight = sprintf('height: "%s%s"', $itemsHeight['value'], $itemsHeight['unit']);
+					if (isset($itemsHeight['value']) && $itemsHeight['value'] != '')
+					{
+						$objTemplateJs->itemsHeight = sprintf('height: "%s%s"', $itemsHeight['value'], $itemsHeight['unit']);
+					}
 					break;
 			}
 		}
@@ -312,10 +333,12 @@ class CarouFredSel extends \Frontend
 					if (($objCarouFredSel->itemsVisibleMin != '0') && ($objCarouFredSel->itemsVisibleMax != '0'))
 					{
 						$objTemplateJs->itemsVisible = 'visible: { min: ' . $objCarouFredSel->itemsVisibleMin . ', max: ' . $objCarouFredSel->itemsVisibleMax . ' }';
-					} else if ($objCarouFredSel->itemsVisibleMax != '0')
+					}
+					elseif ($objCarouFredSel->itemsVisibleMax != '0')
 					{
 						$objTemplateJs->itemsVisible = 'visible: { max: ' . $objCarouFredSel->itemsVisibleMax . ' }';
-					} else if ($objCarouFredSel->itemsVisibleMin != '0')
+					}
+					elseif ($objCarouFredSel->itemsVisibleMin != '0')
 					{
 						$objTemplateJs->itemsVisible = 'visible: { min: ' . $objCarouFredSel->itemsVisibleMin . ' }';
 					}
@@ -327,7 +350,7 @@ class CarouFredSel extends \Frontend
 			{
 				$objTemplateJs->itemsStart = 'start: "random"';
 			}
-			else if ($objCarouFredSel->itemsStart != '0')
+			elseif ($objCarouFredSel->itemsStart != '0')
 			{
 				$objTemplateJs->itemsStart = 'start: ' . $objCarouFredSel->itemsStart;
 			}
@@ -379,18 +402,18 @@ class CarouFredSel extends \Frontend
 					$objTemplateJs->autoButton =
 					$objTemplateCss->autoButton = $objCarouFredSel->autoButton;
 				}
+			}
 
-				if ($objCarouFredSel->pagination)
+			if ($objCarouFredSel->pagination)
+			{
+				$objTemplateHtml->pagination =
+				$objTemplateJs->pagination =
+				$objTemplateCss->pagination = $objCarouFredSel->pagination;
+
+				// carouFredSel option 'keys'
+				if ($objCarouFredSel->paginationKeys)
 				{
-					$objTemplateHtml->pagination =
-					$objTemplateJs->pagination =
-					$objTemplateCss->pagination = $objCarouFredSel->pagination;
-
-					// carouFredSel option 'keys'
-					if ($objCarouFredSel->paginationKeys)
-					{
-						$objTemplateJs->paginationKeys = 'keys: true';
-					}
+					$objTemplateJs->paginationKeys = 'keys: true';
 				}
 			}
 		}
@@ -416,7 +439,10 @@ class CarouFredSel extends \Frontend
 		$objTemplateJs->triggerMode = $GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'];
 
 		// image loader 
-		$objTemplateJs->useImageLoader = $GLOBALS['TL_CONFIG']['dk_cfsImageLoader'];
+		if ($GLOBALS['TL_CONFIG']['dk_cfsImageLoader'] != '')
+		{
+			$objTemplateJs->useImageLoader = $GLOBALS['TL_CONFIG']['dk_cfsImageLoader'];
+		}
 
 		// carouFredSel window resize mode 
 		if ($GLOBALS['TL_CONFIG']['dk_cfsOnWindowResize'] != '')
@@ -439,16 +465,16 @@ class CarouFredSel extends \Frontend
 		// parse and add ...
 
 		// ... global css style file
-		$GLOBALS['TL_CSS'][] = 'system/modules/dk_caroufredsel/assets/css/caroufredsel.css';
+		$GLOBALS['TL_CSS'][] = 'system/modules/dk_caroufredsel/assets/css/caroufredsel.css||static';
 
 		// ... element dependent css style file
 		$GLOBALS['TL_HEAD'][] = $objTemplateCss->parse();
 
-		// ... element dependent javascript caller
-		$GLOBALS['TL_HEAD'][] = $objTemplateJs->parse();					
-
 		// ... the carouFredSel javascript itselfs
-		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.2.0-packed.js|static';
+		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.2.1-packed.js|static';
+
+		// ... element dependent javascript caller
+		$GLOBALS['TL_JQUERY'][] = $objTemplateJs->parse();					
 
 		if ($objCarouFredSel->autoProgress == 'pie')
 		{
@@ -460,39 +486,33 @@ class CarouFredSel extends \Frontend
 		// ... ready load javascript trigger mode
 		if ($GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'] == 'readyLoad')
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.readyLoad.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.readyLoad.js|static';
 		}
 
 		// ... window resize event throtteling/debouncing
 		if ($GLOBALS['TL_CONFIG']['dk_cfsOnWindowResize'] != '')
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.ba-throttle-debounce.min.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.ba-throttle-debounce.min.js|static';
 		}
 
 		// ... CSS transitions instead of jQuery transitions
 		if ($GLOBALS['TL_CONFIG']['dk_cfsTransition'])
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.transit.min.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.transit.min.js|static';
 		}
 
 		// ... image loader
 		if ($GLOBALS['TL_CONFIG']['dk_cfsImageLoader'])
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.krioImageLoader.js';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.krioImageLoader.js|static';
 		}
 	}
 	
 
 	public function createTemplateDataStopElement($carouFredSelId, \Template $objTemplateHtml)
 	{
-		$objCarouFredSel = \Database::getInstance()
-			->prepare("SELECT *
-					   FROM tl_dk_caroufredsel
-					   WHERE id = ?")
-			->limit(1)
-			->execute($carouFredSelId);
-
-		if ($objCarouFredSel->numRows < 1)
+		$objCarouFredSel = CarouFredSelModel::findByPk($carouFredSelId);
+		if ($objCarouFredSel === null)
 		{
 			return;
 		}

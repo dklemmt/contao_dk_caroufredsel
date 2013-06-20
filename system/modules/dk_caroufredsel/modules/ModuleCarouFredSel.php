@@ -5,10 +5,10 @@
  * 
  * Copyright (C) 2005-2013 Leo Feyer
  * 
- * @package   carouFredSel 
- * @author    Dirk Klemmt 
- * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012-2013 
+ * @package   carouFredSel
+ * @author    Dirk Klemmt
+ * @license   MIT/GPL
+ * @copyright Dirk Klemmt 2012-2013
  */
 
 
@@ -52,7 +52,7 @@ class ModuleCarouFredSel extends \Module
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
-			$objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id . '&amp;rt=' . REQUEST_TOKEN;
+			$objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
 
 			return $objTemplate->parse();
 		}
@@ -75,7 +75,6 @@ class ModuleCarouFredSel extends \Module
 		// --- get content elements
 		$arrElements = array();
 		$objCte = \ContentModel::findPublishedByPidAndTable($this->dk_cfsCarouFredSel, 'tl_dk_caroufredsel');
-
 		if ($objCte !== null)
 		{
 			while ($objCte->next())

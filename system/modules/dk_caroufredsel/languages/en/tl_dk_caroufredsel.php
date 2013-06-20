@@ -15,12 +15,18 @@
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['new']					= array('Neues Karussell', 'Ein neues Karussell anlegen');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['edit']					= array('Karussell bearbeiten', 'Karussell ID %s bearbeiten');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['copy']					= array('Karussell duplizieren', 'Karussell ID %s duplizieren');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['delete']					= array('Karussell löschen', 'Karussell ID %s löschen');
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['toggle']				= array('Karussell veröffentlichen/unveröffentlichen', 'Karussell ID %s veröffentlichen/unveröffentlichen');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['show']					= array('Karusselldetails', 'Details des Karussells ID %s anzeigen');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['new'][0] = 'Neues Karussell';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['new'][1] = 'Ein neues Karussell anlegen';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['edit'][0] = 'Karussell-Inhalt bearbeiten';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['edit'][1] = 'Inhalt zu Karussell (ID %s) bearbeiten';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['editheader'][0] = 'Karussell-Konfiguration bearbeiten';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['editheader'][1] = 'Konfiguration von Karussell (ID %s) bearbeiten';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['copy'][0] = 'Karussell duplizieren';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['copy'][1] = 'Karussell (ID %s) duplizieren';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['delete'][0] = 'Karussell löschen';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['delete'][1] = 'Karussell (ID %s) löschen';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['show'][0] = 'Karussell-Details';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['show'][1] = 'Details des Karussells (ID %s) anzeigen';
 
 
 /**
@@ -121,14 +127,14 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['resume']			= ar
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['immediate']		= array('sofortiger Stop + Anzeigedauer neu starten', 'Bei Maus-Hover stoppt das Karussell sofort. Im Anschluß wird die bisherige Anzeigedauer zurückgesetzt und es wird erst nach der kompletten Anzeigedauer erneut gescrollt.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollPauseOnHover']['immediate-resume']	= array('sofortiger Stop + Anzeigedauer fortsetzen', 'Bei Maus-Hover stoppt das Karussell sofort. Im Anschluß wird die bisherige Anzeigedauer mit der verbliebenen Restzeit bis zum erneuten Scrollen fortgesetzt');
 
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['none']					= array('kein', 'Die Fortschritts-Anzeige ist ausgeblendet.');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['bar']					= array('Balken', 'Es wird ein Fortschritts-Balken eingeblendet.');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['pie']					= array('Kreis', 'Es wird ein Kreis-Diagramm eingeblendet. Dies steht nur im Ausgabeformat \'HTML\' zur Verfügung.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['none']					= array('none', 'Die Fortschritts-Anzeige ist ausgeblendet.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['bar']					= array('bar', 'Es wird ein Fortschritts-Balken eingeblendet.');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgress']['pie']					= array('pie', 'Es wird ein Kreis-Diagramm eingeblendet. Dies steht nur im Ausgabeformat \'HTML\' zur Verfügung.');
 
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['none']							= array('none', '');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['center']						= array('denter', '');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['left']							= array('left/top', '');
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['right']							= array('right/bottom', '');
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['none']							= 'none';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['center']						= 'denter';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['left']							= 'left/top';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align']['right']							= 'right/bottom';
 
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleSelect']['variable']			= array('variable', 'Die Anzahl der sichtbaren Elemente wird automatisch berechnet.');
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleSelect']['fixed']			= array('fixed', 'Die Anzahl der sichtbaren Elemente wird fest vorgegeben.');

@@ -44,8 +44,13 @@
 		}
 	}
 ?>
+<?php if ($this->autoProgress == 'pie'): ?>
+<script>
+progressBarColor_<?php echo $this->id; ?> = '<?php echo $progressBarColor; ?>';
+progressBarBackgroundColor_<?php echo $this->id; ?> = '<?php echo $progressBarBackgroundColor; ?>';
+</script>
+<?php endif; ?>
 <style type="text/css">
-#caroufredsel_skin_<?php echo $this->id; ?>, #caroufredsel_thumbnails_skin_<?php echo $this->id; ?>  { position: relative; overflow: hidden; }
 /* slides */
 <?php if ($this->width && ($this->widthUnit == 'px')): ?>
 #caroufredsel_skin_<?php echo $this->id; ?> { <?php echo 'width: ' . $this->widthValue . $this->widthUnit; ?>; }
@@ -150,6 +155,11 @@
 <?php if ($this->autoProgress): ?>
 /* progress bar */
 #caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_bar_wrapper {
+<?php if ($this->autoProgress == 'pie'): ?>
+	position: absolute;
+	top: 25px;
+	right: 25px;
+<?php else: ?>
 <?php if ($this->itemsVisible > '1'): ?>
 	margin: 2px <?php echo $margin; ?>px 0;
 	padding: 0 4px;
@@ -157,7 +167,9 @@
 <?php endif; ?>
 	height: <?php echo $progressBarBackgroundHeight; ?>px;
 	background-color: <?php echo $progressBarBackgroundColor; ?>;
+<?php endif; ?>
 }
+<?php if ($this->autoProgress != 'pie'): ?>
 #caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_bar {
 	position: relative;
 	top: <?php echo $progressBarPositionTop ?>px;
@@ -165,10 +177,21 @@
 	background-color: <?php echo $progressBarColor; ?>;
 }
 <?php endif; ?>
+<?php endif; ?>
 <?php if ($this->useThumbnails): ?>
 /* thumbnails */
-<?php if ($this->width && ($this->widthUnit == 'px')): ?>
-#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { <?php echo 'width: ' . $this->widthValue . $this->widthUnit; ?>; }
+<?php if ($this->type != 'caroufredsel_background' && $this->thumbnailsPosition != 'top' && $this->thumbnailsPosition != 'bottom'): ?>
+<?php if ($this->thumbnailsPosition == 'left'): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { float: left; }
+<?php else: ?>
+#caroufredsel_skin_<?php echo $this->id; ?> { float: left; }
+<?php endif; ?>
+<?php endif; ?>
+<?php if ($this->thumbnailsWidth && ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right')): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { <?php echo $this->thumbnailsWidth; ?> }
+<?php endif; ?>
+<?php if ($this->thumbnailsHeight && ($this->thumbnailsPosition == 'top' || $this->thumbnailsPosition == 'bottom')): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { <?php echo $this->thumbnailsHeight; ?> }
 <?php endif; ?>
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails > div {
 	background-color: white;
@@ -199,24 +222,46 @@
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?>:hover .caroufredsel_thumbnails_prev,
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?>:hover .caroufredsel_thumbnails_next { opacity: 1; }
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails_navi a {
+<?php if ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right'): ?>
+	left: 50%; margin-left: -<?php echo ($buttonMarginLeft / 2); ?>px;
+<?php else: ?>
 	top: 50%; margin-top: -<?php echo ($buttonMarginTop / 2); ?>px;
+<?php endif; ?>
 }
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> .caroufredsel_thumbnails_navi a.disabled { cursor: default; opacity: 0; }
 /* prev */
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_prev {
+<?php if ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right'): ?>
+	top: 20px;
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_up.svg);
+<?php else: ?>
 	left: 20px;
 	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_left.svg);
+<?php endif; ?>
 }
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_prev:hover {
+<?php if ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right'): ?>
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_up_hover.svg);
+<?php else: ?>
 	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_left_hover.svg);
+<?php endif; ?>
 }
 /* next */
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_next {
+<?php if ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right'): ?>
+	bottom: 20px;
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_down.svg);
+<?php else: ?>
 	right: 20px;
 	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_right.svg);
+<?php endif; ?>
 }
 #caroufredsel_thumbnails_skin_<?php echo $this->id; ?> a.caroufredsel_thumbnails_next:hover {
+<?php if ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right'): ?>
+	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_down_hover.svg);
+<?php else: ?>
 	background-image: url(system/modules/dk_caroufredsel/assets/skins/light/images/icon_arrow_right_hover.svg);
+<?php endif; ?>
 }
 <?php endif; ?>
 </style>

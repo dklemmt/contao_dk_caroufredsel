@@ -19,15 +19,15 @@ namespace Dirch\carouFredSel;
 
 
 /**
- * Class ContentCarouFredSelBackground
+ * Class ModuleCarouFredSelBackground
  *
- * Front end content element "caroufredsel_background".
+ * Front end modul "caroufredsel_background".
  *
  * @copyright  Dirk Klemmt 2012-2013
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */
-class ContentCarouFredSelBackground extends \carouFredSel\ContentCarouFredSelGallery
+class ModuleCarouFredSelBackground extends \carouFredSel\ModuleCarouFredSelGallery
 {
 
 	/**

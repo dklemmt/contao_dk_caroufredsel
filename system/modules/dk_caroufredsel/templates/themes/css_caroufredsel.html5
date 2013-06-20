@@ -1,0 +1,52 @@
+<?php
+	// progress bar definitions
+	$progressBarHeight = 2;
+	$progressBarBackgroundHeight = 6;
+	$progressBarColor = '#eeeeee';
+	$progressBarBackgroundColor = '#222222';
+?>
+<?php if ($this->autoProgress == 'pie'): ?>
+<script>
+progressBarColor_<?php echo $this->id; ?> = '<?php echo $progressBarColor; ?>';
+progressBarBackgroundColor_<?php echo $this->id; ?> = '<?php echo $progressBarBackgroundColor; ?>';
+</script>
+<?php endif; ?>
+<?php if ($this->autoProgress || $this->useThumbnails && (($this->type != 'caroufredsel_background' && $this->thumbnailsPosition != 'top' && $this->thumbnailsPosition != 'bottom') || ($this->thumbnailsWidth && ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right')) || ($this->thumbnailsHeight && ($this->thumbnailsPosition == 'top' || $this->thumbnailsPosition == 'bottom')))): ?>
+<style type="text/css">
+<?php if ($this->autoProgress): ?>
+#caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_bar_wrapper {
+<?php if ($this->autoProgress == 'pie'): ?>
+	position: absolute;
+	top: 5px;
+	right: 5px;
+<?php else: ?>
+	height: <?php echo $progressBarBackgroundHeight; ?>px;
+	background-color: <?php echo $progressBarBackgroundColor; ?>;
+<?php endif; ?>
+}
+<?php if ($this->autoProgress != 'pie'): ?>
+#caroufredsel_skin_<?php echo $this->id; ?> .caroufredsel_bar {
+	position: relative;
+	top: <?php echo ($progressBarBackgroundHeight - $progressBarHeight) / 2; ?>px;
+	height: <?php echo $progressBarHeight; ?>px;
+	background-color: <?php echo $progressBarColor; ?>;
+}
+<?php endif; ?>
+<?php endif; ?>
+<?php if ($this->useThumbnails): ?>
+<?php if ($this->type != 'caroufredsel_background' && $this->thumbnailsPosition != 'top' && $this->thumbnailsPosition != 'bottom'): ?>
+<?php if ($this->thumbnailsPosition == 'left'): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { float: left; }
+<?php else: ?>
+#caroufredsel_skin_<?php echo $this->id; ?> { float: left; }
+<?php endif; ?>
+<?php endif; ?>
+<?php if ($this->thumbnailsWidth && ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right')): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { <?php echo $this->thumbnailsWidth; ?> }
+<?php endif; ?>
+<?php if ($this->thumbnailsHeight && ($this->thumbnailsPosition == 'top' || $this->thumbnailsPosition == 'bottom')): ?>
+#caroufredsel_thumbnails_skin_<?php echo $this->id; ?> { <?php echo $this->thumbnailsHeight; ?> }
+<?php endif; ?>
+<?php endif; ?>
+</style>
+<?php endif; ?>

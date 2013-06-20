@@ -1,5 +1,4 @@
-<script type="text/javascript">
-/* <![CDATA[ */
+<script>
 (function($) {
 <?php if ($this->useImageLoader): ?>
 	$(document).ready(function() {
@@ -128,14 +127,20 @@
 		echo ($iComma == true ? ', ' : '') . $this->scrollQueue;
 		$iComma = true;
 	}
-	//	echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
+//	echo ($iComma == true ? ', ' : '') . 'conditions: function(direction) { }';
 	// function called every time before scrolling occurs
 	echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { data.items.old.removeClass("visible");';
+	if (!$this->autoPlay && $this->autoProgress == 'pie') {
+		echo ' $().hideProgressBar("caroufredsel_bar_wrapper_' . $this->id . '");';
+	}
 	// --> your code here <--
 	echo ' }'; // end of 'onBefore'
 	$iComma = true;
 	// function called every time after scrolling occurred
 	echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { data.items.visible.addClass("visible");';
+	if (!$this->autoPlay && $this->autoProgress == 'pie') {
+		echo ' $().initProgressBar("caroufredsel_bar_' . $this->id . '", { barBackgroundColor: progressBarBackgroundColor_' . $this->id . ' });';
+	}
 	if ($this->useThumbnails) {		
 ?>
 		$("#caroufredsel_thumbnails_<?php echo $this->id; ?> .caroufredsel_thumbnail").removeClass("selected").hasClass("selected");
@@ -155,7 +160,7 @@
 	echo ' }'; // end of subobject 'scroll' options
 	$iComma = false; // reset inside subobject comma flag
 	$oComma = true;
-	
+
 	// subobject 'auto' options
 	if (!$this->autoPlay) {
 		if ($this->autoButton || $this->autoTimeoutDuration || $this->autoDelay || $this->autoProgress) {
@@ -175,6 +180,9 @@
 			if ($this->autoProgress) {
 				echo ($iComma == true ? ', ' : '') . 'progress: { ';
 				echo 'bar: "#caroufredsel_bar_' . $this->id . '"';
+				if ($this->autoProgress == 'pie') {
+					echo ', updater: function(percentage) { $().updateProgressBar("caroufredsel_bar_' . $this->id . '", { barColor: progressBarColor_' . $this->id . ' }, percentage); }';
+				}
 				if ($this->autoProgressInterval) {
 					echo ', ' . $this->autoProgressInterval;
 				}
@@ -186,9 +194,15 @@
 //			echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
 //			echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
 //			echo ($iComma == true ? ', ' : '') . 'onTimeoutStart: function(percentage, duration) { }';
+			if ($this->autoProgress == 'pie') {
+				echo ($iComma == true ? ', ' : '') . 'onTimeoutStart: function(percentage, duration) { $().initProgressBar("caroufredsel_bar_' . $this->id . '", { barBackgroundColor: progressBarBackgroundColor_' . $this->id . ' }); $().showProgressBar("caroufredsel_bar_wrapper_' . $this->id . '"); }';
+			}
 //			echo ($iComma == true ? ', ' : '') . 'onTimeoutEnd: function(percentage, duration) { }';
 //			echo ($iComma == true ? ', ' : '') . 'onTimeoutPause: function(percentage, duration) { }';
-			echo ' }';
+			if ($this->autoProgress == 'pie') {
+				echo ($iComma == true ? ', ' : '') . 'onTimeoutPause: function(percentage, duration) { $().hideProgressBar("caroufredsel_bar_wrapper_' . $this->id . '"); }';
+			}
+			echo ' }'; // end of subobject 'auto' options
 			$iComma = false; // reset inside subobject comma flag
 			$oComma = true;
 		}
@@ -251,7 +265,7 @@
 //		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
 //		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
 //		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
-		echo ' }';
+		echo ' }'; // end of subobject 'pagination' options
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
@@ -271,7 +285,7 @@
 //		echo ($iComma == true ? ', ' : '') . 'onBefore: function(data) { }';
 //		echo ($iComma == true ? ', ' : '') . 'onAfter: function(data) { }';
 //		echo ($iComma == true ? ', ' : '') . 'onEnd: function(direction) { }';
-		echo ' }';
+		echo ' }'; // end of subobject 'swipe' options
 		$iComma = false; // reset inside subobject comma flag
 		$oComma = true;
 	}
@@ -307,17 +321,44 @@
 		);
 <?php
 	if ($this->useThumbnails) {		
-	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
+		$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
 ?>
 	    $("#caroufredsel_thumbnails_<?php echo $this->id; ?>")
 	    	.carouFredSel({
 <?php
-		if ($this->width && $this->type != 'caroufredsel_background') {
-			echo $this->width . ', ';
+		if ($this->thumbnailsWidth) {
+			echo $this->thumbnailsWidth . ', ';
+		} else {
+			if ($this->width && $this->thumbnailsPosition != 'left' && $this->thumbnailsPosition != 'right') {
+				echo $this->width . ', ';
+			}
 		}
-// stil fuer "fixed": height: "variable", responsive: true, visible: {min:6}
+		if ($this->thumbnailsHeight) {
+			echo $this->thumbnailsHeight . ', ';
+		} else {
+			if ($this->height && $this->thumbnailsPosition != 'top' && $this->thumbnailsPosition != 'bottom') {
+				echo $this->height . ', ';
+			}
+		}
+		if ($this->thumbnailsAlign) {
+			echo $this->thumbnailsAlign . ', ';
+		}
+		if ($this->thumbnailsPosition == 'left' || $this->thumbnailsPosition == 'right') {
+			echo 'direction: "down", ';
+		}
+/*		if ($this->thumbnailsVisibleSelect == 'fixed') {
+			echo 'responsive: true,';
+		}*/
+		echo 'items: { ';
+		if ($this->thumbnailsVisibleSelect == 'fixed') {
+			echo 'visible: { min: ' . $this->thumbnailsVisible . ' }, ';
+		} else {
+			echo 'visible: "variable", ';
+		}
+		echo 'width: ' . $this->thumbnailWidth . ', height: ' . $this->thumbnailHeight;
+		echo ' },';
 ?>    	
-		items: { visible: "variable" }, scroll: { items: 1 }, auto: false, prev: { button: "#caroufredsel_thumbnails_prev_<?php echo $this->id; ?>" }, next: { button: "#caroufredsel_thumbnails_next_<?php echo $this->id; ?>" } }, { wrapper: { classname: "caroufredsel_thumbnails_wrapper caroufredsel_thumbnails_wrapper_<?php echo $this->id; ?>" } });
+		scroll: { items: 1 }, auto: false, prev: { button: "#caroufredsel_thumbnails_prev_<?php echo $this->id; ?>" }, next: { button: "#caroufredsel_thumbnails_next_<?php echo $this->id; ?>" } }, { wrapper: { classname: "caroufredsel_thumbnails_wrapper caroufredsel_thumbnails_wrapper_<?php echo $this->id; ?>" } });
 		$('#caroufredsel_thumbnails_<?php echo $this->id; ?> > div').click(function() {
 			var id = $(this).attr('id');
 			id = id.split('thumbnail').join('gallery');
@@ -342,7 +383,6 @@
 				var backgrdWidth = rootWidth;
 				var rootHeight = $(window).height();
 				var backgrdHeight = Math.ceil(backgrdWidth / ratio);
-		
 				if (backgrdHeight >= rootHeight) {
 					backgrdOffset = Math.ceil((backgrdHeight - rootHeight) / 2);
 					backgrdCss.top = '-' + backgrdOffset + 'px';
@@ -361,5 +401,4 @@
 ?>
 	});
 })(jQuery);
-/* ]]> */
 </script>

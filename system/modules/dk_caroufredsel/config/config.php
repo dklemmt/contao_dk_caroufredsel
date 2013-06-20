@@ -5,10 +5,10 @@
  * 
  * Copyright (C) 2005-2013 Leo Feyer
  * 
- * @package   carouFredSel 
- * @author    Dirk Klemmt 
- * @license   MIT/GPL 
- * @copyright Dirk Klemmt 2012-2013 
+ * @package   carouFredSel
+ * @author    Dirk Klemmt
+ * @license   MIT/GPL
+ * @copyright Dirk Klemmt 2012-2013
  */
 
 
@@ -29,12 +29,24 @@ array_insert($GLOBALS['BE_MOD'], 3, array
 
 
 /**
+ * Front end modules
+ */
+$GLOBALS['FE_MOD']['caroufredsel_category'] = array(
+	'caroufredsel'				=> 'carouFredSel\ModuleCarouFredSel',
+	'caroufredsel_gallery'		=> 'carouFredSel\ModuleCarouFredSelGallery',
+	'caroufredsel_background'	=> 'carouFredSel\ModuleCarouFredSelBackground',
+	'caroufredsel_ticker'		=> 'carouFredSel\ModuleCarouFredSelTicker'
+);
+
+
+/**
  * Content elements
  */
 $GLOBALS['TL_CTE']['caroufredsel_category'] = array(
-	'caroufredsel'				=> 'carouFredSel\ContentCarouFredSelWrapper',
-	'caroufredsel_background'	=> 'carouFredSel\ContentCarouFredSelBackground',
-	'caroufredsel_gallery'		=> 'carouFredSel\ContentCarouFredSelGallery'
+	'caroufredsel_start'		=> 'carouFredSel\ContentCarouFredSelStart',
+	'caroufredsel_stop'			=> 'carouFredSel\ContentCarouFredSelStop',
+	'caroufredsel_gallery'		=> 'carouFredSel\ContentCarouFredSelGallery',
+	'caroufredsel_background'	=> 'carouFredSel\ContentCarouFredSelBackground'
 );
 
 
@@ -45,11 +57,7 @@ $GLOBALS['BE_FFL']['cfsFileTree'] = 'carouFredSel\CarouFredSelFileTree';
 
 
 /**
- * Front end modules
+ * Wrapper elements
  */
-$GLOBALS['FE_MOD']['caroufredsel_category'] = array(
-	'caroufredsel'				=> 'carouFredSel\ModuleCarouFredSel',
-//	'caroufredsel_background'	=> 'carouFredSel\ModuleCarouFredSelBackground',
-//	'caroufredsel_gallery'		=> 'carouFredSel\ModuleCarouFredSelGallery',
-	'caroufredsel_ticker'		=> 'carouFredSel\ModuleCarouFredSelTicker'
-);
+$GLOBALS['TL_WRAPPERS']['start'][] = 'caroufredsel_start';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'caroufredsel_stop';

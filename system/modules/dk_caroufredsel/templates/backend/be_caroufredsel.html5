@@ -1,0 +1,22 @@
+<?php //echo '<pre>' . $this->showTemplateVars() . '</pre>'; ?>
+<?php if ($this->title): ?>
+  <h1><?php echo $this->title; ?></h1>
+<?php endif; ?>
+
+<?php if ($this->wildcard): ?>
+  <div class="tl_gray">
+    <?php echo $this->wildcard; ?>
+    <?php if ($this->link): ?>
+      <br>
+      <?php echo $this->link; ?> (<a href="<?php echo $this->href . '&amp;rt=' . REQUEST_TOKEN; ?>" class="tl_gray">ID: <?php echo $this->id; ?></a>)
+    <?php endif; ?>
+  </div>
+<?php endif; ?>
+
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<div class="caroufredsel_skin">
+<div class="caroufredsel">
+<?php echo $this->images; ?>
+</div>
+</div>
+</div>
