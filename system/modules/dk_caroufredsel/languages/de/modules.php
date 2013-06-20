@@ -15,6 +15,8 @@
 /**
  * Back end modules
  */
+$GLOBALS['TL_LANG']['MOD']['dk_caroufredsel'][0] = 'carouFredSel';
+
 $GLOBALS['TL_LANG']['MOD']['caroufredsel'][0] = 'carouFredSel';
 $GLOBALS['TL_LANG']['MOD']['caroufredsel'][1] = 'carouFredSel-Karussells verwalten';
 
