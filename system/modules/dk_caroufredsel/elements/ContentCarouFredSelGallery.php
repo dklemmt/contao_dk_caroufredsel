@@ -45,7 +45,21 @@ class ContentCarouFredSelGallery extends \ContentElement
 
 
 	/**
-	 * Template
+	 * CSS Template
+	 * @var string
+	 */
+	protected $strTemplateCss = 'css_caroufredsel';
+
+
+	/**
+	 * JS Template
+	 * @var string
+	 */
+	protected $strTemplateJs = 'js_caroufredsel';
+
+
+	/**
+	 * Gallery Template
 	 * @var string
 	 */
 	protected $strTemplateGallery = 'caroufredsel_gallery';
@@ -78,6 +92,16 @@ class ContentCarouFredSelGallery extends \ContentElement
 		if ($this->dk_cfsHtmlTpl)
 		{
 			$this->strTemplate = $this->dk_cfsHtmlTpl;
+		}
+		// replace default (CSS) template with chosen one
+		if ($this->dk_cfsCssTpl)
+		{
+			$this->strTemplateCss = $this->dk_cfsCssTpl;
+		}
+		// replace default (JS) template with chosen one
+		if ($this->dk_cfsJsTpl)
+		{
+			$this->strTemplateJs = $this->dk_cfsJsTpl;
 		}
 
 		return parent::generate();
@@ -392,11 +416,11 @@ class ContentCarouFredSelGallery extends \ContentElement
 			}
 	
 			// --- create FE template for CSS
-			$objTemplateCss = new \FrontendTemplate($this->dk_cfsCssTpl);
+			$objTemplateCss = new \FrontendTemplate($this->strTemplateCss);
 			$objTemplateCss->id = $this->id;
 	
 			// --- create FE template for javascript caller
-			$objTemplateJs = new \FrontendTemplate($this->dk_cfsJsTpl);
+			$objTemplateJs = new \FrontendTemplate($this->strTemplateJs);
 		
 			// (unique) Element id will be used for unique HTML id element
 			$objTemplateJs->id = $this->id;

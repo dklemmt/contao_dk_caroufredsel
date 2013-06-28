@@ -37,6 +37,20 @@ class ContentCarouFredSelStart extends \ContentElement
 
 
 	/**
+	 * CSS Template
+	 * @var string
+	 */
+	protected $strTemplateCss = 'css_caroufredsel';
+
+
+	/**
+	 * JS Template
+	 * @var string
+	 */
+	protected $strTemplateJs = 'js_caroufredsel';
+
+
+	/**
 	 * @return string
 	 */
 	public function generate()
@@ -45,6 +59,16 @@ class ContentCarouFredSelStart extends \ContentElement
 		if ($this->dk_cfsHtmlTpl)
 		{
 			$this->strTemplate = $this->dk_cfsHtmlTpl;
+		}
+		// replace default (CSS) template with chosen one
+		if ($this->dk_cfsCssTpl)
+		{
+			$this->strTemplateCss = $this->dk_cfsCssTpl;
+		}
+		// replace default (JS) template with chosen one
+		if ($this->dk_cfsJsTpl)
+		{
+			$this->strTemplateJs = $this->dk_cfsJsTpl;
 		}
 
 		return parent::generate();
@@ -64,12 +88,12 @@ class ContentCarouFredSelStart extends \ContentElement
 			$this->Template->id = $this->id;
 
 			// --- create FE template for CSS
-			$objTemplateCss = new \FrontendTemplate($this->dk_cfsCssTpl);
+			$objTemplateCss = new \FrontendTemplate($this->strTemplateCss);
 			$objTemplateCss->id = $this->id;
 			$objTemplateCss->cssIDOnly = $this->cssID[0];
 
 			// --- create FE template for javascript caller
-			$objTemplateJs = new \FrontendTemplate($this->dk_cfsJsTpl);
+			$objTemplateJs = new \FrontendTemplate($this->strTemplateJs);
 			$objTemplateJs->id = $this->id;
 			if (isset($this->dk_cfsSynchronise) && $this->dk_cfsSynchronise != '')
 			{
