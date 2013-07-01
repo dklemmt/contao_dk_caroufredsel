@@ -149,6 +149,9 @@ class CarouFredSel extends \Frontend
 		// --- general size
 		if ($objCarouFredSel->useGeneralSize)
 		{
+			$objTemplateJs->widthSelect = $objCarouFredSel->widthSelect;
+			$objTemplateJs->heightSelect = $objCarouFredSel->heightSelect;
+
 			// carouFredSel option 'width': default value is 'null'
 			switch ($objCarouFredSel->widthSelect)
 			{

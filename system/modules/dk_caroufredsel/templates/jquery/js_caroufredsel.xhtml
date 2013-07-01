@@ -335,14 +335,11 @@
 /*		if ($this->thumbnailsVisibleSelect == 'fixed') {
 			echo 'responsive: true,';
 		}*/
-		echo 'items: { ';
 		if ($this->thumbnailsVisibleSelect == 'fixed') {
+			echo 'items: { ';
 			echo 'visible: { min: ' . $this->thumbnailsVisible . ' }, ';
-		} else {
-			echo 'visible: "variable", ';
+			echo ' },';
 		}
-		echo 'width: ' . $this->thumbnailWidth . ', height: ' . $this->thumbnailHeight;
-		echo ' },';
 ?>    	
 		scroll: { items: 1 }, auto: false, prev: { button: "#caroufredsel_thumbnails_prev_<?php echo $this->id; ?>" }, next: { button: "#caroufredsel_thumbnails_next_<?php echo $this->id; ?>" } }, { wrapper: { classname: "caroufredsel_thumbnails_wrapper caroufredsel_thumbnails_wrapper_<?php echo $this->id; ?>" } });
 		$('#caroufredsel_thumbnails_<?php echo $this->id; ?> > div').click(function() {

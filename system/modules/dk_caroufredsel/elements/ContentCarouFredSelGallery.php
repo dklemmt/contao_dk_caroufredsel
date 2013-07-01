@@ -440,8 +440,8 @@ class ContentCarouFredSelGallery extends \ContentElement
 				{
 					$objTemplateJs->thumbnailsVisible = $this->dk_cfsThumbnailsVisible;
 				}
-				$objTemplateJs->thumbnailWidth = $thumbnailWidth;
-				$objTemplateJs->thumbnailHeight = $thumbnailHeight;
+/*				$objTemplateJs->thumbnailWidth = $thumbnailWidth;
+				$objTemplateJs->thumbnailHeight = $thumbnailHeight;*/
 
 				$this->Template->thumbnailsPosition =
 				$objTemplateCss->thumbnailsPosition =
