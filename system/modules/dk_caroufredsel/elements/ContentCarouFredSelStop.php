@@ -60,8 +60,14 @@ class ContentCarouFredSelStop extends \ContentElement
 				return;
 			}
 
+			// replace default (HTML) template with the one from carouFredSel start element
+			if ($objStartElement->dk_cfsHtmlTpl)
+			{
+				$this->strTemplate = $this->dk_cfsHtmlTpl;
+			}
+
 			// --- create FE template for carouFredSel element
-			$this->Template = new \FrontendTemplate($objStartElement->dk_cfsHtmlTpl);
+			$this->Template = new \FrontendTemplate($this->strTemplate);
 			$this->Template->type = $this->type;
 			$this->Template->id = $objStartElement->id;
 
