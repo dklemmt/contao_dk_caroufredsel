@@ -354,29 +354,26 @@
 ?>
 		var styles = {
 			wrapper: { position: 'fixed', left: 0, top: 0, overflow: 'hidden', margin: 0, padding: 0, height: '100%', width: '100%', zIndex: -999999 },
-			img: { margin: 0, padding: 0, border: 'none', width: 'auto', height: 'auto', maxWidth: 'none', zIndex: -999999 }
+			img: { position: 'relative', margin: 0, padding: 0, border: 'none', width: 'auto', height: 'auto', maxWidth: 'none', zIndex: -999999 }
 		};
+		var $wrapper = $('.caroufredsel_wrapper_<?php echo $this->id; ?>').css(styles.wrapper);
+		$('#caroufredsel_<?php echo $this->id; ?> img').css(styles.img);
 		$(window).resize(function() {
-			$('#caroufredsel_<?php echo $this->id; ?> div img').each(function(e) {
-				this.$wrapper = $('.caroufredsel_wrapper_<?php echo $this->id; ?>').css(styles.wrapper);
-				this.$img = $('#caroufredsel_<?php echo $this->id; ?> div img').css(styles.img);
+			$('#caroufredsel_<?php echo $this->id; ?> img').each(function(e) {
 				var ratio = $(this).attr('width') / $(this).attr('height');
-				var backgrdCss = { left: 0, top: 0 };
 				var rootWidth = $(window).width();
-				var backgrdWidth = rootWidth;
 				var rootHeight = $(window).height();
-				var backgrdHeight = Math.ceil(backgrdWidth / ratio);
-				if (backgrdHeight >= rootHeight) {
-					backgrdOffset = Math.ceil((backgrdHeight - rootHeight) / 2);
+				var backgrdCss = { left: 0, top: 0, width: rootWidth, height: Math.ceil(rootWidth / ratio) };
+				if (backgrdCss.height >= rootHeight) {
+					backgrdOffset = Math.ceil((backgrdCss.height - rootHeight) / 2);
 					backgrdCss.top = '-' + backgrdOffset + 'px';
 				} else {
-					backgrdHeight = rootHeight;
-					backgrdWidth = Math.ceil(backgrdHeight * ratio);
-					backgrdOffset = Math.ceil((backgrdWidth - rootWidth) / 2);
+					backgrdCss.height = rootHeight;
+					backgrdCss.width = Math.ceil(backgrdCss.height * ratio);
+					backgrdOffset = Math.ceil((backgrdCss.width - rootWidth) / 2);
 					backgrdCss.left = '-' + backgrdOffset + 'px';
-		        }
-		        this.$wrapper.css({ width: rootWidth, height: rootHeight }).find('img').css({ width: backgrdWidth, height: backgrdHeight });
-				$('#caroufredsel_<?php echo $this->id; ?>').css(backgrdCss);
+				}
+				$wrapper.css({ width: rootWidth, height: rootHeight }).find('img').css(backgrdCss);
 			});
 		}).resize();
 <?php
