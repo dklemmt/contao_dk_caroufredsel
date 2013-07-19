@@ -357,7 +357,7 @@
 			img: { position: 'relative', margin: 0, padding: 0, border: 'none', width: 'auto', height: 'auto', maxWidth: 'none', zIndex: -999999 }
 		};
 		var $wrapper = $('.caroufredsel_wrapper_<?php echo $this->id; ?>').css(styles.wrapper);
-		$('#caroufredsel_<?php echo $this->id; ?> img').css(styles.img);
+		$('#caroufredsel_<?php echo $this->id; ?> div').css({ overflow: 'hidden' }).find('img').css(styles.img);
 		$(window).resize(function() {
 			$('#caroufredsel_<?php echo $this->id; ?> img').each(function(e) {
 				var ratio = $(this).attr('width') / $(this).attr('height');
@@ -373,7 +373,8 @@
 					backgrdOffset = Math.ceil((backgrdCss.width - rootWidth) / 2);
 					backgrdCss.left = '-' + backgrdOffset + 'px';
 				}
-				$wrapper.css({ width: rootWidth, height: rootHeight }).find('img').css(backgrdCss);
+				$wrapper.css({ width: rootWidth, height: rootHeight });
+				$(this).css(backgrdCss);
 			});
 		}).resize();
 <?php
