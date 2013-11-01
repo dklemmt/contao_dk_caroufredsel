@@ -61,3 +61,9 @@ $GLOBALS['BE_FFL']['cfsFileTree'] = 'carouFredSel\CarouFredSelFileTree';
  */
 $GLOBALS['TL_WRAPPERS']['start'][] = 'caroufredsel_start';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'caroufredsel_stop';
+
+
+/**
+ * Models
+ */
+$GLOBALS['TL_MODELS']['tl_dk_caroufredsel'] = 'carouFredSel\CarouFredSelModel';
