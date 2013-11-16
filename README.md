@@ -40,11 +40,10 @@ Implementation in Contao
 Quelle/Beispiele/Anwendungs-Ideen
 ---------------------------------
 
-http://caroufredsel.dev7studios.com (Hauptseite)
-https://github.com/gilbitron/carouFredSel (GitHub-Repository zum Quellcode des Scripts)
-http://coolcarousels.frebsite.nl (Anwendungs-Ideen)
-
-http://de.contaowiki.org/Dk_carouFredSel (Online-Anleitung zur Erweiterung)
+* http://caroufredsel.dev7studios.com (Hauptseite)
+* https://github.com/gilbitron/carouFredSel (GitHub-Repository zum Quellcode des Scripts)
+* http://coolcarousels.frebsite.nl (Anwendungs-Ideen)
+* http://de.contaowiki.org/Dk_carouFredSel (Online-Anleitung zur Erweiterung)
 
 Tipps/Hinweise
 --------------
