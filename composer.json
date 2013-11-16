@@ -1,0 +1,36 @@
+{
+	"name": "dklemmt/contao_dk_caroufredsel",
+	"description": "Implementation of carouFredSel as extension for Contao Open Source CMS",
+	"keywords": ["contao", "jquery", "carousel", "slider", "slideshow", "gallery", "background", "newsticker"],
+	"type": "contao-module",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Dirk Klemmt",
+			"email": "dirch@quantentunnel.de",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "dirch@quantentunnel.de",
+		"issues": "https://github.com/dklemmt/contao_dk_caroufredsel/issues",
+		"wiki": "https://github.com/dklemmt/contao_dk_caroufredsel/wiki",
+		"irc": "irc://irc.freenode.org/contao.dev",
+		"source": "https://github.com/dklemmt/contao_dk_caroufredsel"
+	},
+	"require": {
+		"php": ">=5.3",
+		"contao/core": ">=3.1,<3.2",
+		"contao-community-alliance/composer-installer": "*"
+	},
+	"replace": {
+		"contao-legacy/dk_caroufredsel": "*"
+	},
+	"extra": {
+		"contao": {
+			"sources": {
+				"system/modules/dk_caroufredsel": "system/modules/dk_caroufredsel"
+			}
+		}
+	}
+}
