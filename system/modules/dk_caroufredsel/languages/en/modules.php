@@ -18,7 +18,7 @@
 $GLOBALS['TL_LANG']['MOD']['dk_caroufredsel'][0] = 'carouFredSel';
 
 $GLOBALS['TL_LANG']['MOD']['caroufredsel'][0] = 'carouFredSel';
-$GLOBALS['TL_LANG']['MOD']['caroufredsel'][1] = 'administrate carouFredSel carousels';
+$GLOBALS['TL_LANG']['MOD']['caroufredsel'][1] = 'manage carouFredSel carousels';
 
 
 /**
@@ -33,4 +33,3 @@ $GLOBALS['TL_LANG']['FMD']['caroufredsel_background'][0] = 'Background';
 $GLOBALS['TL_LANG']['FMD']['caroufredsel_background'][1] = 'Generates a fullsize background carousel.';
 $GLOBALS['TL_LANG']['FMD']['caroufredsel_ticker'][0] = 'Newsticker';
 $GLOBALS['TL_LANG']['FMD']['caroufredsel_ticker'][1] = 'Generates a carouFredSel newsticker.';
-

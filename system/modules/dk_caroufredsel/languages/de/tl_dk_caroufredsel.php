@@ -51,7 +51,6 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['tstamp'][1] = 'Datum und Uhrzeit der 
 // --- play behaviour
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['usePlay'][0] = 'Abspielverhalten';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['usePlay'][1] = 'Hier können Einstellungen bzgl. des Abspielverhaltens wie z.B. der Laufrichtung oder der Anzeigedauer vorgenommen werden.';
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['usePlay'][1] = 'Laufrichtung, Art, automatisches Abspielen, Anzeigedauer, Verzögerung, Maus-Hover, Fortschritts-Balken';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['direction'][0] = 'Laufrichtung';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['direction'][1] = 'Die Bewegungsrichtung des Karussells.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['carouselType'][0] = 'Art';
@@ -76,7 +75,6 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['autoProgressInterval'][1] = 'Bestimmt
 // --- transistions
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useTransitions'][0] = 'Übergangs-Effekte';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useTransitions'][1] = 'Hier können alle Einstellungen bzgl. der Übergangs-Effekte vorgenommen werden.';
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useTransitions'][1] = 'Übergangs-Effekt, Abschwächungs-Funktion, Übergangs-Dauer';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollFx'][0] = 'Übergangs-Effekt';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollFx'][1] = 'Bestimmt den Effekt beim Scrollen eines Elements.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollEasing'][0] = 'Abschwächungs-Funktion';
@@ -87,7 +85,6 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollDuration'][1] = 'Bestimmt die D
 // --- general size
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useGeneralSize'][0] = 'Größe des Karussells';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useGeneralSize'][1] = 'Hier können Einstellungen bzgl. der Größe des gesamten sichtbaren Karussells wie z.B. der Breite und Höhe vorgenommen werden.';
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useGeneralSize'][1] = 'Breite, Höhe, Padding, Ausrichtung der Elemente.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['widthSelect'][0] = 'Art der Breite';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['widthSelect'][1] = 'Bestimmt die Art wie die Breite des Karussells bestimmt wird. Wählen Sie nichts wird dies automatisch berechnet.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['width'][0] = 'Karussell-Breite';
@@ -104,7 +101,6 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['align'][1] = 'Bestimmt die Ausrichtun
 // --- items size
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useItemsSize'][0] = 'Größe der Elemente';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useItemsSize'][1] = 'Hier können Einstellungen bzgl. der Größe der einzelnen Elemente im Karussell wie z.B. der Breite und Höhe vorgenommen werden.';
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useItemsSize'][1] = 'Breite, Höhe.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsWidthSelect'][0] = 'Art der Breite';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsWidthSelect'][1] = 'Bestimmt die Art wie die Breite der Elemente bestimmt wird. Wählen Sie nichts wird dies automatisch berechnet.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsWidth'][0] = 'Element-Breite';
@@ -117,7 +113,6 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsHeight'][1] = 'Bestimmt die Höh
 // --- items general
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useItemsGeneral'][0] = 'Darstellung der Elemente';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useItemsGeneral'][1] = 'Hier können Einstellungen bzgl. der Darstellung der Elemente wie z.B. responsive oder sichtbaren Elemente vorgenommen werden.';
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useItemsGeneral'][1] = 'Responsive, Anzahl sichtbarer Elemente, Start-Element, Start-Element zufällig.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['responsive'][0] = 'Responsive';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['responsive'][1] = 'Bestimmt, ob die Elemente automatisch in ihrer Größe angepaßt werden.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['cookie'][0] = 'Abspiel-Position merken';
@@ -138,7 +133,6 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartRnd'][1] = 'Bestimmt, ob da
 // --- navigation
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useNavigation'][0] = 'Navigation';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useNavigation'][1] = 'Hier können Einstellungen bzgl. der Navigation vorgenommen werden.';
-//$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useNavigation'][1] = 'Tasten, Mausrad, Wischgeste, Anzeige der Navigation, Anzeige der Pagination.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['prevKey'][0] = 'Taste für vorherige(s) Element(e)';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['prevKey'][1] = 'Bestimmt mit welcher Taste zurück gescrollt werden kann.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['nextKey'][0] = 'Taste für nächste(s) Element(e)';
