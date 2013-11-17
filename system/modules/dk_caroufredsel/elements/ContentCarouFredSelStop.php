@@ -78,10 +78,6 @@ class ContentCarouFredSelStop extends \ContentElement
 		{
 			$this->strTemplate = 'be_wildcard';
 			$this->Template = new \BackendTemplate($this->strTemplate);
-			if (version_compare(VERSION, '3.1', '<'))
-			{ 
-				$this->Template->wildcard = '### CAROUFREDSEL WRAPPER STOP ###';
-			} 
 		}
 	}
 }

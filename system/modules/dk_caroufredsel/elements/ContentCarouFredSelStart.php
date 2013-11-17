@@ -108,10 +108,6 @@ class ContentCarouFredSelStart extends \ContentElement
 			$this->strTemplate = 'be_wildcard';
 			$this->Template = new \BackendTemplate($this->strTemplate);
 			$this->Template->title = $this->headline;
-			if (version_compare(VERSION, '3.1', '<'))
-			{ 
-				$this->Template->wildcard = '### CAROUFREDSEL WRAPPER START ###';
-			} 
 		}
 	}
 }

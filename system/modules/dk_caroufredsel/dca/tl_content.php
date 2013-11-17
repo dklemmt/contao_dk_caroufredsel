@@ -64,8 +64,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsMultiSRC'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsMultiSRC'],
 	'exclude'			=> true,
-	'inputType'			=> 'cfsFileTree',
-	'eval'				=> array('multiple' => true, 'fieldType' => 'checkbox', 'orderField' => 'orderSRC', 'files' => true, 'mandatory' => true),
+	'inputType'			=> 'fileTree',
+	'eval'				=> array('multiple' => true, 'fieldType' => 'checkbox', 'orderField' => 'orderSRC', 'files' => true, 'isGallery' => true, 'mandatory' => true),
 	'sql'				=> "blob NULL"
 );
 
@@ -219,7 +219,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsHtmlTpl'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsHtmlTpl'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options_callback'	=> array('tl_content_dk_csf', 'getHtmlTemplates'),
+	'options_callback'	=> function() { return Backend::getTemplateGroup('ce_caroufredsel'); },
 	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50 clr'),
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );
@@ -229,7 +229,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsCssTpl'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsCssTpl'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options_callback'	=> array('tl_content_dk_csf', 'getCssTemplates'),
+	'options_callback'	=> function() { return Backend::getTemplateGroup('css_caroufredsel'); },
 	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50'),
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );
@@ -239,7 +239,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsJsTpl'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsJsTpl'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options_callback'	=> array('tl_content_dk_csf', 'getJsTemplates'),
+	'options_callback'	=> function() { return Backend::getTemplateGroup('js_caroufredsel'); },
 	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50'),
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );
@@ -249,7 +249,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsGalleryTpl'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsGalleryTpl'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options_callback'	=> array('tl_content_dk_csf', 'getCarouFredSelGalleryTemplates'),
+	'options_callback'	=> function() { return Backend::getTemplateGroup('caroufredsel_gallery'); },
 	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50'),
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );
@@ -335,49 +335,5 @@ class tl_content_dk_csf extends tl_content
 		}
 
 		return $carouFredSelCarousels;
-	}
-	
-
-	/**
-	 * Return all carouFredSel content element templates as array
-	 *
-	 * @return array
-	 */
-	public function getHtmlTemplates()
-	{
-		return $this->getTemplateGroup('ce_caroufredsel');
-	}
-
-
-	/**
-	 * Return all carouFredSel CSS templates as array
-	 *
-	 * @return array
-	 */
-	public function getCssTemplates()
-	{
-		return $this->getTemplateGroup('css_caroufredsel');
-	}
-
-
-	/**
-	 * Return all carouFredSel JavaScript templates as array
-	 *
-	 * @return array
-	 */
-	public function getJsTemplates()
-	{
-		return $this->getTemplateGroup('js_caroufredsel');
-	}
-
-
-	/**
-	 * Return all carouFredSel gallery templates as array
-	 *
-	 * @return array
-	 */
-	public function getCarouFredSelGalleryTemplates()
-	{
-		return $this->getTemplateGroup('caroufredsel_gallery');
 	}
 }

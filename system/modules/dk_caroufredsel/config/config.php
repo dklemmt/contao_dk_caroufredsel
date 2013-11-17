@@ -51,12 +51,6 @@ $GLOBALS['TL_CTE']['caroufredsel_category'] = array(
 
 
 /**
- * Back end form fields
- */
-$GLOBALS['BE_FFL']['cfsFileTree'] = 'carouFredSel\CarouFredSelFileTree';
-
-
-/**
  * Wrapper elements
  */
 $GLOBALS['TL_WRAPPERS']['start'][] = 'caroufredsel_start';
