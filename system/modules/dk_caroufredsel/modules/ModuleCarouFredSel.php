@@ -103,7 +103,7 @@ class ModuleCarouFredSel extends \Module
 		{
 			while ($objCte->next())
 			{
-				$arrElements[] = $this->getContentElement($objCte);
+				$arrElements[] = $this->getContentElement($objCte->id);
 			}
 		}
 
