@@ -486,6 +486,12 @@ class CarouFredSel extends \Frontend
 
 		// helper stuff:
 
+		// ... additional easing methods support
+		if (substr($objCarouFredSel->scrollEasing, 0, 4) == 'ease')
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.easing.1.3.min.js|static';
+		}
+
 		// ... touch/swipe support
 		if ($objCarouFredSel->swipeOnTouch || $objCarouFredSel->swipeOnMouse)
 		{
