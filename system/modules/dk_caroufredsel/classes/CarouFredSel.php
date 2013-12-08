@@ -492,6 +492,12 @@ class CarouFredSel extends \Frontend
 			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.touchSwipe.min.js|static';
 		}
 
+		// ... mousewheel support
+		if ($objCarouFredSel->mousewheel)
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.mousewheel.js|static';
+		}
+
 		// ... ready load javascript trigger mode
 		if ($GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'] == 'readyLoad')
 		{
