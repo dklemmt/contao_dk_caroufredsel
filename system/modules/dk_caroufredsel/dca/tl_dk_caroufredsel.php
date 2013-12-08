@@ -30,7 +30,7 @@ switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
 		$subpaletteUseGeneralSize = 'widthSelect,heightSelect,padding';
 		$subpaletteUseItemsGeneral = 'responsive,cookie,itemsVisibleSelect,itemsStart,itemsStartRnd';
 		$subpaletteUseItemsSize = 'itemsWidthSelect,itemsHeightSelect';
-		$subpaletteUseNavigation = 'prevKey,nextKey,' . (in_array('jquery_touchswipe', $this->Config->getActiveModules()) == true ? 'swipeOnTouch,swipeOnMouse,' : '') . (in_array('jquery_mousewheel', $this->Config->getActiveModules()) == true ? 'mousewheel, ' : '') . 'navigation,pagination';
+		$subpaletteUseNavigation = 'prevKey,nextKey,swipeOnTouch,swipeOnMouse,' . (in_array('jquery_mousewheel', $this->Config->getActiveModules()) == true ? 'mousewheel, ' : '') . 'navigation,pagination';
 		break;
 }
 

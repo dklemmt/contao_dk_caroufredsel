@@ -486,6 +486,12 @@ class CarouFredSel extends \Frontend
 
 		// helper stuff:
 
+		// ... touch/swipe support
+		if ($objCarouFredSel->swipeOnTouch || $objCarouFredSel->swipeOnMouse)
+		{
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.touchSwipe.min.js|static';
+		}
+
 		// ... ready load javascript trigger mode
 		if ($GLOBALS['TL_CONFIG']['dk_cfsTriggerMode'] == 'readyLoad')
 		{
