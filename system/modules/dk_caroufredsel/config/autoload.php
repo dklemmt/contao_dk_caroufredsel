@@ -42,10 +42,7 @@ ClassLoader::addClasses(array
 	'Dirch\carouFredSel\ModuleCarouFredSel'				=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSel.php',
 	'Dirch\carouFredSel\ModuleCarouFredSelGallery'		=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelGallery.php',
 	'Dirch\carouFredSel\ModuleCarouFredSelBackground'	=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelBackground.php',
-	'Dirch\carouFredSel\ModuleCarouFredSelTicker'		=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelTicker.php',
-
-	// Widgets
-	'Dirch\carouFredSel\CarouFredSelFileTree'			=> 'system/modules/dk_caroufredsel/widgets/CarouFredSelFileTree.php'
+	'Dirch\carouFredSel\ModuleCarouFredSelTicker'		=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSelTicker.php'
 ));
 
 
@@ -63,7 +60,5 @@ TemplateLoader::addFiles(array
 	'mod_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates/modules',
 	'news_caroufredsel_ticker'		=> 'system/modules/dk_caroufredsel/templates/modules',
 	'css_caroufredsel'				=> 'system/modules/dk_caroufredsel/templates/themes',
-//	'css_caroufredsel_classic'		=> 'system/modules/dk_caroufredsel/templates/themes',
 	'css_caroufredsel_light'		=> 'system/modules/dk_caroufredsel/templates/themes'
-//	'css_caroufredsel_debug'		=> 'system/modules/dk_caroufredsel/templates/themes'
 ));

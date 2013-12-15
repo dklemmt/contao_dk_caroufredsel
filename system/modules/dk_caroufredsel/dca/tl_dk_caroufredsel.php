@@ -30,7 +30,7 @@ switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
 		$subpaletteUseGeneralSize = 'widthSelect,heightSelect,padding';
 		$subpaletteUseItemsGeneral = 'responsive,cookie,itemsVisibleSelect,itemsStart,itemsStartRnd';
 		$subpaletteUseItemsSize = 'itemsWidthSelect,itemsHeightSelect';
-		$subpaletteUseNavigation = 'prevKey,nextKey,' . (in_array('jquery_touchswipe', $this->Config->getActiveModules()) == true ? 'swipeOnTouch,swipeOnMouse,' : '') . (in_array('jquery_mousewheel', $this->Config->getActiveModules()) == true ? 'mousewheel, ' : '') . 'navigation,pagination';
+		$subpaletteUseNavigation = 'prevKey,nextKey,swipeOnTouch,swipeOnMouse,mousewheel,navigation,pagination';
 		break;
 }
 
@@ -294,7 +294,13 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'exclude'			=> true,
 			'inputType'			=> 'select',
 			'default'			=> 'swing',
-			'options_callback'	=> array('tl_dk_caroufredsel', 'getScrollEasingOptions'),
+			'options'			=> array('linear', 'swing', 'quadratic', 'cubic', 'elastic',
+									'easeInQuad', 'easeOutQuad', 'easeInOutQuad', 'easeInCubic', 'easeOutCubic',
+									'easeInOutCubic', 'easeInQuart', 'easeOutQuart', 'easeInOutQuart', 'easeInQuint',
+									'easeOutQuint', 'easeInOutQuint', 'easeInSine', 'easeOutSine', 'easeInOutSine',
+									'easeInExpo', 'easeOutExpo', 'easeInOutExpo', 'easeInCirc', 'easeOutCirc',
+									'easeInOutCirc', 'easeInElastic', 'easeOutElastic', 'easeInOutElastic', 'easeInBack',
+									'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce', 'easeInOutBounce'),
 			'reference'			=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel'],
 			'eval'				=> array('tl_class' => 'w50'),
 			'sql'				=> "varchar(32) NOT NULL default ''"
@@ -702,31 +708,6 @@ class tl_dk_caroufredsel extends Backend
 	}
 	
 	
-	/**
-	 * Return all possible easing options as array
-	 *
-	 * @param \DataContainer
-	 * @return array
-	 */
-	public function getScrollEasingOptions(DataContainer $dc)
-	{
-		$easingOptions = array('linear', 'swing', 'quadratic', 'cubic', 'elastic');
-
-		// if plugin 'jquery_easing' is installed we have more easing options to choose from
-		if (in_array('jquery_easing', $this->Config->getActiveModules()))
-		{
-			array_push($easingOptions, 'easeInQuad', 'easeOutQuad', 'easeInOutQuad', 'easeInCubic', 'easeOutCubic',
-							'easeInOutCubic', 'easeInQuart', 'easeOutQuart', 'easeInOutQuart', 'easeInQuint',
-							'easeOutQuint', 'easeInOutQuint', 'easeInSine', 'easeOutSine', 'easeInOutSine',
-							'easeInExpo', 'easeOutExpo', 'easeInOutExpo', 'easeInCirc', 'easeOutCirc',
-							'easeInOutCirc', 'easeInElastic', 'easeOutElastic', 'easeInOutElastic', 'easeInBack',
-							'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce', 'easeInOutBounce');
-		}
-
-		return $easingOptions;
-	}
-
-
 	/**
 	 * Return all possible horizontal size options as array
 	 *

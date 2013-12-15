@@ -1,21 +1,26 @@
 <script>
 (function($) {
+	var $carouFredSel = $('#caroufredsel_<?php echo $this->id; ?>');
+<?php if ($this->useThumbnails): ?>
+	var $carouFredSelThumbnails = $('#caroufredsel_thumbnails_<?php echo $this->id; ?>');
+<?php endif; ?>
 <?php if ($this->useImageLoader): ?>
 	$(document).ready(function() {
-		$("#caroufredsel_<?php echo $this->id; ?>").krioImageLoader();
+		$carouFredSel.krioImageLoader();
 	});
 <?php if ($this->useThumbnails): ?>
 	$(document).ready(function() {
-		$("#caroufredsel_thumbnails_<?php echo $this->id; ?>").krioImageLoader();
+		$carouFredSelThumbnails.krioImageLoader();
 	});
 <?php endif; ?>
 <?php endif; ?>
 <?php if ($this->triggerMode == 'onWindowLoad'): ?>
+	var $carouFredSelSkin = $('#caroufredsel_skin_<?php echo $this->id; ?>');
 	$(document).ready(function() {
-		$("#caroufredsel_skin_<?php echo $this->id; ?>").css('visibility', 'hidden');
+		$carouFredSelSkin.css('visibility', 'hidden');
 	});
 	$(window).load(function() {
-		$("#caroufredsel_skin_<?php echo $this->id; ?>").css('visibility', 'visible');
+		$carouFredSelSkin.css('visibility', 'visible');
 	});
 	$(window).load(function() {
 <?php elseif ($this->triggerMode == 'readyLoad'): ?>
@@ -23,7 +28,7 @@
 <?php else: ?>
 	$(document).ready(function() {
 <?php endif; ?>
-	    $("#caroufredsel_<?php echo $this->id; ?>").carouFredSel({
+	    $carouFredSel.carouFredSel({
 <?php
 	$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
 
@@ -147,10 +152,17 @@
 		var id = $('#caroufredsel_<?php echo $this->id; ?> > .caroufredsel_gallery:first-child').attr('id');
 		id = id.split('gallery').join('thumbnail');
 		$("#" + id).addClass("selected");
-		$("#caroufredsel_thumbnails_<?php echo $this->id; ?>").trigger("currentVisible", function(items) {
+		$carouFredSelThumbnails.trigger("currentVisible", function(items) {
 			var visible = false;
-			items.each(function(i) { if ($(this).attr('id') == id) { visible = true; return false; } })
-			if (!visible) { $('#caroufredsel_thumbnails_<?php echo $this->id; ?>').trigger('slideTo', [$('#' + id)]); }
+			items.each(function(i) {
+				if ($(this).attr('id') == id) {
+					visible = true;
+					return false;
+				}
+			});
+			if (!visible) {
+				$carouFredSelThumbnails.trigger('slideTo', [$('#' + id)]);
+			}
 		});
 <?php
 	}
@@ -323,8 +335,10 @@
 	if ($this->useThumbnails) {		
 		$oComma = $iComma = false; // o(uter)/i(nner) comma after option needed?
 ?>
-	    $("#caroufredsel_thumbnails_<?php echo $this->id; ?>")
-	    	.carouFredSel({
+	    $carouFredSelThumbnails.carouFredSel({
+			onCreate: function(data) {
+				data.items.addClass("visible");
+			},
 <?php
 		if ($this->thumbnailsWidth) {
 			echo $this->thumbnailsWidth . ', ';
@@ -355,11 +369,31 @@
 			echo ' },';
 		}
 ?>    	
-		scroll: { items: 1 }, auto: false, prev: { button: "#caroufredsel_thumbnails_prev_<?php echo $this->id; ?>" }, next: { button: "#caroufredsel_thumbnails_next_<?php echo $this->id; ?>" } }, { wrapper: { classname: "caroufredsel_thumbnails_wrapper caroufredsel_thumbnails_wrapper_<?php echo $this->id; ?>" } });
+			scroll: {
+				items: 1,
+				onBefore: function(data) {
+					data.items.old.removeClass("visible");
+				},
+				onAfter: function(data) {
+					data.items.visible.addClass("visible");
+				}
+			},
+			auto: false,
+			prev: {
+				button: "#caroufredsel_thumbnails_prev_<?php echo $this->id; ?>"
+			},
+			next: {
+				button: "#caroufredsel_thumbnails_next_<?php echo $this->id; ?>"
+			}
+		}, {
+			wrapper: {
+				classname: "caroufredsel_thumbnails_wrapper caroufredsel_thumbnails_wrapper_<?php echo $this->id; ?>"
+			}
+		});
 		$('#caroufredsel_thumbnails_<?php echo $this->id; ?> > div').click(function() {
 			var id = $(this).attr('id');
 			id = id.split('thumbnail').join('gallery');
-	        $('#caroufredsel_<?php echo $this->id; ?>').trigger('slideTo', [$('#' + id)]);
+	        $carouFredSel.trigger('slideTo', [$('#' + id)]);
 	    }).css('cursor', 'pointer');
 <?php
 	}
