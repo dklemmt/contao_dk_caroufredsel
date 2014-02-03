@@ -8,7 +8,7 @@
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2013
+ * @copyright Dirk Klemmt 2012-2014
  */
 
 
@@ -22,7 +22,7 @@ namespace Dirch\carouFredSel;
  * Class ContentCarouFredSelStop 
  *
  * Front end content element "caroufredsel_stop" (wrapper stop).
- * @copyright  Dirk Klemmt 2012-2013
+ * @copyright  Dirk Klemmt 2012-2014
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */

@@ -3,19 +3,19 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2013 Leo Feyer
+ * Copyright (C) 2005-2014 Leo Feyer
  * 
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2013
+ * @copyright Dirk Klemmt 2012-2014
  */
 
 
 /**
  * Add config to tl_content
  */
-if (Input::get('do') == 'caroufredsel')
+if (\Input::get('do') == 'caroufredsel')
 {
 	$GLOBALS['TL_DCA']['tl_content']['config']['ptable'] = 'tl_dk_caroufredsel';
 }

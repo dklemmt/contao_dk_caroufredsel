@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2013 Leo Feyer
+ * Copyright (C) 2005-2014 Leo Feyer
  * 
  * @package   carouFredSel
- * @author    Dirk Klemmt 
+ * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2013
+ * @copyright Dirk Klemmt 2012-2014
  */
 
 
@@ -210,7 +210,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsHtmlTpl'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsHtmlTpl'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options_callback'	=> function() { return Backend::getTemplateGroup('mod_caroufredsel'); },
+	'options_callback'	=> function() { return Backend::getTemplateGroup('ce_caroufredsel'); },
 	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50 clr'),
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );

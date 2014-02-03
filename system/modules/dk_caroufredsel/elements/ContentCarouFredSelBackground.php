@@ -8,7 +8,7 @@
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2013
+ * @copyright Dirk Klemmt 2012-2014
  */
 
 
@@ -23,7 +23,7 @@ namespace Dirch\carouFredSel;
  *
  * Front end content element "caroufredsel_background".
  *
- * @copyright  Dirk Klemmt 2012-2013
+ * @copyright  Dirk Klemmt 2012-2014
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */
