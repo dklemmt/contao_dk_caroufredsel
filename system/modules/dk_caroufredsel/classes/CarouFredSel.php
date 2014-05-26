@@ -525,7 +525,7 @@ class CarouFredSel extends \Frontend
 		// ... image loader
 		if ($GLOBALS['TL_CONFIG']['dk_cfsImageLoader'])
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.krioImageLoader.js|static';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.krioImageLoader-min.js|static';
 		}
 	}
 	
