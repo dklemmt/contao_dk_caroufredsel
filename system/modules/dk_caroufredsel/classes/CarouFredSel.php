@@ -474,7 +474,7 @@ class CarouFredSel extends \Frontend
 		$GLOBALS['TL_HEAD'][] = $objTemplateCss->parse();
 
 		// ... the carouFredSel javascript itselfs
-		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel-6.2.1-packed.js|static';
+		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.carouFredSel.min.js|static';
 
 		// ... element dependent javascript caller
 		$GLOBALS['TL_JQUERY'][] = $objTemplateJs->parse();					
