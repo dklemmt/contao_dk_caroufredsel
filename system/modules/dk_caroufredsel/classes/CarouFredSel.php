@@ -501,7 +501,7 @@ class CarouFredSel extends \Frontend
 		// ... mousewheel support
 		if ($objCarouFredSel->mousewheel)
 		{
-			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.mousewheel.js|static';
+			$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/dk_caroufredsel/assets/js/jquery.mousewheel.min.js|static';
 		}
 
 		// ... ready load javascript trigger mode
