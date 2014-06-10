@@ -38,14 +38,14 @@ switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][]			= 'dk_cfsUseThumbnails';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'dk_cfsUseThumbnails';
 
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel']				= $paletteCaroufredsel;
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_gallery']		= $paletteCaroufredsel_gallery;
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_background']	= $paletteCaroufredsel_background;
-$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_ticker']		= $paletteCaroufredsel_ticker;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel'] = $paletteCaroufredsel;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_gallery'] = $paletteCaroufredsel_gallery;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_background'] = $paletteCaroufredsel_background;
+$GLOBALS['TL_DCA']['tl_module']['palettes']['caroufredsel_ticker'] = $paletteCaroufredsel_ticker;
 
-$GLOBALS['TL_DCA']['tl_module']['subpalettes']['dk_cfsUseThumbnails']	= 'dk_cfsThumbnailSize,dk_cfsThumbnailsPosition,dk_cfsThumbnailsAlign,dk_cfsThumbnailsWidth,dk_cfsThumbnailsHeight';
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['dk_cfsUseThumbnails'] = 'dk_cfsThumbnailSize,dk_cfsThumbnailsPosition,dk_cfsThumbnailsAlign,dk_cfsThumbnailsWidth,dk_cfsThumbnailsHeight';
 
 
 /**

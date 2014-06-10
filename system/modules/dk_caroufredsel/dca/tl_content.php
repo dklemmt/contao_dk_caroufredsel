@@ -40,26 +40,18 @@ switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
 /**
  * Add palettes to tl_content
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]			= 'dk_cfsUseThumbnails';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'dk_cfsUseThumbnails';
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['caroufredsel_start']		= $paletteCaroufredsel_start;
-$GLOBALS['TL_DCA']['tl_content']['palettes']['caroufredsel_gallery']	= $paletteCaroufredsel_gallery;
-$GLOBALS['TL_DCA']['tl_content']['palettes']['caroufredsel_background']	= $paletteCaroufredsel_background;
+$GLOBALS['TL_DCA']['tl_content']['palettes']['caroufredsel_start'] = $paletteCaroufredsel_start;
+$GLOBALS['TL_DCA']['tl_content']['palettes']['caroufredsel_gallery'] = $paletteCaroufredsel_gallery;
+$GLOBALS['TL_DCA']['tl_content']['palettes']['caroufredsel_background'] = $paletteCaroufredsel_background;
 
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['dk_cfsUseThumbnails']	= 'dk_cfsThumbnailSize,dk_cfsThumbnailsPosition,dk_cfsThumbnailsAlign,dk_cfsThumbnailsWidth,dk_cfsThumbnailsHeight';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['dk_cfsUseThumbnails'] = 'dk_cfsThumbnailSize,dk_cfsThumbnailsPosition,dk_cfsThumbnailsAlign,dk_cfsThumbnailsWidth,dk_cfsThumbnailsHeight';
 
 
 /**
  * Add fields to tl_content
  */
-/*$GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsUseArticleWrapper'] = array
-(
-	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsUseArticleWrapper'],
-	'exclude'			=> true,
-	'inputType'			=> 'checkbox',
-	'sql'				=> "char(1) NOT NULL default ''"
-);*/
-
 $GLOBALS['TL_DCA']['tl_content']['fields']['dk_cfsMultiSRC'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_content']['dk_cfsMultiSRC'],
