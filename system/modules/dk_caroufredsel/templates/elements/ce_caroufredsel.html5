@@ -1,7 +1,8 @@
 
 <?php if ($this->type != "caroufredsel_stop"): ?>
 <div class="<?php echo $this->class; ?> <?php if ($this->type == 'caroufredsel_start') echo 'ce_caroufredsel '; ?>block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
-<?php if ($this->useThumbnails && ($this->thumbnailsPosition == 'top' || $this->thumbnailsPosition == 'left')): ?>
+
+	<?php if ($this->useThumbnails && ($this->thumbnailsPosition == 'top' || $this->thumbnailsPosition == 'left')): ?>
 	<div class="caroufredsel_thumbnails_skin" id="caroufredsel_thumbnails_skin_<?php echo $this->id; ?>">
 		<div class="caroufredsel_thumbnails" id="caroufredsel_thumbnails_<?php echo $this->id; ?>">
 			<?php echo $this->thumbnails; ?>
@@ -14,48 +15,68 @@
 			</div>
 		</div>
 	</div>
-<?php endif; ?>
+	<?php endif; ?>
+
 	<div class="caroufredsel_skin" id="caroufredsel_skin_<?php echo $this->id; ?>">
-<?php if ($this->headline): ?>
+
+	<?php if ($this->headline): ?>
 		<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
-<?php endif; ?>
+	<?php endif; ?>
+
 		<div class="caroufredsel" id="caroufredsel_<?php echo $this->id; ?>">
 <?php endif; ?>
+
 <?php if ($this->type == 'caroufredsel_gallery' || $this->type == 'caroufredsel_background'): ?> 
 			<?php echo $this->images; ?>
 <?php endif; ?>
+
 <?php if ($this->type != "caroufredsel_start"): ?>
 		</div>
-<?php if ($this->autoProgress || $this->autoButton || $this->navigation || $this->pagination): ?>
+
+	<?php if ($this->autoProgress || $this->autoButton || $this->navigation || $this->pagination): ?>
 		<div class="clearfix"></div>
-<?php if ($this->autoProgress): ?>
+
+		<?php if ($this->autoProgress): ?>
 		<div class="caroufredsel_bar_wrapper" id="caroufredsel_bar_wrapper_<?php echo $this->id; ?>">
-<?php if ($this->autoProgress == 'pie'): ?>
+
+			<?php if ($this->autoProgress == 'pie'): ?>
 			<canvas class="caroufredsel_bar" id="caroufredsel_bar_<?php echo $this->id; ?>"></canvas>
-<?php else: ?> 
+			<?php else: ?> 
 			<div class="caroufredsel_bar" id="caroufredsel_bar_<?php echo $this->id; ?>"></div>
-<?php endif; ?>
+			<?php endif; ?>
+
 		</div>
-<?php endif; ?>
-<?php if ($this->autoButton || $this->navigation || $this->pagination): ?>
+		<?php endif; ?>
+
+		<?php if ($this->autoButton || $this->navigation || $this->pagination): ?>
 		<div class="caroufredsel_controls" id="caroufredsel_controls_<?php echo $this->id; ?>">
+
+			<?php if ($this->autoButton || $this->navigation): ?>
 			<div class="caroufredsel_navi" id="caroufredsel_navi_<?php echo $this->id; ?>">
-<?php if ($this->navigation): ?>
+
+				<?php if ($this->navigation): ?>
 				<a class="caroufredsel_prev" id="caroufredsel_prev_<?php echo $this->id; ?>" href="#"><span><?php echo $GLOBALS['TL_LANG']['DK_CFS']['previous']; ?></span></a>
 				<a class="caroufredsel_next" id="caroufredsel_next_<?php echo $this->id; ?>" href="#"><span><?php echo $GLOBALS['TL_LANG']['DK_CFS']['next']; ?></span></a>
-<?php endif; ?>
-<?php if ($this->autoButton): ?>
+				<?php endif; ?>
+
+				<?php if ($this->autoButton): ?>
 				<a class="caroufredsel_button" id="caroufredsel_button_<?php echo $this->id; ?>" href="#"><span><?php echo $GLOBALS['TL_LANG']['DK_CFS']['pause']; ?></span></a>	
-<?php endif; ?>
+				<?php endif; ?>
+
 			</div>
-<?php if ($this->pagination): ?>
+			<?php endif; ?>
+
+			<?php if ($this->pagination): ?>
 			<div class="caroufredsel_pagi" id="caroufredsel_pagi_<?php echo $this->id; ?>"></div>
-<?php endif; ?>
+			<?php endif; ?>
+
 		</div>
-<?php endif; ?>
-<?php endif; ?>
+		<?php endif; ?>
+
+	<?php endif; ?>
 	</div>
-<?php if ($this->useThumbnails && ($this->thumbnailsPosition == 'bottom' || $this->thumbnailsPosition == 'right')): ?>
+
+	<?php if ($this->useThumbnails && ($this->thumbnailsPosition == 'bottom' || $this->thumbnailsPosition == 'right')): ?>
 	<div class="caroufredsel_thumbnails_skin" id="caroufredsel_thumbnails_skin_<?php echo $this->id; ?>">
 		<div class="caroufredsel_thumbnails" id="caroufredsel_thumbnails_<?php echo $this->id; ?>">
 			<?php echo $this->thumbnails; ?>
@@ -68,6 +89,7 @@
 			</div>
 		</div>
 	</div>
-<?php endif; ?>
+	<?php endif; ?>
+
 </div>
 <?php endif; ?>
