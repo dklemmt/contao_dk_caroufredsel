@@ -547,13 +547,15 @@ class CarouFredSel extends \Frontend
 		}
 
 		// --- navigation
-		if ($objCarouFredSel->useNavigation && $objCarouFredSel->navigation)
+		if ($objCarouFredSel->useNavigation)
 		{
-			$objTemplateHtml->navigation = $objCarouFredSel->navigation;
-
-			if ($objCarouFredSel->autoPlay)
+			if ($objCarouFredSel->navigation)
 			{
-				$objTemplateHtml->autoButton = $objCarouFredSel->autoButton;
+				$objTemplateHtml->navigation = $objCarouFredSel->navigation;
+				if ($objCarouFredSel->autoPlay)
+				{
+					$objTemplateHtml->autoButton = $objCarouFredSel->autoButton;
+				}
 			}
 
 			if ($objCarouFredSel->pagination)
