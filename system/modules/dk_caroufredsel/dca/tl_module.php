@@ -210,7 +210,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['dk_cfsHtmlTpl'] = array
 	'label'				=> &$GLOBALS['TL_LANG']['tl_module']['dk_cfsHtmlTpl'],
 	'exclude'			=> true,
 	'inputType'			=> 'select',
-	'options_callback'	=> function() { return Backend::getTemplateGroup('ce_caroufredsel'); },
+	'options_callback'	=> function() { return Backend::getTemplateGroup('mod_caroufredsel'); },
 	'eval'				=> array('maxlength' => 255, 'tl_class' => 'w50 clr'),
 	'sql'				=> "varchar(255) NOT NULL default ''"
 );
