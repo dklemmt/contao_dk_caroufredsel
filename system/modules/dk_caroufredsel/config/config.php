@@ -45,7 +45,7 @@ $GLOBALS['FE_MOD']['caroufredsel_category'] = array(
 $GLOBALS['TL_CTE']['caroufredsel_category'] = array(
 	'caroufredsel_gallery' => 'carouFredSel\ContentCarouFredSelGallery',
 	'caroufredsel_background' => 'carouFredSel\ContentCarouFredSelBackground',
-	'caroufredsel_start'	 => 'carouFredSel\ContentCarouFredSelStart',
+	'caroufredsel_start' => 'carouFredSel\ContentCarouFredSelStart',
 	'caroufredsel_stop' => 'carouFredSel\ContentCarouFredSelStop'
 );
 

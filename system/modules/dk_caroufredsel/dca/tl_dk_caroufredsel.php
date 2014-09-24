@@ -19,7 +19,7 @@ switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
 		$subpaletteUsePlay = 'direction,carouselType,scrollItems,autoPlay';
 		$subpaletteUseTransitions ='scrollFx,scrollEasing,scrollDuration';
 		$subpaletteUseGeneralSize = 'widthSelect,heightSelect';
-		$subpaletteUseItemsGeneral = 'responsive,itemsVisibleSelect,itemsStartRnd';
+		$subpaletteUseItemsGeneral = 'responsive,itemsVisibleSelect';
 		$subpaletteUseItemsSize = 'itemsWidthSelect,itemsHeightSelect';
 		$subpaletteUseNavigation = 'navigation,pagination';
 		break;
@@ -28,7 +28,7 @@ switch ($GLOBALS['TL_CONFIG']['dk_cfsUsageMode'])
 		$subpaletteUsePlay = 'direction,carouselType,scrollItems,scrollQueue,autoPlay';
 		$subpaletteUseTransitions ='scrollFx,scrollEasing,scrollDuration';
 		$subpaletteUseGeneralSize = 'widthSelect,heightSelect,padding';
-		$subpaletteUseItemsGeneral = 'responsive,cookie,itemsVisibleSelect,itemsStart,itemsStartRnd';
+		$subpaletteUseItemsGeneral = 'responsive,cookie,itemsVisibleSelect,itemsStartSelect';
 		$subpaletteUseItemsSize = 'itemsWidthSelect,itemsHeightSelect';
 		$subpaletteUseNavigation = 'prevKey,nextKey,swipeOnTouch,swipeOnMouse,mousewheel,navigation,pagination';
 		break;
@@ -489,21 +489,23 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'eval'				=> array('maxlength' => 4, 'rgxp' => 'digit', 'tl_class' => 'w50'),
 			'sql'				=> "smallint(5) unsigned NOT NULL default '0'"
 		),
+		'itemsStartSelect' => array
+		(
+			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect'],
+			'exclude'			=> true,
+			'inputType'			=> 'select',
+			'options'			=> array('number', 'random', 'anchor'),
+			'reference'			=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect'],
+			'eval'				=> array('helpwizard' => true, 'submitOnChange' => true, 'includeBlankOption' => true, 'tl_class' => 'w50 clr'),
+			'sql'				=> "varchar(32) NOT NULL default ''"
+		),
 		'itemsStart' => array
 		(
 		  	'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStart'],
 			'exclude'			=> true,
 		  	'inputType'			=> 'text',
-		  	'eval'				=> array('maxlength' => 4, 'rgxp' => 'digit', 'tl_class' => 'w50 clr'),
+		  	'eval'				=> array('maxlength' => 4, 'rgxp' => 'digit', 'tl_class' => 'w50'),
 			'sql'				=> "smallint(5) NOT NULL default '0'"
-		),
-		'itemsStartRnd' => array
-		(
-			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartRnd'],
-			'exclude'			=> true,
-			'inputType'			=> 'checkbox',
-		  	'eval'				=> array( 'tl_class' => 'w50 m12'),
-			'sql'				=> "char(1) NOT NULL default ''"
 		),
 
 		// --- navigation
@@ -628,7 +630,7 @@ class tl_dk_caroufredsel extends Backend
 		}
 
 		$obj = $this->Database
-				->prepare("SELECT autoPlay, autoProgress, navigation, pagination, widthSelect, heightSelect, itemsWidthSelect, itemsHeightSelect, itemsVisibleSelect
+				->prepare("SELECT autoPlay, autoProgress, navigation, pagination, widthSelect, heightSelect, itemsWidthSelect, itemsHeightSelect, itemsVisibleSelect, itemsStartSelect
 						   FROM   tl_dk_caroufredsel
 						   WHERE  id = ? ")
 				->limit(1)
@@ -704,6 +706,12 @@ class tl_dk_caroufredsel extends Backend
 		if ($obj->itemsHeightSelect == 'fixed' || $obj->itemsHeightSelect == 'fluid')
 		{
 			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useItemsSize'] = str_replace('itemsHeightSelect', 'itemsHeightSelect,itemsHeight', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useItemsSize']);
+		}
+
+		// only show field 'itemsStart' if field 'itemsStartSelect' contains 'number'
+		if ($obj->itemsStartSelect == 'number')
+		{
+			$GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useItemsGeneral'] = str_replace('itemsStartSelect', 'itemsStartSelect,itemsStart', $GLOBALS['TL_DCA']['tl_dk_caroufredsel']['subpalettes']['useItemsGeneral']);
 		}
 	}
 	

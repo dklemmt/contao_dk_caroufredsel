@@ -125,10 +125,10 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleMin'][0] = 'Minimale Anza
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleMin'][1] = 'Minimale Anzahl an Elementen, die sichtbar sein sollen.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleMax'][0] = 'Maximale Anzahl';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleMax'][1] = 'Maximale Anzahl an Elementen, die sichtbar sein sollen.';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect'][0] = 'Bestimmung des Start-Elements';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect'][1] = 'Bestimmt wie das Start-Element ermittelt wird. Wählen Sie nichts wird das automatisch berechnet.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStart'][0] = 'Nummer des Start-Elements';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStart'][1] = 'Nummer des Elements, das am Anfang steht. Geben Sie 0 ein um dies automatisch berechnen zu lassen. Die Nummer darf auch negativ sein.';
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartRnd'][0] = 'zufälliges Start-Element';
-$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartRnd'][1] = 'Bestimmt, ob das Start-Element zufällig aus den vorhandenen gewählt wird.';
 
 // --- navigation
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['useNavigation'][0] = 'Navigation';
@@ -206,6 +206,13 @@ $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleSelect']['fixed'][0] = 'f
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleSelect']['fixed'][1] = 'Die Anzahl der sichtbaren Elemente wird fest vorgegeben.';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleSelect']['min/max'][0] = 'min/max';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsVisibleSelect']['min/max'][1] = 'Die minimale und/oder maximale Anzahl an sichtbaren Elementen kann festgelegt werden.';
+
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect']['number'][0] = 'Nummer';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect']['number'][1] = 'Das Start-Element wird fest vorgegeben.';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect']['random'][0] = 'zufällig';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect']['random'][1] = 'Das Start-Element wird aus allen vorhandenen Elementen zufällig ermittelt.';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect']['anchor'][0] = 'Anker';
+$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['itemsStartSelect']['anchor'][1] = 'Das Start-Element wird durch die URL bestimmt in der Form: http://domain.com#startitem.';
 
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['prevKey']['none'] = 'keine';
 $GLOBALS['TL_LANG']['tl_dk_caroufredsel']['prevKey']['left'] = 'Cursor links';

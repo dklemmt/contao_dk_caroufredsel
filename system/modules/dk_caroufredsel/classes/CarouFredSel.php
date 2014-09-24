@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2013 Leo Feyer
+ * Copyright (C) 2005-2014 Leo Feyer
  * 
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2013
+ * @copyright Dirk Klemmt 2012-2014
  */
 
 
@@ -24,7 +24,7 @@ namespace Dirch\carouFredSel;
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2013
+ * @copyright Dirk Klemmt 2012-2014
  */
 class CarouFredSel extends \Frontend 
 {
@@ -349,13 +349,19 @@ class CarouFredSel extends \Frontend
 			}
 
 			// carouFredSel option 'items.start': default value is '0'
-			if ($objCarouFredSel->itemsStartRnd)
+			switch ($objCarouFredSel->itemsStartSelect)
 			{
-				$objTemplateJs->itemsStart = 'start: "random"';
-			}
-			elseif ($objCarouFredSel->itemsStart != '0')
-			{
-				$objTemplateJs->itemsStart = 'start: ' . $objCarouFredSel->itemsStart;
+				case 'number':
+					$objTemplateJs->itemsStart = ($objCarouFredSel->itemsStart == '0' ? '' : 'start: ' . $objCarouFredSel->itemsStart);
+					break;
+
+				case 'random':
+					$objTemplateJs->itemsStart = 'start: "random"';
+					break;
+
+				case 'anchor':
+					$objTemplateJs->itemsStart = 'start: true';
+					break;
 			}
 		}
 
