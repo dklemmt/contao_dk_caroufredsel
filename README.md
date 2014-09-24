@@ -7,13 +7,13 @@ Möglichkeiten von carouFredSel
 ------------------------------
 
 * scrollen von beliebigen Inhalten in horizontaler (links/rechts) und vertikaler (hoch/runter) Richtung
-* automatisches scrollen oder scrollen durch Buttons, mittels Tastatur, dem Mausrad oder durch Wischen
+* automatisches scrollen oder scrollen/navigieren durch Buttons, mittels Tastatur, dem Mausrad oder durch Wischen auf mobilen Geräten sowie Pagination
 * Scrollmodi: einmalig, kreisförmig (scrollt am Ende mit dem ersten Element weiter) und unendlich (spult am Ende zum ersten Element zurück)
 * konfigurierbare Anzahl von gleichzeitig scrollenden Elementen
 * konfigurierbare Anzeigedauer und Verzögerung bis das erste Mal gescrollt wird
 * Pause bei Maus-Hover oder durch Button
 * Fortschritts-Balken oder Kreis-Diagramm zur Anzeige bis erneut gescrollt wird
-* 9 eingebaute Übergangs-Effekte: none, scroll, directscroll, fade, crossfade, cover, cover-fade, uncover und uncover-fade
+* 9 eingebaute Übergangs-Effekte: none, scroll, directscroll, fade, crossfade, cover, cover-fade, uncover und uncover-fade sowie diverse *easing*-Effekte
 * konfigurierbare Länge der Übergangsdauer
 * optionales responsive/fluid/liquid Karussell
 * konfigurierbare Größe des Karussells sowie der einzelnen Elemente
@@ -21,7 +21,6 @@ Möglichkeiten von carouFredSel
 * konfigurierbare Anzahl von sichtbaren Elementen
 * konfigurierbares oder zufälliges Start-Element
 * speichern der letzten Position zwischen Seitenwechseln
-* eingebaute Tastatur- und Maus-Navigation sowie Pagination
 
 Implementation in Contao
 ------------------------
@@ -49,6 +48,7 @@ Tipps/Hinweise
 --------------
 
 * Damit carouFredSel gestartet wird, muß im Seitenlayout *jQuery* zum Layout hinzugefügt werden.
+* Die ehemals optionalen Erweiterungen (jquery_easing, jquery_touchswipe und jquery_mousewheel) sind nun Bestandteil dieses Pakets und werden automatisch bei Bedarf eingebunden.
 * Bei Nutzung von HTML5 sollte man ein *figure { margin:0; padding:0; }* in seiner CSS-Definition verwenden, falls man das CSS-Reset Style-Sheet von Contao nicht einbindet.
 * Einstellungsmodus konfigurierbar in den Contao-Einstellungen: für eine bessere Übersichtlichkeit werden in der Grundeinstellung (*einfach*) nur die am häufigsten/wichtigsten Einstellungen angezeigt. Dies kann dort bei bedarf auf *erweitert* umgeschaltet werden um Zugang zu allen Möglichkeiten zu haben.
 
