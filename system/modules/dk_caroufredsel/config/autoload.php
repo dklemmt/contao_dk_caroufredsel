@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2014 Leo Feyer
+ * Copyright (C) 2005-2015 Leo Feyer
  * 
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2014
+ * @copyright Dirk Klemmt 2012-2015
  */
 
 
@@ -36,7 +36,7 @@ ClassLoader::addClasses(array
 	'Dirch\carouFredSel\ContentCarouFredSelBackground' => 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelBackground.php',
 
 	// Models
-	'Dirch\carouFredSel\CarouFredSelModel' => 'system/modules/dk_caroufredsel/models/CarouFredSelModel.php',
+	'Dirch\carouFredSel\CarouFredSelModel' => 's2015ystem/modules/dk_caroufredsel/models/CarouFredSelModel.php',
 
 	// Modules
 	'Dirch\carouFredSel\ModuleCarouFredSel'=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSel.php',

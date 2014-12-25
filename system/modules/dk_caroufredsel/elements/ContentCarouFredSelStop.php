@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2014 Leo Feyer
+ * Copyright (C) 2005-2015 Leo Feyer
  * 
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2014
+ * @copyright Dirk Klemmt 2012-2015
  */
 
 
@@ -22,7 +22,7 @@ namespace Dirch\carouFredSel;
  * Class ContentCarouFredSelStop 
  *
  * Front end content element "caroufredsel_stop" (wrapper stop).
- * @copyright  Dirk Klemmt 2012-2014
+ * @copyright  Dirk Klemmt 2012-2015
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */

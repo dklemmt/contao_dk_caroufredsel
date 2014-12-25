@@ -3,12 +3,12 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2014 Leo Feyer
+ * Copyright (C) 2005-2015 Leo Feyer
  * 
  * @package   carouFredSel
  * @author    Dirk Klemmt
  * @license   MIT/GPL
- * @copyright Dirk Klemmt 2012-2014
+ * @copyright Dirk Klemmt 2012-2015
  */
 
 
@@ -602,7 +602,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 /**
  * Class tl_dk_caroufredsel
  *
- * @copyright  Dirk Klemmt 2012-2013
+ * @copyright  Dirk Klemmt 2012-2015
  * @author     Dirk Klemmt
  * @package    carouFredSel
  */
