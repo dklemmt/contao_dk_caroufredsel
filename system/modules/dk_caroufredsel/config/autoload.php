@@ -36,7 +36,7 @@ ClassLoader::addClasses(array
 	'Dirch\carouFredSel\ContentCarouFredSelBackground' => 'system/modules/dk_caroufredsel/elements/ContentCarouFredSelBackground.php',
 
 	// Models
-	'Dirch\carouFredSel\CarouFredSelModel' => 's2015ystem/modules/dk_caroufredsel/models/CarouFredSelModel.php',
+	'Dirch\carouFredSel\CarouFredSelModel' => 'system/modules/dk_caroufredsel/models/CarouFredSelModel.php',
 
 	// Modules
 	'Dirch\carouFredSel\ModuleCarouFredSel'=> 'system/modules/dk_caroufredsel/modules/ModuleCarouFredSel.php',
