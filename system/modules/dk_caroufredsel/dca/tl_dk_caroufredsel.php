@@ -198,7 +198,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollItems'],
 			'exclude'			=> true,
 			'inputType'			=> 'text',
-			'eval'				=> array('maxlength' => 5, 'rgxp' => 'digit'),
+			'eval'				=> array('maxlength' => 5, 'rgxp' => 'digit', 'tl_class' => 'clr'),
 			'sql'				=> "smallint(5) unsigned NOT NULL default '0'"
 		),
 		'scrollQueue' => array
@@ -310,7 +310,7 @@ $GLOBALS['TL_DCA']['tl_dk_caroufredsel'] = array
 			'label'				=> &$GLOBALS['TL_LANG']['tl_dk_caroufredsel']['scrollDuration'],
 			'exclude'			=> true,
 			'inputType'			=> 'text',
-			'eval'				=> array('maxlength' => 10, 'rgxp' => 'digit'),
+			'eval'				=> array('maxlength' => 10, 'rgxp' => 'digit', 'tl_class' => 'clr'),
 			'sql'				=> "int(10) NOT NULL default '500'"
 		),
 
